@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <!-- Header -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@android:color/white"
+        android:elevation="4dp"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_arrowback"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thông tin người dùng"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Avatar -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="32dp">
+
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/circle_background"
+                    android:src="@drawable/ic_launcher_background"
+                    android:scaleType="centerCrop"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:clipToOutline="true"/>
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_camera"
+                    android:padding="6dp"
+                    android:layout_alignEnd="@id/profile_image"
+                    android:layout_alignBottom="@id/profile_image"/>
+
+            </RelativeLayout>
+
+            <!-- Full name -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Full name"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/edit_full_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Nguyễn Long Nhật"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:background="@drawable/textbox_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Email -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/edit_email"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="nguyenlongnhat@gmail.com"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:background="@drawable/textbox_background"
+                android:padding="12dp"
+                android:inputType="textEmailAddress"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Số điện thoại -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số điện thoại"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/edit_phone"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="0989904735"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:background="@drawable/textbox_background"
+                android:padding="12dp"
+                android:inputType="phone"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Giới tính -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Giới tính"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/edit_gender"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Nam"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:background="@drawable/textbox_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Ngày sinh -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ngày sinh"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/edit_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="01-11-2005"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:background="@drawable/textbox_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Địa chỉ -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Địa chỉ"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/edit_address"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/textbox_background"
+                android:padding="12dp"
+                android:text="79/4 cách mạng tháng 8, Quả..."
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Bottom Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center"
+        android:background="@android:color/white"
+        android:elevation="8dp">
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Hủy"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_huy_background"
+            app:backgroundTint="@color/red"
+            android:layout_marginEnd="8dp"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Lưu"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/button_luu_background"
+            app:backgroundTint="#2196F3"
+            android:layout_marginStart="8dp"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+
+</LinearLayout>
