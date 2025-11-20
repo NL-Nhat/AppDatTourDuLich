@@ -19,7 +19,7 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.TourViewHolder
     private Context context;
     private List<Tour> tourList;
     private OnTourClickListener onTourClickListener;
-
+// lấy dữ liệu từ model
     public interface OnTourClickListener {
         void onTourClick(int position);
     }
