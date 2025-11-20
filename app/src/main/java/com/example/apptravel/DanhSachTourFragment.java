@@ -39,7 +39,7 @@ public class DanhSachTourFragment extends Fragment {
 
         // Khởi tạo dữ liệu mẫu cho hiển thị
         tourList = new ArrayList<>();
-        tourList.add(new Tour("Tour du lịch -\nĐà Nẵng", "$100", 5.0f, R.drawable.ic_launcher_background, false));
+        tourList.add(new Tour("Tour du lịch -\nĐà Nẵng", "$100", 5.0f, R.drawable.da_nang, false));
         tourList.add(new Tour("Tour du lịch -\nHà Nội", "$100", 5.0f, R.drawable.ic_launcher_background, false));
         tourList.add(new Tour("Tour du lịch -\nQuảng Ninh", "$100", 5.0f, R.drawable.ic_launcher_background, false));
         tourList.add(new Tour("Tour du lịch -\nCao Bằng", "$100", 5.0f, R.drawable.ic_launcher_background, false));
