@@ -1,18 +1,22 @@
 package com.example.apptravel.models;
 
-public class Tour {
+import java.io.Serializable;
+
+public class Tour implements Serializable {
     private String title;
     private String price;
     private float rating;
     private int imageResId;
     private boolean isFavorite;
+    private String location;
 
-    public Tour(String title, String price, float rating, int imageResId, boolean isFavorite) {
+    public Tour(String title, String price, float rating, int imageResId, boolean isFavorite, String location) {
         this.title = title;
         this.price = price;
         this.rating = rating;
         this.imageResId = imageResId;
         this.isFavorite = isFavorite;
+        this.location = location;
     }
 
     public String getTitle() {
@@ -33,5 +37,9 @@ public class Tour {
 
     public boolean isFavorite() {
         return isFavorite;
+    }
+
+    public String getLocation() {
+        return location;
     }
 }

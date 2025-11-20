@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTravel">
         <activity
+            android:name=".TourDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".ThongTinCaNhanActivity"
             android:exported="false" />
         <activity
