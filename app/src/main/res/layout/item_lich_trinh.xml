@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/iv_lich_trinh_image"
+            android:layout_width="110dp"
+            android:layout_height="90dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/da_nang" />
+
+        <TextView
+            android:id="@+id/tv_lich_trinh_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:text="Tour Du Lịch - Tham Quan, Check in tại Đà Nẵng City (1 Ngày 1 Đêm)"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/iv_lich_trinh_arrow"
+            app:layout_constraintStart_toEndOf="@+id/iv_lich_trinh_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_lich_trinh_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Ngày 28 - Ngày 29/09/2025"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_lich_trinh_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_lich_trinh_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_lich_trinh_title" />
+
+        <TextView
+            android:id="@+id/tv_lich_trinh_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:drawableStart="@drawable/ic_map"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
+            android:text="Đà Nẵng, Việt Nam"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_lich_trinh_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_lich_trinh_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_lich_trinh_date" />
+
+        <ImageView
+            android:id="@+id/iv_lich_trinh_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_forward"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
