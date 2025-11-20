@@ -32,7 +32,7 @@
                 android:padding="61dp"
                 android:layout_alignParentEnd="true"
                 android:layout_margin="8dp"
-                android:background="@drawable/ic_star"/>
+                android:background="@drawable/ic_heart"/>
 
             <!-- Rating Badge -->
             <LinearLayout
