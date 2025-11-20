@@ -18,10 +18,16 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.TourViewHolder
 
     private Context context;
     private List<Tour> tourList;
+    private OnTourClickListener onTourClickListener;
 
-    public TourAdapter(Context context, List<Tour> tourList) {
+    public interface OnTourClickListener {
+        void onTourClick(int position);
+    }
+
+    public TourAdapter(Context context, List<Tour> tourList, OnTourClickListener onTourClickListener) {
         this.context = context;
         this.tourList = tourList;
+        this.onTourClickListener = onTourClickListener;
     }
 
     @NonNull
@@ -39,6 +45,12 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.TourViewHolder
         holder.tourPrice.setText(tour.getPrice());
         holder.tourRating.setText(String.valueOf(tour.getRating()));
         holder.tourImage.setImageResource(tour.getImageResId());
+
+        holder.itemView.setOnClickListener(v -> {
+            if (onTourClickListener != null) {
+                onTourClickListener.onTourClick(position);
+            }
+        });
     }
 
     @Override

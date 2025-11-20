@@ -1,5 +1,6 @@
 package com.example.apptravel;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,11 +13,11 @@ import android.view.ViewGroup;
 
 import com.example.apptravel.adapters.TourAdapter;
 import com.example.apptravel.models.Tour;
+import com.example.apptravel.models.TourData;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class DanhSachTourFragment extends Fragment {
+public class DanhSachTourFragment extends Fragment implements TourAdapter.OnTourClickListener {
 
     private RecyclerView recyclerView;
     private TourAdapter tourAdapter;
@@ -37,24 +38,18 @@ public class DanhSachTourFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view_tours);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
-        // Khởi tạo dữ liệu mẫu cho hiển thị
-        tourList = new ArrayList<>();
-        tourList.add(new Tour("Tour du lịch -\nĐà Nẵng", "$100", 5.0f, R.drawable.da_nang, false));
-        tourList.add(new Tour("Tour du lịch -\nHà Nội", "$100", 5.0f, R.drawable.ic_launcher_background, false));
-        tourList.add(new Tour("Tour du lịch -\nQuảng Ninh", "$100", 5.0f, R.drawable.ic_launcher_background, false));
-        tourList.add(new Tour("Tour du lịch -\nCao Bằng", "$100", 5.0f, R.drawable.ic_launcher_background, false));
-        tourList.add(new Tour("Tour du lịch -\nĐà Nẵng", "$100", 5.0f, R.drawable.ic_launcher_background, false));
-        tourList.add(new Tour("Tour du lịch -\nHà Nội", "$100", 5.0f, R.drawable.ic_launcher_background, false));
-        tourList.add(new Tour("Tour du lịch -\nĐà Nẵng", "$100", 5.0f, R.drawable.ic_launcher_background, false));
-        tourList.add(new Tour("Tour du lịch -\nHà Nội", "$100", 5.0f, R.drawable.ic_launcher_background, false));
-        tourList.add(new Tour("Tour du lịch -\nQuảng Ninh", "$100", 5.0f, R.drawable.ic_launcher_background, false));
-        tourList.add(new Tour("Tour du lịch -\nCao Bằng", "$100", 5.0f, R.drawable.ic_launcher_background, false));
-        tourList.add(new Tour("Tour du lịch -\nĐà Nẵng", "$100", 5.0f, R.drawable.ic_launcher_background, false));
-        tourList.add(new Tour("Tour du lịch -\nHà Nội", "$100", 5.0f, R.drawable.ic_launcher_background, false));
+        tourList = TourData.getTourList();
 
-        tourAdapter = new TourAdapter(getContext(), tourList);
+        tourAdapter = new TourAdapter(getContext(), tourList, this);
         recyclerView.setAdapter(tourAdapter);
 
         return view;
+    }
+
+    @Override
+    public void onTourClick(int position) {
+        Intent intent = new Intent(getActivity(), TourDetailActivity.class);
+        intent.putExtra("tour_position", position);
+        startActivity(intent);
     }
 }
