@@ -52,6 +52,7 @@
             android:padding="16dp">
 
             <TextView
+                android:id="@+id/tv_name_tour"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Tour tham quan Chùa Linh Ứng, Bán đảo Sơn Trà, Ngũ Hành Sơn và Hội An về đêm"

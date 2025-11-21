@@ -25,12 +25,17 @@ public class NhapThongTinActivity extends AppCompatActivity {
 
         // Nhận tiền từ màn hình trước
         long totalAmount = getIntent().getLongExtra("TOTAL_AMOUNT", 0);
+        String  tourName = getIntent().getStringExtra("TOUR_NAME"); // Nhận tên tour
 
+        TextView tv_tourName = findViewById(R.id.tv_name_tour);
+        tv_tourName.setText(tourName);
         // Cập nhật vào Footer
         TextView tvPrice = findViewById(R.id.tvInfoPrice);
         if (totalAmount > 0) {
             tvPrice.setText(String.format("%,d VNĐ", totalAmount));
         }
+        TextView tv_tname = findViewById(R.id.tv_name_tour);
+        String textName = tv_tname.getText().toString();
 
         // Nút Back
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
@@ -38,6 +43,7 @@ public class NhapThongTinActivity extends AppCompatActivity {
         btnBookNow.setOnClickListener(v -> {
             Intent intent = new Intent(NhapThongTinActivity.this, PhuongThucThanhToanActivity.class);
             intent.putExtra("FINAL_TOTAL", totalAmount);
+            intent.putExtra("TOUR_NAME_TT", textName);
             startActivity(intent);
         });
     }

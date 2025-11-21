@@ -61,6 +61,9 @@ public class TourDetailActivity extends AppCompatActivity {
             }
         }
         TextView tvPrice = findViewById(R.id.tv_price_bottom);
+        TextView tvName = findViewById(R.id.tv_tour_name);
+        String textName = tvName.getText().toString();
+
         String priceText = tvPrice.getText().toString();
         String cleanPrice = priceText.replaceAll("[^\\d]", ""); // loại bỏ VNĐ và dấu phẩy
         btnBookNow.setOnClickListener(v -> {
@@ -72,6 +75,8 @@ public class TourDetailActivity extends AppCompatActivity {
 
             // Truyền giá tiền sang để màn hình sau tính toán
             intent.putExtra("TOTAL_AMOUNT", pricePerPerson);
+            intent.putExtra("TOUR_NAME", textName);
+
             startActivity(intent);
         });
     }
