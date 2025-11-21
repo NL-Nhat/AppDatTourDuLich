@@ -3,6 +3,11 @@ package com.example.apptravel;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+<<<<<<< Updated upstream
+=======
+import android.widget.Button;
+import android.widget.ImageView;
+>>>>>>> Stashed changes
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,7 +37,44 @@ public class NhapThongTinActivity extends AppCompatActivity {
 
         // Nút Back
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+<<<<<<< Updated upstream
 
+=======
+        Button btnBookNow = findViewById(R.id.btnInfoBook);
+        btnBookNow.setOnClickListener(v -> {
+            Intent intent = new Intent(NhapThongTinActivity.this, PhuongThucThanhToanActivity.class);
+            intent.putExtra("FINAL_TOTAL", totalAmount);
+            intent.putExtra("TOUR_NAME_TT", textName);
+            startActivity(intent);
+        });
+        setupCounter(
+                findViewById(R.id.btnPlusAdult),
+                findViewById(R.id.btnMinusAdult),
+                findViewById(R.id.tvCountAdult),
+                1 // Adult min = 1
+        );
+
+        setupCounter(
+                findViewById(R.id.btnPlusChild),
+                findViewById(R.id.btnMinusChild),
+                findViewById(R.id.tvCountChild),
+                0 // Child min = 0
+        );
+>>>>>>> Stashed changes
 
     }
+    private void setupCounter(ImageView btnPlus, ImageView btnMinus, TextView tvCount, int minValue) {
+        btnPlus.setOnClickListener(v -> {
+            int count = Integer.parseInt(tvCount.getText().toString());
+            count++;
+            tvCount.setText(String.valueOf(count));
+        });
+
+        btnMinus.setOnClickListener(v -> {
+            int count = Integer.parseInt(tvCount.getText().toString());
+            if (count > minValue) count--;
+            tvCount.setText(String.valueOf(count));
+        });
+    }
+
 }
