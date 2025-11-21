@@ -1,11 +1,13 @@
 package com.example.apptravel;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.apptravel.models.Tour;
 import com.example.apptravel.models.TourData;
@@ -18,6 +20,7 @@ public class TourDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tour_detail);
+        AppCompatButton btnBookNow = findViewById(R.id.btn_book_now);
 
         ImageView btnBack = findViewById(R.id.btn_back);
         if (btnBack != null) {
@@ -57,5 +60,16 @@ public class TourDetailActivity extends AppCompatActivity {
                 }
             }
         }
+        btnBookNow.setOnClickListener(v -> {
+            // Giá vé cơ bản
+            long pricePerPerson = 490000;
+
+            // Chuyển sang màn hình điền thông tin (InfoActivity)
+            Intent intent = new Intent(TourDetailActivity.this, NhapThongTinActivity.class);
+
+            // Truyền giá tiền sang để màn hình sau tính toán
+            intent.putExtra("TOTAL_AMOUNT", pricePerPerson);
+            startActivity(intent);
+        });
     }
 }
