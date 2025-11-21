@@ -15,7 +15,7 @@
             android:name=".NhapThongTinActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_booking"
+            android:name=".PhuongThucThanhToanActivity"
             android:exported="false" />
         <activity
             android:name=".TourDetailActivity"

@@ -60,9 +60,12 @@ public class TourDetailActivity extends AppCompatActivity {
                 }
             }
         }
+        TextView tvPrice = findViewById(R.id.tv_price_bottom);
+        String priceText = tvPrice.getText().toString();
+        String cleanPrice = priceText.replaceAll("[^\\d]", ""); // loại bỏ VNĐ và dấu phẩy
         btnBookNow.setOnClickListener(v -> {
             // Giá vé cơ bản
-            long pricePerPerson = 490000;
+            long pricePerPerson = Long.parseLong(cleanPrice);
 
             // Chuyển sang màn hình điền thông tin (InfoActivity)
             Intent intent = new Intent(TourDetailActivity.this, NhapThongTinActivity.class);

@@ -3,8 +3,10 @@ package com.example.apptravel;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 public class NhapThongTinActivity extends AppCompatActivity {
 
@@ -32,7 +34,11 @@ public class NhapThongTinActivity extends AppCompatActivity {
 
         // Nút Back
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
-
-
+        Button btnBookNow = findViewById(R.id.btnInfoBook);
+        btnBookNow.setOnClickListener(v -> {
+            Intent intent = new Intent(NhapThongTinActivity.this, PhuongThucThanhToanActivity.class);
+            intent.putExtra("FINAL_TOTAL", totalAmount);
+            startActivity(intent);
+        });
     }
 }
