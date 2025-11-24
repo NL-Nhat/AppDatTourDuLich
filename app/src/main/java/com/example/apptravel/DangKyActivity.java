@@ -1,10 +1,8 @@
-package com.example.apptravel.models;
+package com.example.apptravel;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.apptravel.R;
 
 public class DangKyActivity extends AppCompatActivity {
     @Override

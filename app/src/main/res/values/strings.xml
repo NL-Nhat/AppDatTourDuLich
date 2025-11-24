@@ -12,4 +12,7 @@
     <string name="dangnhap">Đăng nhập</string>
     <string name="hoactieptucvoi">Hoặc tiếp tục với</string>
     <string name="dangky">Đăng ký</string>
+    <string name="ghinhotaikhoan">Ghi nhớ tài khoản</string>
+    <string name="quenmatkhau">Quên mật khẩu</string>
+    <string name="chaomungtrolai">Chào mừng trở lại</string>
 </resources>
