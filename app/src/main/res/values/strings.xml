@@ -2,4 +2,14 @@
     <string name="app_name">AppTravel</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="batdaukynghi">Bắt đầu kỳ nghỉ</string>
+    <string name="tendangnhap">Tên đăng nhập</string>
+    <string name="hovaten">Họ và tên</string>
+    <string name="email">Email</string>
+    <string name="matkhau">Mật khẩu</string>
+    <string name="xacnhanmatkhau">Xác nhận mật khẩu</string>
+    <string name="dieukhoan">Điều khoản</string>
+    <string name="dangnhap">Đăng nhập</string>
+    <string name="hoactieptucvoi">Hoặc tiếp tục với</string>
+    <string name="dangky">Đăng ký</string>
 </resources>
