@@ -59,7 +59,10 @@ public class TaoTourTheoYeuCauFragment extends Fragment {
                 if (itemId == R.id.nav_new_chat) {
                     message = "Chức năng: Đoạn chat mới";
                 } else if (itemId == R.id.nav_suggestions) {
-                    message = "Chức năng: Danh sách đề xuất";
+                    getParentFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, new DanhSachDeXuatFragment())
+                            .addToBackStack(null)
+                            .commit();
                 } else if (itemId == R.id.nav_status) {
                     message = "Chức năng: Trạng thái xác nhận";
                 } else if (itemId == R.id.nav_history) {
