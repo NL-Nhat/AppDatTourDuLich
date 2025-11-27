@@ -151,17 +151,6 @@
                         android:drawableStart="@drawable/ic_ewallet"
                         android:drawablePadding="12dp"/>
 
-                    <RadioButton
-                        android:id="@+id/rbCOD"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Thanh toán khi giao hàng"
-                        android:textSize="16sp"
-                        android:textColor="@color/black"
-                        android:paddingStart="12dp"
-                        android:buttonTint="#2196F3"
-                        android:drawableStart="@drawable/ic_cod"
-                        android:drawablePadding="12dp"/>
                 </RadioGroup>
             </LinearLayout>
 
