@@ -45,7 +45,7 @@ public class DanhSachDeXuatFragment extends Fragment {
 
         // Group 1
         displayableItemList.add(new DateHeader("12/10/2025"));
-        displayableItemList.add(new LichTrinhYeuCau(R.drawable.da_nang, "Tour Du Lịch - Tham Quan, Check in tại Đà Nẵng City (1 Ngày 1 Đêm)", "Ngày 28 - Ngày 29/09/2025", "Đà Nẵng, Việt Nam", false));
+        displayableItemList.add(new LichTrinhYeuCau(R.drawable.da_nang, "Tour Du Lịch - Tham Quan, Check in tại Đà Nẵng City (1 Ngày 1 Đêm)", "", "Đà Nẵng, Việt Nam", false));
         displayableItemList.add(new LichTrinhYeuCau(R.drawable.cao_bang, "Tour Du Lịch - Tham Quan, Cứu trợ tại Cao Bằng (2 Ngày 1 Đêm)", "Ngày 28 - Ngày 30/09/2025", "Cao Bằng, Việt Nam", true));
 
         // Group 2
