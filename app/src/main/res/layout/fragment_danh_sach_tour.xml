@@ -51,13 +51,14 @@
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:hint="Tìm kiếm tour"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
             android:background="@drawable/search_background"
             android:drawableStart="@drawable/ic_search"
             android:drawablePadding="8dp"
-            android:textSize="14sp"/>
+            android:hint="Tìm kiếm tour"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColorHint="@color/gray"
+            android:textSize="14sp" />
 
         <ImageView
             android:layout_width="24dp"

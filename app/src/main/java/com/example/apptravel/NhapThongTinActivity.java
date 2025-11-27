@@ -35,6 +35,7 @@ public class NhapThongTinActivity extends AppCompatActivity {
 
         // Nút Back
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
         btnInfoBook = findViewById(R.id.btnInfoBook);
         btnInfoBook.setOnClickListener(v -> {
             Intent intent = new Intent(NhapThongTinActivity.this, PhuongThucThanhToanActivity.class);
