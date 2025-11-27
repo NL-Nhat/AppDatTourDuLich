@@ -64,7 +64,10 @@ public class TaoTourTheoYeuCauFragment extends Fragment {
                             .addToBackStack(null)
                             .commit();
                 } else if (itemId == R.id.nav_status) {
-                    message = "Chức năng: Trạng thái xác nhận";
+                    getParentFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, new TinhTrangXacNhanFragment())
+                            .addToBackStack(null)
+                            .commit();
                 } else if (itemId == R.id.nav_history) {
                     message = "Chức năng: Lịch sử tra cứu";
                 }
