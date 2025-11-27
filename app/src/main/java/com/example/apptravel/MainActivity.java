@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (itemId == R.id.nav_schedule) {
                 selectedFragment = new LichTrinhFragment();
             } else if (itemId == R.id.nav_chat) { // This corresponds to 'Yêu thích' in the UI
+                selectedFragment = new TaoTourTheoYeuCauFragment();
                 // YeuThichFragment needs to be created
                 // selectedFragment = new YeuThichFragment();
             } else if (itemId == R.id.nav_profile) {
