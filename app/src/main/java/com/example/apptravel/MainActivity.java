@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (itemId == R.id.nav_home) {
                 // HomeFragment is not created, using DanhSachTourFragment as a placeholder
-                selectedFragment = new DanhSachTourFragment();
+                //selectedFragment = new DanhSachTourFragment();
             } else if (itemId == R.id.nav_menu) {
                 selectedFragment = new DanhSachTourFragment();
             } else if (itemId == R.id.nav_schedule) {

@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 public class TrangCaNhanFragment extends Fragment {
 
     private LinearLayout userInfo;
+    private LinearLayout logout;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,11 +27,20 @@ public class TrangCaNhanFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_trang_ca_nhan, container, false);
 
         userInfo = view.findViewById(R.id.user_info);
+        logout = view.findViewById(R.id.logout);
 
         userInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ThongTinCaNhanActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DangNhapActivity.class);
                 startActivity(intent);
             }
         });
