@@ -28,8 +28,6 @@ public class PhuongThucThanhToanActivity extends AppCompatActivity {
         TextView tvFinal = findViewById(R.id.tvFinalTotal);
         Button btnConfirm = findViewById(R.id.btnConfirmPayment);
         View btnBack = findViewById(R.id.btnBack);
-        TextView tv_tourName = findViewById(R.id.tv_tour_name_chonthanhtoan);
-        tv_tourName.setText(tourName);
         // 3. Hiển thị dữ liệu
         tvBase.setText(String.format("%,d VNĐ", basePrice));
         tvFinal.setText(String.format("%,d VNĐ", finalPrice));

@@ -42,6 +42,7 @@ public class TrangCaNhanFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), DangNhapActivity.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 
