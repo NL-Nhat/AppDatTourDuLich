@@ -29,7 +29,6 @@ public class PhuongThucThanhToanActivity extends AppCompatActivity {
         // 2. Ánh xạ View
         TextView tvBase = findViewById(R.id.tvBasePrice);
         TextView tvFinal = findViewById(R.id.tvFinalTotal);
-        Button btnConfirm = findViewById(R.id.btnConfirmPayment);
         View btnBack = findViewById(R.id.btnBack);
         // 3. Hiển thị dữ liệu
         tvBase.setText(String.format("%,d VNĐ", basePrice));
@@ -40,12 +39,12 @@ public class PhuongThucThanhToanActivity extends AppCompatActivity {
 
         btnThanhToan = findViewById(R.id.btnConfirmPayment);
 
-//        btnThanhToan.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(PhuongThucThanhToanActivity.this, ThanhToanThanhCongActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        btnThanhToan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PhuongThucThanhToanActivity.this, KetQuaThanhToanActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
