@@ -1,5 +1,6 @@
 package com.example.apptravel;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +9,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PhuongThucThanhToanActivity extends AppCompatActivity {
+
+    private Button btnThanhToan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,5 +37,15 @@ public class PhuongThucThanhToanActivity extends AppCompatActivity {
 
         // 4. Xử lý sự kiện nút bấm
         btnBack.setOnClickListener(v -> finish());
+
+        btnThanhToan = findViewById(R.id.btnConfirmPayment);
+
+//        btnThanhToan.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(PhuongThucThanhToanActivity.this, ThanhToanThanhCongActivity.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 }
