@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.splashscreen.SplashScreen;
 
 public class DangNhapActivity extends AppCompatActivity {
     private TextView txtDangKy;
@@ -15,7 +14,6 @@ public class DangNhapActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dangnhap);
         txtDangKy = (TextView) findViewById(R.id.txtdangky);
