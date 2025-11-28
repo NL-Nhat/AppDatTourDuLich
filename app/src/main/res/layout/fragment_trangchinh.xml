@@ -733,6 +733,7 @@
                     android:textColor="#000000"/>
 
                 <TextView
+                    android:id="@+id/txtXemThem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Xem thêm >"

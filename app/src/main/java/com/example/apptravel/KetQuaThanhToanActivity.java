@@ -1,6 +1,8 @@
 package com.example.apptravel;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,13 +17,13 @@ public class KetQuaThanhToanActivity extends AppCompatActivity {
 
         btn_home = findViewById(R.id.btn_home);
 
-//        btn_home.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(PaymentResultActivity.this, HomeActivity.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
+        btn_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(KetQuaThanhToanActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }
