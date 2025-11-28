@@ -30,6 +30,7 @@
                 android:layout_weight="1"
                 android:text="Tạo tour theo yêu cầu"
                 android:textAlignment="center"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <ImageView
@@ -98,6 +99,7 @@
                         android:background="@null"
                         android:hint="@string/askai"
                         android:inputType="textPassword"
+                        android:textColorHint="@color/gray"
                         android:textSize="17sp" />
 
                     <ImageView

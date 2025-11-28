@@ -19,10 +19,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
+        String targetFragment = getIntent().getStringExtra("fragment_name");
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TrangChinhFragment()).commit();
-            bottomNav.setSelectedItemId(R.id.nav_home);
+            Fragment initialFragment = null;
+            int initialItemId = R.id.nav_home;
+
+            if ("DanhSachTourFragment".equals(targetFragment)) {
+                // Chuyển hướng từ nút "Xem thêm" ở trang chủ
+                initialFragment = new DanhSachTourFragment();
+                initialItemId = R.id.nav_menu;
+            } else {
+                initialFragment = new TrangChinhFragment();
+            }
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, initialFragment)
+                    .commit();
+            bottomNav.setSelectedItemId(initialItemId);
         }
 
         bottomNav.setOnItemSelectedListener(item -> {

@@ -68,7 +68,13 @@
                 android:gravity="center_vertical"
                 android:layout_marginBottom="4dp">
                 <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@android:drawable/ic_menu_my_calendar" app:tint="@color/black"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="  3 thg 10, 2025 (giờ địa phương)" android:textSize="13sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  3 thg 10, 2025 (giờ địa phương)"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -78,7 +84,13 @@
                 android:gravity="center_vertical"
                 android:layout_marginBottom="4dp">
                 <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@android:drawable/ic_menu_info_details" app:tint="@color/black"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="  Hướng dẫn viên du lịch (Tiếng Việt)" android:textSize="13sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  Hướng dẫn viên du lịch (Tiếng Việt)"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -284,17 +296,19 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="@drawable/bg_input_border"
                         android:hint="Họ"
                         android:paddingHorizontal="12dp"
-                        android:background="@drawable/bg_input_border"
-                        android:layout_marginBottom="12dp"/>
+                        android:textColorHint="@color/gray" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
+                        android:background="@drawable/bg_input_border"
                         android:hint="Tên"
                         android:paddingHorizontal="12dp"
-                        android:background="@drawable/bg_input_border"/>
+                        android:textColorHint="@color/gray" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -387,6 +401,7 @@
                     android:layout_height="48dp"
                     android:hint="Tên đầy đủ"
                     android:paddingHorizontal="12dp"
+                    android:textColorHint="@color/gray"
                     android:background="@drawable/bg_input_border"
                     android:layout_marginBottom="12dp"/>
 
@@ -395,6 +410,7 @@
                     android:layout_height="48dp"
                     android:hint="Email"
                     android:paddingHorizontal="12dp"
+                    android:textColorHint="@color/gray"
                     android:background="@drawable/bg_input_border"
                     android:layout_marginBottom="12dp"/>
 
@@ -422,6 +438,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="Số điện thoại di động"
+                        android:textColorHint="@color/gray"
                         android:background="@null"
                         android:inputType="phone"/>
                 </LinearLayout>
@@ -467,6 +484,7 @@
                         android:layout_weight="1"
                         android:text="Không có mã khuyến mãi"
                         android:textColor="#BDBDBD"
+                        android:textColorHint="@color/gray"
                         android:textSize="15sp"/>
                     <ImageView
                         android:layout_width="20dp"
