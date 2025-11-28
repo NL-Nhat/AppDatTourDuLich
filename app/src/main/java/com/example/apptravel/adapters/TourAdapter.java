@@ -4,8 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,12 +12,12 @@ import com.example.apptravel.models.Tour;
 
 import java.util.List;
 
-public class TourAdapter extends RecyclerView.Adapter<TourAdapter.TourViewHolder> {
+public class TourAdapter extends RecyclerView.Adapter<TourViewHolder> {
 
     private Context context;
     private List<Tour> tourList;
     private OnTourClickListener onTourClickListener;
-// lấy dữ liệu từ model
+
     public interface OnTourClickListener {
         void onTourClick(int position);
     }
@@ -58,17 +56,4 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.TourViewHolder
         return tourList.size();
     }
 
-    public static class TourViewHolder extends RecyclerView.ViewHolder {
-        ImageView tourImage, favoriteIcon;
-        TextView tourTitle, tourPrice, tourRating;
-
-        public TourViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tourImage = itemView.findViewById(R.id.tour_image);
-            favoriteIcon = itemView.findViewById(R.id.favorite_icon);
-            tourTitle = itemView.findViewById(R.id.tour_title);
-            tourPrice = itemView.findViewById(R.id.tour_price);
-            tourRating = itemView.findViewById(R.id.tour_rating);
-        }
-    }
 }

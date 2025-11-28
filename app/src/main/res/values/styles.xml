@@ -4,4 +4,10 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">20sp</item>
     </style>
+    <style name="Theme.AppTravel.Launcher" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/nen</item>
+        <item name="postSplashScreenTheme">@style/Theme.AppTravel</item>
+    </style>
+
 </resources>

@@ -27,7 +27,6 @@ public class DanhSachTourFragment extends Fragment implements TourAdapter.OnTour
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
