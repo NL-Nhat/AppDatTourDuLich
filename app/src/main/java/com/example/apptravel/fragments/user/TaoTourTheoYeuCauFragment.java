@@ -1,4 +1,4 @@
-package com.example.apptravel;
+package com.example.apptravel.fragments.user;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.apptravel.R;
 import com.google.android.material.navigation.NavigationView;
 
 public class TaoTourTheoYeuCauFragment extends Fragment {

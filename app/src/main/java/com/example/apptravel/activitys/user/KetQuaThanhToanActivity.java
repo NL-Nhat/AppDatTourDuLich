@@ -1,10 +1,12 @@
-package com.example.apptravel;
+package com.example.apptravel.activitys.user;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.apptravel.R;
 
 public class KetQuaThanhToanActivity extends AppCompatActivity {
 

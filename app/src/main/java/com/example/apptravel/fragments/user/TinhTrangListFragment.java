@@ -1,4 +1,4 @@
-package com.example.apptravel;
+package com.example.apptravel.fragments.user;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.apptravel.R;
 import com.example.apptravel.adapters.TinhTrangAdapter;
 import com.example.apptravel.models.LichTrinhYeuCau;
 import com.example.apptravel.models.TourDataManager;
@@ -18,10 +19,6 @@ import com.example.apptravel.models.TourDataManager;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Fragment này được tái sử dụng cho mỗi tab trong trang Tình Trạng Xác Nhận.
- * Nó hiển thị một danh sách các tour dựa trên trạng thái được truyền vào.
- */
 public class TinhTrangListFragment extends Fragment {
 
     private static final String ARG_TRANG_THAI = "TRANG_THAI";

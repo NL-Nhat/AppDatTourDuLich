@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.apptravel.TinhTrangListFragment;
+import com.example.apptravel.fragments.user.TinhTrangListFragment;
 
 /**
  * Adapter này cung cấp các Fragment cho mỗi tab trong ViewPager2.

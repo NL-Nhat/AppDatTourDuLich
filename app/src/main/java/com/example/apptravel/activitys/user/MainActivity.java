@@ -1,4 +1,4 @@
-package com.example.apptravel;
+package com.example.apptravel.activitys.user;
 
 import android.os.Bundle;
 
@@ -7,6 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.fragment.app.Fragment;
 
+import com.example.apptravel.R;
+import com.example.apptravel.fragments.user.DanhSachTourFragment;
+import com.example.apptravel.fragments.user.LichTrinhFragment;
+import com.example.apptravel.fragments.user.TaoTourTheoYeuCauFragment;
+import com.example.apptravel.fragments.user.TrangCaNhanFragment;
+import com.example.apptravel.fragments.user.TrangChinhFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

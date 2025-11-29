@@ -12,29 +12,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTravel">
         <activity
-            android:name=".KetQuaThanhToanActivity"
+            android:name=".activitys.user.DoiMatKhauActivity"
             android:exported="false" />
         <activity
-            android:name=".NhapThongTinActivity"
+            android:name=".activitys.user.CaiDatActivity"
             android:exported="false" />
         <activity
-            android:name=".PhuongThucThanhToanActivity"
+            android:name=".activitys.user.KetQuaThanhToanActivity"
             android:exported="false" />
         <activity
-            android:name=".TourDetailActivity"
+            android:name=".activitys.user.NhapThongTinActivity"
             android:exported="false" />
         <activity
-            android:name=".ThongTinCaNhanActivity"
+            android:name=".activitys.user.PhuongThucThanhToanActivity"
             android:exported="false" />
         <activity
-            android:name=".DangKyActivity"
+            android:name=".activitys.user.TourDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activitys.user.ThongTinCaNhanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitys.user.DangKyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitys.user.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.AppTravel.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
