@@ -1,4 +1,4 @@
-package com.example.apptravel;
+package com.example.apptravel.activitys.user;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,8 +7,13 @@ import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
-public class ThongTinCaNhanActivity extends AppCompatActivity {
+import com.example.apptravel.R;
+
+public class DoiMatKhauActivity extends AppCompatActivity {
 
     private ImageView btnBack;
     private Button btnHuy;
@@ -16,13 +21,11 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_thong_tin_ca_nhan);
+        setContentView(R.layout.activity_doi_mat_khau);
 
         btnBack = findViewById(R.id.btn_back);
-        btnHuy = findViewById(R.id.btn_cancel);
+        btnHuy = findViewById(R.id.btn_Huy);
 
-        // Xử lý nút back
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

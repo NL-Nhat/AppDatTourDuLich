@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.apptravel.activitys.user.DangKyActivity;
+import com.example.apptravel.activitys.user.MainActivity;
+
 public class DangNhapActivity extends AppCompatActivity {
     private TextView txtDangKy;
     private Button btnDangNhap;

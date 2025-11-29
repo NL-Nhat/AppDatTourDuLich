@@ -1,4 +1,4 @@
-package com.example.apptravel;
+package com.example.apptravel.fragments.user;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.apptravel.R;
 import com.example.apptravel.adapters.LichTrinhAdapter;
 import com.example.apptravel.models.BookedTour;
 import com.example.apptravel.models.Tour;

@@ -1,4 +1,4 @@
-package com.example.apptravel;
+package com.example.apptravel.fragments.user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.apptravel.activitys.user.MainActivity;
+import com.example.apptravel.R;
 
 public class TrangChinhFragment extends Fragment {
 

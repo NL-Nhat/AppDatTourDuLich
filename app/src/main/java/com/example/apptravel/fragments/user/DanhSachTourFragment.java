@@ -1,4 +1,4 @@
-package com.example.apptravel;
+package com.example.apptravel.fragments.user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.apptravel.R;
+import com.example.apptravel.activitys.user.TourDetailActivity;
 import com.example.apptravel.adapters.TourAdapter;
 import com.example.apptravel.models.Tour;
 import com.example.apptravel.models.TourData;
@@ -22,12 +24,6 @@ public class DanhSachTourFragment extends Fragment implements TourAdapter.OnTour
     private RecyclerView recyclerView;
     private TourAdapter tourAdapter;
     private List<Tour> tourList;
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,7 +44,6 @@ public class DanhSachTourFragment extends Fragment implements TourAdapter.OnTour
     @Override
     public void onTourClick(int position) {
         Intent intent = new Intent(getActivity(), TourDetailActivity.class);
-        intent.putExtra("tour_position", position);
         startActivity(intent);
     }
 }

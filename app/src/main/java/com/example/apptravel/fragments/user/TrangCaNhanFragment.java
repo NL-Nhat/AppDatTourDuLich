@@ -1,4 +1,4 @@
-package com.example.apptravel;
+package com.example.apptravel.fragments.user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,10 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.example.apptravel.DangNhapActivity;
+import com.example.apptravel.R;
+import com.example.apptravel.activitys.user.CaiDatActivity;
+import com.example.apptravel.activitys.user.ThongTinCaNhanActivity;
+
 public class TrangCaNhanFragment extends Fragment {
 
     private LinearLayout userInfo;
     private LinearLayout logout;
+    private LinearLayout caiDat;
 
 
     @Override
@@ -28,6 +34,7 @@ public class TrangCaNhanFragment extends Fragment {
 
         userInfo = view.findViewById(R.id.user_info);
         logout = view.findViewById(R.id.logout);
+        caiDat = view.findViewById(R.id.caiDat);
 
         userInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +50,14 @@ public class TrangCaNhanFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), DangNhapActivity.class);
                 startActivity(intent);
                 getActivity().finish();
+            }
+        });
+
+        caiDat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CaiDatActivity.class);
+                startActivity(intent);
             }
         });
 

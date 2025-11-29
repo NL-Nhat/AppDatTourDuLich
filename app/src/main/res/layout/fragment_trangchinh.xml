@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -15,42 +14,40 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@android:color/white">
+            android:background="@android:color/white"
+            android:orientation="vertical">
 
-            <!-- Header Section -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:background="#017CE8"
+                android:orientation="vertical"
                 android:paddingStart="16dp"
-                android:paddingEnd="16dp"
                 android:paddingTop="32dp"
-                android:paddingBottom="16dp">
+                android:paddingEnd="16dp"
+                android:paddingBottom="24dp">
 
-                <!-- Title -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:text="DU LỊCH"
-                    android:textSize="28sp"
-                    android:textStyle="bold"
                     android:textColor="#FFFFFF"
-                    android:layout_marginBottom="16dp"/>
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
 
-                <!-- Search Bar and Settings -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="16dp">
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="0dp"
                         android:layout_height="48dp"
-                        android:layout_weight="1"
                         android:layout_marginEnd="12dp"
+                        android:layout_weight="1"
                         app:cardCornerRadius="24dp"
                         app:cardElevation="2dp">
 
@@ -75,28 +72,26 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:background="@null"
-                                android:hint="Search"
-                                android:textSize="20dp" />
+                                android:hint="Tìm kiếm..."
+                                android:textColorHint="#999999"
+                                android:textSize="16sp" />
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
                     <ImageView
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:layout_gravity="center"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
                         android:src="@drawable/ic_setting"
                         app:tint="#FFFFFF" />
 
-
                 </LinearLayout>
 
-                <!-- Icon Grid -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="16dp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="4dp">
 
                     <GridLayout
                         android:layout_width="match_parent"
@@ -104,70 +99,71 @@
                         android:alignmentMode="alignMargins"
                         android:background="@color/white"
                         android:columnCount="4"
-                        android:padding="16dp">
+                        android:padding="16dp"
+                        android:useDefaultMargins="true">
 
-                        <!-- Icon 1 - Boat -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_columnWeight="1"
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:padding="8dp">
+                            android:padding="4dp">
 
                             <androidx.cardview.widget.CardView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 app:cardBackgroundColor="#4DD0E1"
-                                app:cardCornerRadius="24dp">
+                                app:cardCornerRadius="24dp"
+                                app:cardElevation="0dp">
 
                                 <ImageView
-                                    android:layout_width="28dp"
-                                    android:layout_height="28dp"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
                                     android:layout_gravity="center"
                                     android:src="@drawable/ic_boat"
                                     app:tint="#000000" />
                             </androidx.cardview.widget.CardView>
                         </LinearLayout>
 
-                        <!-- Icon 2 - Taxi -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_columnWeight="1"
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:padding="8dp">
+                            android:padding="4dp">
 
                             <androidx.cardview.widget.CardView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 app:cardBackgroundColor="#4DD0E1"
-                                app:cardCornerRadius="24dp">
+                                app:cardCornerRadius="24dp"
+                                app:cardElevation="0dp">
 
                                 <ImageView
-                                    android:layout_width="28dp"
-                                    android:layout_height="28dp"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
                                     android:layout_gravity="center"
                                     android:src="@drawable/ic_taxi"
                                     app:tint="#000000" />
                             </androidx.cardview.widget.CardView>
                         </LinearLayout>
 
-                        <!-- Icon 3 - AI -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_columnWeight="1"
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:padding="8dp">
+                            android:padding="4dp">
 
                             <androidx.cardview.widget.CardView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 app:cardBackgroundColor="#4DD0E1"
-                                app:cardCornerRadius="24dp">
+                                app:cardCornerRadius="24dp"
+                                app:cardElevation="0dp">
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -175,125 +171,129 @@
                                     android:layout_gravity="center"
                                     android:text="AI"
                                     android:textColor="#000000"
-                                    android:textSize="18sp"
+                                    android:textSize="16sp"
                                     android:textStyle="bold" />
                             </androidx.cardview.widget.CardView>
                         </LinearLayout>
 
-                        <!-- Icon 4 - Train -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_columnWeight="1"
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:padding="8dp">
+                            android:padding="4dp">
 
                             <androidx.cardview.widget.CardView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 app:cardBackgroundColor="#4DD0E1"
-                                app:cardCornerRadius="24dp">
+                                app:cardCornerRadius="24dp"
+                                app:cardElevation="0dp">
 
                                 <ImageView
-                                    android:layout_width="28dp"
-                                    android:layout_height="28dp"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
                                     android:layout_gravity="center"
                                     android:src="@drawable/ic_train"
                                     app:tint="#000000" />
                             </androidx.cardview.widget.CardView>
                         </LinearLayout>
 
-                        <!-- Icon 5 - Village -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:layout_columnWeight="1"
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:padding="8dp">
+                            android:padding="4dp">
 
                             <androidx.cardview.widget.CardView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 app:cardBackgroundColor="#4DD0E1"
-                                app:cardCornerRadius="24dp">
+                                app:cardCornerRadius="24dp"
+                                app:cardElevation="0dp">
 
                                 <ImageView
-                                    android:layout_width="28dp"
-                                    android:layout_height="28dp"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
                                     android:layout_gravity="center"
                                     android:src="@drawable/ic_village"
                                     app:tint="#000000" />
                             </androidx.cardview.widget.CardView>
                         </LinearLayout>
 
-                        <!-- Icon 6 - Cinema -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:layout_columnWeight="1"
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:padding="8dp">
+                            android:padding="4dp">
 
                             <androidx.cardview.widget.CardView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 app:cardBackgroundColor="#4DD0E1"
-                                app:cardCornerRadius="24dp">
+                                app:cardCornerRadius="24dp"
+                                app:cardElevation="0dp">
 
                                 <ImageView
-                                    android:layout_width="28dp"
-                                    android:layout_height="28dp"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
                                     android:layout_gravity="center"
                                     android:src="@drawable/ic_cinema"
                                     app:tint="#000000" />
                             </androidx.cardview.widget.CardView>
                         </LinearLayout>
 
-                        <!-- Icon 7 - Credit Card -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:layout_columnWeight="1"
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:padding="8dp">
+                            android:padding="4dp">
 
                             <androidx.cardview.widget.CardView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 app:cardBackgroundColor="#4DD0E1"
-                                app:cardCornerRadius="24dp">
+                                app:cardCornerRadius="24dp"
+                                app:cardElevation="0dp">
 
                                 <ImageView
-                                    android:layout_width="28dp"
-                                    android:layout_height="28dp"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
                                     android:layout_gravity="center"
                                     android:src="@drawable/ic_credit_card"
                                     app:tint="#000000" />
                             </androidx.cardview.widget.CardView>
                         </LinearLayout>
 
-                        <!-- Icon 8 - Travel Explore -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:layout_columnWeight="1"
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:padding="8dp">
+                            android:padding="4dp">
 
                             <androidx.cardview.widget.CardView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 app:cardBackgroundColor="#4DD0E1"
-                                app:cardCornerRadius="24dp">
+                                app:cardCornerRadius="24dp"
+                                app:cardElevation="0dp">
 
                                 <ImageView
-                                    android:layout_width="28dp"
-                                    android:layout_height="28dp"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
                                     android:layout_gravity="center"
                                     android:src="@drawable/ic_travel_explore"
                                     app:tint="#000000" />
@@ -305,15 +305,14 @@
 
             </LinearLayout>
 
-            <!-- Category Tabs -->
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="none"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
                 android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="16dp"
+                android:scrollbars="none">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -323,29 +322,29 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ALL"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:textColor="#000000"
+                        android:layout_marginEnd="8dp"
                         android:background="@drawable/tab_background"
                         android:paddingStart="24dp"
-                        android:paddingEnd="24dp"
                         android:paddingTop="10dp"
+                        android:paddingEnd="24dp"
                         android:paddingBottom="10dp"
-                        android:layout_marginEnd="8dp"/>
+                        android:text="ALL"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Đà Nẵng"
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
+                        android:layout_marginEnd="8dp"
                         android:background="@drawable/tab_background"
                         android:paddingStart="24dp"
-                        android:paddingEnd="24dp"
                         android:paddingTop="10dp"
+                        android:paddingEnd="24dp"
                         android:paddingBottom="10dp"
-                        android:layout_marginEnd="8dp"/>
+                        android:text="Đà Nẵng"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -363,38 +362,37 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Vũng Tàu"
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
                         android:background="@drawable/tab_background"
                         android:paddingStart="24dp"
-                        android:paddingEnd="24dp"
                         android:paddingTop="10dp"
-                        android:paddingBottom="10dp"/>
+                        android:paddingEnd="24dp"
+                        android:paddingBottom="10dp"
+                        android:text="Vũng Tàu"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
             </HorizontalScrollView>
 
-            <!-- Destinations ScrollView -->
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="none"
+                android:clipToPadding="false"
+                android:layout_marginBottom="16dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:clipToPadding="false"
-                android:layout_marginBottom="16dp">
+                android:scrollbars="none">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <!-- Destination Card 1 -->
                     <androidx.cardview.widget.CardView
                         android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="4dp"
                         app:cardCornerRadius="16dp"
                         app:cardElevation="4dp">
 
@@ -403,17 +401,12 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <FrameLayout
+                            <ImageView
                                 android:layout_width="match_parent"
-                                android:layout_height="140dp">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:background="#5DADE2"/>
-
-                            </FrameLayout>
+                                android:layout_height="120dp"
+                                android:background="#5DADE2"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/banahill" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -426,32 +419,18 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="4dp"
-                                    android:text="Du lịch Đà Nẵng"
+                                    android:text="Đà Nẵng"
                                     android:textColor="#000000"
                                     android:textSize="14sp"
                                     android:textStyle="bold" />
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
+                                <TextView
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="8dp"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="⭐ 4.5/5"
-                                        android:textSize="12sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text=" | 162"
-                                        android:textColor="#888888"
-                                        android:textSize="12sp" />
-
-                                </LinearLayout>
+                                    android:text="⭐ 4.5 | 162 đánh giá"
+                                    android:textColor="#666666"
+                                    android:textSize="11sp" />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -463,30 +442,29 @@
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
-                                        android:text="2.000.000"
+                                        android:text="2.000.000đ"
                                         android:textColor="#000000"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
 
                                     <ImageView
-                                        android:layout_width="24dp"
-                                        android:layout_height="24dp"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
                                         android:src="@drawable/ic_heart"
                                         app:tint="#CCCCCC" />
 
                                 </LinearLayout>
-
                             </LinearLayout>
 
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
 
-                    <!-- Destination Card 2 -->
                     <androidx.cardview.widget.CardView
                         android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="4dp"
                         app:cardCornerRadius="16dp"
                         app:cardElevation="4dp">
 
@@ -495,17 +473,12 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <FrameLayout
+                            <ImageView
                                 android:layout_width="match_parent"
-                                android:layout_height="140dp">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:background="#5DADE2"/>
-
-                            </FrameLayout>
+                                android:layout_height="120dp"
+                                android:background="#5DADE2"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/caurong" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -518,32 +491,18 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="4dp"
-                                    android:text="Du lịch Nha Trang"
+                                    android:text="Nha Trang"
                                     android:textColor="#000000"
                                     android:textSize="14sp"
                                     android:textStyle="bold" />
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
+                                <TextView
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="8dp"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="⭐ 4.8/5"
-                                        android:textSize="12sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text=" | 210"
-                                        android:textColor="#888888"
-                                        android:textSize="12sp" />
-
-                                </LinearLayout>
+                                    android:text="⭐ 4.8 | 210 đánh giá"
+                                    android:textColor="#666666"
+                                    android:textSize="11sp" />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -555,29 +514,26 @@
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
-                                        android:text="2.500.000"
+                                        android:text="2.500.000đ"
                                         android:textColor="#000000"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
 
                                     <ImageView
-                                        android:layout_width="24dp"
-                                        android:layout_height="24dp"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
                                         android:src="@drawable/ic_heart"
                                         app:tint="#CCCCCC" />
-
                                 </LinearLayout>
-
                             </LinearLayout>
-
                         </LinearLayout>
-
                     </androidx.cardview.widget.CardView>
-                    <!-- Destination Card 1 -->
+
                     <androidx.cardview.widget.CardView
                         android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="4dp"
                         app:cardCornerRadius="16dp"
                         app:cardElevation="4dp">
 
@@ -586,17 +542,12 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <FrameLayout
+                            <ImageView
                                 android:layout_width="match_parent"
-                                android:layout_height="140dp">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:background="#5DADE2"/>
-
-                            </FrameLayout>
+                                android:layout_height="120dp"
+                                android:background="#5DADE2"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/banahill" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -609,32 +560,18 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="4dp"
-                                    android:text="Du lịch Đà Nẵng"
+                                    android:text="Đà Nẵng"
                                     android:textColor="#000000"
                                     android:textSize="14sp"
                                     android:textStyle="bold" />
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
+                                <TextView
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="8dp"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="⭐ 4.5/5"
-                                        android:textSize="12sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text=" | 162"
-                                        android:textColor="#888888"
-                                        android:textSize="12sp" />
-
-                                </LinearLayout>
+                                    android:text="⭐ 4.5 | 162 đánh giá"
+                                    android:textColor="#666666"
+                                    android:textSize="11sp" />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -646,324 +583,107 @@
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
-                                        android:text="2.000.000"
+                                        android:text="2.000.000đ"
                                         android:textColor="#000000"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
 
                                     <ImageView
-                                        android:layout_width="24dp"
-                                        android:layout_height="24dp"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
                                         android:src="@drawable/ic_heart"
                                         app:tint="#CCCCCC" />
 
                                 </LinearLayout>
-
                             </LinearLayout>
 
                         </LinearLayout>
-
                     </androidx.cardview.widget.CardView>
-                     <!-- Add more cards here -->
 
                 </LinearLayout>
             </HorizontalScrollView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
                 app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:cardElevation="4dp">
 
-                <ImageView
-                    android:id="@+id/image_background"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/banahill"
-                    android:contentDescription="Hình ảnh quảng cáo du lịch" />
+                    android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/image_background"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:contentDescription="Hình ảnh quảng cáo du lịch"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/banahill"
+                        app:layout_constraintDimensionRatio="H,2:1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/text_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="20dp"
-                        android:text="Du lịch tiết kiệm"
-                        android:textColor="@android:color/white"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
                         android:shadowColor="#80000000"
                         android:shadowDx="1"
                         android:shadowDy="1"
                         android:shadowRadius="2"
-                        />
-                </RelativeLayout>
+                        android:text="Du lịch tiết kiệm"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Tours Section Header -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:paddingStart="16dp"
-                android:paddingEnd="16dp"
                 android:paddingTop="8dp"
-                android:paddingBottom="1dp">
+                android:paddingEnd="16dp"
+                android:paddingBottom="8dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Cuối tuần vui vẻ!!"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#000000"/>
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtXemThem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Xem thêm >"
-                    android:textSize="14sp"
-                    android:textColor="#2196F3"/>
+                    android:textColor="#2196F3"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
-            <!-- Tours Grid 1 -->
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:columnCount="2"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:layout_marginBottom="8dp">
-
-                <!-- Tour Card 1 -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="6dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="120dp"
-                                android:scaleType="centerCrop"
-                                android:background="#5B2C6F"/>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:padding="12dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Tour du lịch - Đà Nẵng"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold"
-                                    android:textColor="#000000"
-                                    android:layout_marginBottom="4dp"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="$100"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold"
-                                    android:textColor="#2196F3"/>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:layout_gravity="top|end"
-                            android:layout_margin="12dp"
-                            android:src="@drawable/ic_heart" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|end"
-                            android:layout_marginEnd="12dp"
-                            android:layout_marginBottom="70dp"
-                            android:background="#CC000000"
-                            android:paddingStart="8dp"
-                            android:paddingEnd="8dp"
-                            android:paddingTop="4dp"
-                            android:paddingBottom="4dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="⭐ 5.0"
-                                android:textSize="12sp"
-                                android:textColor="#FFFFFF"
-                                android:textStyle="bold"/>
-
-                        </LinearLayout>
-
-                    </FrameLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <!-- Tour Card 2 -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="6dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="120dp"
-                                android:scaleType="centerCrop"
-                                android:background="#5B2C6F"/>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:padding="12dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Tour du lịch - Đà Nẵng"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold"
-                                    android:textColor="#000000"
-                                    android:layout_marginBottom="4dp"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="$100"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold"
-                                    android:textColor="#2196F3"/>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:layout_gravity="top|end"
-                            android:layout_margin="12dp"
-                            android:src="@drawable/ic_heart"/>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|end"
-                            android:layout_marginEnd="12dp"
-                            android:layout_marginBottom="70dp"
-                            android:background="#CC000000"
-                            android:paddingStart="8dp"
-                            android:paddingEnd="8dp"
-                            android:paddingTop="4dp"
-                            android:paddingBottom="4dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="⭐ 5.0"
-                                android:textSize="12sp"
-                                android:textColor="#FFFFFF"
-                                android:textStyle="bold"/>
-
-                        </LinearLayout>
-
-                    </FrameLayout>
-
-                </androidx.cardview.widget.CardView>
-
-            </GridLayout>
-
-            <!-- Tours Section Header 2 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="12dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Cuối tuần vui vẻ!!"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#000000"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Xem thêm >"
-                    android:textSize="14sp"
-                    android:textColor="#2196F3"/>
-
-            </LinearLayout>
-
-            <!-- Tours Grid 2 -->
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
                 android:layout_marginBottom="16dp">
 
-                <!-- Tour Card 3 -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -972,84 +692,75 @@
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp">
 
-                    <FrameLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:background="@color/white">
+
+                        <ImageView
+                            android:id="@+id/imgTour1"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="#5B2C6F"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/banahill"
+                            app:layout_constraintDimensionRatio="H,3:2"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/ic_heart"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="120dp"
-                                android:scaleType="centerCrop"
-                                android:background="#5B2C6F"/>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:padding="12dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Tour du lịch - Đà Nẵng"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold"
-                                    android:textColor="#000000"
-                                    android:layout_marginBottom="4dp"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="$100"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold"
-                                    android:textColor="#2196F3"/>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:layout_gravity="top|end"
-                            android:layout_margin="12dp"
-                            android:src="@drawable/ic_heart"/>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|end"
-                            android:layout_marginEnd="12dp"
-                            android:layout_marginBottom="70dp"
-                            android:background="#CC000000"
-                            android:paddingStart="8dp"
-                            android:paddingEnd="8dp"
-                            android:paddingTop="4dp"
-                            android:paddingBottom="4dp"
-                            android:orientation="horizontal">
+                            android:orientation="vertical"
+                            android:padding="12dp"
+                            app:layout_constraintTop_toBottomOf="@id/imgTour1"
+                            app:layout_constraintBottom_toBottomOf="parent">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="⭐ 5.0"
-                                android:textSize="12sp"
-                                android:textColor="#FFFFFF"
-                                android:textStyle="bold"/>
+                                android:layout_marginBottom="4dp"
+                                android:text="Đà Nẵng City Tour"
+                                android:textColor="#000000"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="$100"
+                                    android:textColor="#2196F3"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="⭐ 5.0"
+                                    android:textColor="#FBC02D"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"/>
+                            </LinearLayout>
 
                         </LinearLayout>
 
-                    </FrameLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>
 
-                <!-- Tour Card 4 -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -1058,104 +769,245 @@
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp">
 
-                    <FrameLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:background="@color/white">
+
+                        <ImageView
+                            android:id="@+id/imgTour2"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="#5B2C6F"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/caurong"
+                            app:layout_constraintDimensionRatio="H,3:2"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/ic_heart"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="120dp"
-                                android:scaleType="centerCrop"
-                                android:background="#5B2C6F"/>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:padding="12dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Tour du lịch - Đà Nẵng"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold"
-                                    android:textColor="#000000"
-                                    android:layout_marginBottom="4dp"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="$100"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold"
-                                    android:textColor="#2196F3"/>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:layout_gravity="top|end"
-                            android:layout_margin="12dp"
-                            android:src="@drawable/ic_heart" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|end"
-                            android:layout_marginEnd="12dp"
-                            android:layout_marginBottom="70dp"
-                            android:background="#CC000000"
-                            android:paddingStart="8dp"
-                            android:paddingEnd="8dp"
-                            android:paddingTop="4dp"
-                            android:paddingBottom="4dp"
-                            android:orientation="horizontal">
+                            android:orientation="vertical"
+                            android:padding="12dp"
+                            app:layout_constraintTop_toBottomOf="@id/imgTour2"
+                            app:layout_constraintBottom_toBottomOf="parent">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="⭐ 5.0"
-                                android:textSize="12sp"
-                                android:textColor="#FFFFFF"
-                                android:textStyle="bold"/>
+                                android:layout_marginBottom="4dp"
+                                android:text="Hội An Phố Cổ"
+                                android:textColor="#000000"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="$120"
+                                    android:textColor="#2196F3"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="⭐ 4.8"
+                                    android:textColor="#FBC02D"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"/>
+                            </LinearLayout>
                         </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
 
-                    </FrameLayout>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp">
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white">
+
+                        <ImageView
+                            android:id="@+id/imgTour3"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="#5B2C6F"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/banahill"
+                            app:layout_constraintDimensionRatio="H,3:2"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/ic_heart"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="12dp"
+                            app:layout_constraintTop_toBottomOf="@id/imgTour3"
+                            app:layout_constraintBottom_toBottomOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="4dp"
+                                android:text="Huế Mộng Mơ"
+                                android:textColor="#000000"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="$90"
+                                    android:textColor="#2196F3"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="⭐ 4.6"
+                                    android:textColor="#FBC02D"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white">
+
+                        <ImageView
+                            android:id="@+id/imgTour4"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="#5B2C6F"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/caurong"
+                            app:layout_constraintDimensionRatio="H,3:2"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/ic_heart"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="12dp"
+                            app:layout_constraintTop_toBottomOf="@id/imgTour4"
+                            app:layout_constraintBottom_toBottomOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="4dp"
+                                android:text="Cù Lao Chàm"
+                                android:textColor="#000000"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="$150"
+                                    android:textColor="#2196F3"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="⭐ 5.0"
+                                    android:textColor="#FBC02D"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
             </GridLayout>
 
-            <!-- Popular Destination Banner -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="80dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="4dp">
 
-                <FrameLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
                         android:scaleType="centerCrop"
-                        android:background="@drawable/caurong"/>
+                        android:background="@drawable/caurong"
+                        app:layout_constraintDimensionRatio="H,2:1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1164,10 +1016,11 @@
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:textColor="#FFFFFF"
-                        android:layout_gravity="bottom|start"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         android:padding="16dp"/>
 
-                </FrameLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
 
