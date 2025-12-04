@@ -67,6 +67,7 @@
             android:layout_toStartOf="@id/arrow_right">
 
             <TextView
+                android:id="@+id/txtTen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nguyễn Long Nhật"
@@ -75,6 +76,7 @@
                 android:textColor="@android:color/black"/>
 
             <TextView
+                android:id="@+id/txtEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="nguyenlongnhat@gmail.com"
@@ -394,11 +396,13 @@
                 android:layout_marginTop="8dp">
 
                 <ImageView
+                    android:id="@+id/ic_logout"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_logout"/>
 
                 <TextView
+                    android:id="@+id/txtDangXuat"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
