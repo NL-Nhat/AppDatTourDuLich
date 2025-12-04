@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,31 +14,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTravel">
         <activity
-            android:name=".activitys.user.DoiMatKhauActivity"
+            android:name=".ui.activitys.admin.MainAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".activitys.user.CaiDatActivity"
+            android:name=".ui.activitys.user.DoiMatKhauActivity"
             android:exported="false" />
         <activity
-            android:name=".activitys.user.KetQuaThanhToanActivity"
+            android:name=".ui.activitys.user.CaiDatActivity"
             android:exported="false" />
         <activity
-            android:name=".activitys.user.NhapThongTinActivity"
+            android:name=".ui.activitys.user.KetQuaThanhToanActivity"
             android:exported="false" />
         <activity
-            android:name=".activitys.user.PhuongThucThanhToanActivity"
+            android:name=".ui.activitys.user.NhapThongTinActivity"
             android:exported="false" />
         <activity
-            android:name=".activitys.user.TourDetailActivity"
+            android:name=".ui.activitys.user.PhuongThucThanhToanActivity"
             android:exported="false" />
         <activity
-            android:name=".activitys.user.ThongTinCaNhanActivity"
+            android:name=".ui.activitys.user.TourDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".activitys.user.DangKyActivity"
+            android:name=".ui.activitys.user.ThongTinCaNhanActivity"
             android:exported="false" />
         <activity
-            android:name=".activitys.user.MainActivity"
+            android:name=".ui.activitys.user.DangKyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activitys.user.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.AppTravel.Launcher">
             <intent-filter>
@@ -46,7 +51,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DangNhapActivity"
+            android:name=".ui.DangNhapActivity"
             android:exported="false" />
     </application>
 
