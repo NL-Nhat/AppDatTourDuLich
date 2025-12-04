@@ -1,0 +1,39 @@
+name: Android CI Build & Test (JDK 11)
+
+on:
+  # Chạy CI khi code được đẩy lên nhánh 'main' (sau khi merge)
+  push:
+    branches: [ "main" ]
+  # Chạy CI khi có Pull Request nhắm vào 'main' (trước khi merge)
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  android-build:
+    # Sử dụng Runner trên Ubuntu
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: ⬇️ Checkout Code
+        uses: actions/checkout@v4
+        
+      - name: 🛠️ Set up JDK 11
+        # Thiết lập phiên bản Java 11 theo yêu cầu trong build.gradle của bạn
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+      
+      # Bước này quan trọng để Gradle Wrapper có thể chạy được trên Linux Runner
+      - name: 🔐 Grant execute permission for gradlew
+        run: chmod +x gradlew
+        
+      - name: 📦 Run Unit Tests
+        # Chạy các bài kiểm tra Unit test được định nghĩa trong dự án
+        # Nếu bước này thất bại, CI sẽ dừng và báo lỗi.
+        run: ./gradlew test 
+        
+      - name: 🏗️ Build Debug APK
+        # Biên dịch ứng dụng và tạo tệp APK Debug.
+        # Nếu biên dịch thất bại, CI sẽ dừng và báo lỗi.
+        run: ./gradlew assembleDebug
