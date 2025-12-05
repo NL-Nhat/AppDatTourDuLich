@@ -22,7 +22,7 @@ public class ApiClient {
                         || "google_sdk".equals(Build.PRODUCT);
 
         String EMULATOR_URL = "http://10.0.2.2:8080/";
-        String DEVICE_URL = "http://192.168.1.20:8080/";
+        String DEVICE_URL = "http://192.168.1.6:8080/";
 
         Log.d("ApiClient", "isEmulator = " + isEmulator);
 

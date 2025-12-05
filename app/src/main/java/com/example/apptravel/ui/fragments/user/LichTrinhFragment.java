@@ -15,7 +15,6 @@ import com.example.apptravel.R;
 import com.example.apptravel.data.adapters.LichTrinhAdapter;
 import com.example.apptravel.data.models.BookedTour;
 import com.example.apptravel.data.models.Tour;
-import com.example.apptravel.data.models.TourData;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -37,20 +36,20 @@ public class LichTrinhFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view_lich_trinh);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // Lấy dữ liệu gốc từ TourData
-        bookedTourList = new ArrayList<>();
-        List<Tour> allTours = TourData.getTourList();
-    // Lấy 2 tour đầu tiên
-        if (allTours.size() >= 2) {
-            Tour tour1 = allTours.get(0);// Lấy tour
-            bookedTourList.add(new BookedTour(tour1.getImageResId(), tour1.getTitle().replace("-\n", " "), "Ngày 28 - Ngày 29/09/2025", tour1.getLocation()));
-            
-            Tour tour2 = allTours.get(2); // Lấy tour
-            bookedTourList.add(new BookedTour(tour2.getImageResId(), tour2.getTitle().replace("-\n", " "), "Ngày 18 - Ngày 20/09/2025", tour2.getLocation()));
-        }
-
-        adapter = new LichTrinhAdapter(getContext(), bookedTourList);
-        recyclerView.setAdapter(adapter);
+//        // Lấy dữ liệu gốc từ TourData
+//        bookedTourList = new ArrayList<>();
+//        List<Tour> allTours = TourData.getTourList();
+//    // Lấy 2 tour đầu tiên
+//        if (allTours.size() >= 2) {
+//            Tour tour1 = allTours.get(0);// Lấy tour
+//            bookedTourList.add(new BookedTour(tour1.getImageResId(), tour1.getTitle().replace("-\n", " "), "Ngày 28 - Ngày 29/09/2025", tour1.getLocation()));
+//
+//            Tour tour2 = allTours.get(2); // Lấy tour
+//            bookedTourList.add(new BookedTour(tour2.getImageResId(), tour2.getTitle().replace("-\n", " "), "Ngày 18 - Ngày 20/09/2025", tour2.getLocation()));
+//        }
+//
+//        adapter = new LichTrinhAdapter(getContext(), bookedTourList);
+//        recyclerView.setAdapter(adapter);
 
         return view;
     }
