@@ -77,28 +77,37 @@ public class TrangCaNhanFragment extends Fragment {
 
     private void GanThongTin() {
         if (quanLyDangNhap.isLoggedIn()) {
-            // 1. Hiển thị tên và email
-            txtTen.setText(quanLyDangNhap.LayHoTen());
-            txtEmail.setText(quanLyDangNhap.LayEmail());
+            if(quanLyDangNhap.LayVaiTro().equalsIgnoreCase("KhachHang"))
+            {
+                // 1. Hiển thị tên và email
+                txtTen.setText(quanLyDangNhap.LayHoTen());
+                txtEmail.setText(quanLyDangNhap.LayEmail());
 
-            // 2. Lấy tên file ảnh từ SharedPreferences (VD: "hinh1.jpg")
-            String tenFileAnh = quanLyDangNhap.LayAnhDaiDien();
+                // 2. Lấy tên file ảnh từ SharedPreferences (VD: "hinh1.jpg")
+                String tenFileAnh = quanLyDangNhap.LayAnhDaiDien();
 
-            // 3. Kiểm tra xem có tên ảnh không để tránh lỗi null
-            if (tenFileAnh != null && !tenFileAnh.isEmpty()) {
+                // 3. Kiểm tra xem có tên ảnh không để tránh lỗi null
+                if (tenFileAnh != null && !tenFileAnh.isEmpty()) {
 
-                // 4. Ghép thư mục server: "avatar/" + "hinh1.jpg"
-                String duongDanAnh = "avatar/" + tenFileAnh;
+                    // 4. Ghép thư mục server: "avatar/" + "hinh1.jpg"
+                    String duongDanAnh = "avatar/" + tenFileAnh;
 
-                // 5. Tạo URL đầy đủ
-                String fullUrl = ApiClient.getFullImageUrl(getContext(), duongDanAnh);
+                    // 5. Tạo URL đầy đủ
+                    String fullUrl = ApiClient.getFullImageUrl(getContext(), duongDanAnh);
 
-                // 6. Load ảnh vào ImageView (biến anhDaiDien)
-                Glide.with(getContext())
-                        .load(fullUrl)
-                        .placeholder(R.drawable.nen)
-                        .error(R.drawable.ic_launcher_background)
-                        .into(anhDaiDien); // Load vào UI
+                    // 6. Load ảnh vào ImageView (biến anhDaiDien)
+                    Glide.with(getContext())
+                            .load(fullUrl)
+                            .placeholder(R.drawable.nen)
+                            .error(R.drawable.ic_launcher_background)
+                            .into(anhDaiDien); // Load vào UI
+                }
+            }
+            else {
+                quanLyDangNhap.DangXuat();
+                Intent intent = new Intent(getActivity(), DangNhapActivity.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         }
     }

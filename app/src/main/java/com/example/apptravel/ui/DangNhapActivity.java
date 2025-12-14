@@ -78,13 +78,13 @@ public class DangNhapActivity extends AppCompatActivity {
                     LoginResponse res = response.body();
 
                     if (res.getVaiTro().equalsIgnoreCase("ADMIN")) {
-                        quanLyDangNhap.LuuDangNhap(res.getMaNguoiDung(),true ,res.getHoTen(), res.getEmail(), res.getAnhDaiDien());
+                        quanLyDangNhap.LuuDangNhap(res.getMaNguoiDung(),true ,res.getHoTen(), res.getEmail(), res.getAnhDaiDien(), res.getVaiTro());
                         Toast.makeText(DangNhapActivity.this, res.getMessage(), Toast.LENGTH_SHORT).show();
 
                         startActivity(new Intent(DangNhapActivity.this, MainAdminActivity.class));
 
                     } else if(res.getVaiTro().equalsIgnoreCase("KhachHang")){
-                        quanLyDangNhap.LuuDangNhap(res.getMaNguoiDung(),true, res.getHoTen(), res.getEmail(), res.getAnhDaiDien());
+                        quanLyDangNhap.LuuDangNhap(res.getMaNguoiDung(),true, res.getHoTen(), res.getEmail(), res.getAnhDaiDien(), res.getVaiTro());
                         Toast.makeText(DangNhapActivity.this, res.getMessage(), Toast.LENGTH_SHORT).show();
 
                         // CHUYỂN SANG MainActivity VÀ CHỈ ĐỊNH MỞ TRANG CÁ NHÂN

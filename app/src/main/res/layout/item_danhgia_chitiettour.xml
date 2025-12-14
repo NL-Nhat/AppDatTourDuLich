@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@color/white"
+    android:background="@drawable/quanly_tour_cardbackground"
     android:layout_marginBottom="12dp">
 
     <LinearLayout

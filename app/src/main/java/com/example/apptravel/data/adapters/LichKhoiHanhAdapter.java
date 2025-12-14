@@ -12,12 +12,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.apptravel.R;
 import com.example.apptravel.data.models.LichKhoiHanh;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class LichKhoiHanhAdapter extends RecyclerView.Adapter<LichKhoiHanhViewHolder>{
 
     private Context context;
     private List<LichKhoiHanh> list;
+
+    private final SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+    private final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
     public LichKhoiHanhAdapter(Context context, List<LichKhoiHanh> list) {
         this.context = context;
@@ -35,15 +42,20 @@ public class LichKhoiHanhAdapter extends RecyclerView.Adapter<LichKhoiHanhViewHo
     public void onBindViewHolder(@NonNull LichKhoiHanhViewHolder holder, int position) {
         LichKhoiHanh item = list.get(position);
 
-        //Lấy ngày đi và ngày về
-        String ngayDi = item.getNgayKhoiHanh();
-        String ngayVe = item.getNgayKetThuc();
+        try{
+            Date ngayDi = inputFormat.parse(item.getNgayKhoiHanh());
+            Date ngayVe = inputFormat.parse(item.getNgayKetThuc());
 
-        // lấy 10 ký tự đầu (2025-12-01)
-        if(ngayDi != null && ngayDi.length() >= 10) ngayDi = ngayDi.substring(0, 10);
-        if(ngayVe != null && ngayVe.length() >= 10) ngayVe = ngayVe.substring(0, 10);
+            holder.txtDate.setText(
+                    dateFormat.format(ngayDi) + " - " + dateFormat.format(ngayVe)
+            );
 
-        holder.txtDate.setText(ngayDi + " - " + ngayVe);
+            holder.txtTime.setText(timeFormat.format(ngayDi));
+
+        }catch (Exception e){
+            holder.txtDate.setText("—");
+            holder.txtTime.setText("—");
+        }
 
         // Kiểm tra null cho Hướng dẫn viên để tránh Crash
         if (item.getHuongDanVien() != null) {
