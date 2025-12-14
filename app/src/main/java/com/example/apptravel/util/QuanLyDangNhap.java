@@ -14,12 +14,13 @@ public class QuanLyDangNhap {
     }
 
     // Lưu trạng thái đăng nhập
-    public void LuuDangNhap(int maNguoiDung, Boolean login, String hoTen, String email, String anhDaiDien){
+    public void LuuDangNhap(int maNguoiDung, Boolean login, String hoTen, String email, String anhDaiDien, String vaiTro){
         editor.putInt("maNguoiDung", maNguoiDung);
         editor.putBoolean("login", login);
         editor.putString("hoTen", hoTen);
         editor.putString("email", email);
         editor.putString("anhDaiDien", anhDaiDien);
+        editor.putString("vaiTro", vaiTro);
         editor.apply();
     }
 
@@ -38,6 +39,13 @@ public class QuanLyDangNhap {
 
     public String LayAnhDaiDien() {
         return pref.getString("anhDaiDien", "");
+    }
+
+    public String LayVaiTro() {
+        return pref.getString("vaiTro", "");
+    }
+    public int LayMaNguoiDung() {
+        return pref.getInt("maNguoiDung", 0);
     }
 
     // Đăng xuất

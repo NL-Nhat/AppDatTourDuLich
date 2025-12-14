@@ -10,7 +10,7 @@ import com.example.apptravel.R;
 
 public class LichKhoiHanhViewHolder extends RecyclerView.ViewHolder{
 
-    TextView txtDate, txtTrangThai, txtHDV, txtSlots;
+    TextView txtDate, txtTrangThai, txtHDV, txtSlots, txtTime;
 
     public LichKhoiHanhViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -18,5 +18,6 @@ public class LichKhoiHanhViewHolder extends RecyclerView.ViewHolder{
         txtTrangThai = itemView.findViewById(R.id.schedule_status);
         txtHDV = itemView.findViewById(R.id.schedule_guide);
         txtSlots = itemView.findViewById(R.id.schedule_slots);
+        txtTime = itemView.findViewById(R.id.schedule_time);
     }
 }

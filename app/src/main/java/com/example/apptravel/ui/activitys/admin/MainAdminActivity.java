@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.apptravel.R;
+import com.example.apptravel.ui.fragments.admin.BookingAdminFragment;
+import com.example.apptravel.ui.fragments.admin.QuanLyTourAdminFragment;
 import com.example.apptravel.ui.fragments.admin.TrangCaNhanAdminFragment;
 import com.example.apptravel.ui.fragments.admin.TrangChuAdminFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -32,11 +34,11 @@ public class MainAdminActivity extends AppCompatActivity {
             if (itemId == R.id.nav_admin_dashboard) {
                 selectedFragment = new TrangChuAdminFragment();
             } else if (itemId == R.id.nav_admin_tours) {
-                //selectedFragment = new AdminDashboardFragment(); // Tạm thời
+                selectedFragment = new QuanLyTourAdminFragment();
             } else if (itemId == R.id.nav_admin_bookings) {
-                //selectedFragment = new AdminDashboardFragment(); // Tạm thời
+                selectedFragment = new BookingAdminFragment();
             } else if (itemId == R.id.nav_admin_users) {
-                //selectedFragment = new AdminDashboardFragment(); // Tạm thời
+                //selectedFragment = new AdminDashboardFragment();
             } else if (itemId == R.id.nav_admin_profile) {
                 selectedFragment = new TrangCaNhanAdminFragment();
             }
