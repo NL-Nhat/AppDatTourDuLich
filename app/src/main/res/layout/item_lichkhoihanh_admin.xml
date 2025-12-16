@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="3dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/ic_calendar"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_calendar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#667eea" />
+
+        <TextView
+            android:id="@+id/tv_ngay_khoi_hanh"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="01/12/2025 - 03/12/2025"
+            android:textColor="#212121"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/ic_calendar"
+            app:layout_constraintEnd_toStartOf="@+id/barrier_buttons"
+            app:layout_constraintStart_toEndOf="@+id/ic_calendar"
+            app:layout_constraintTop_toTopOf="@+id/ic_calendar" />
+
+        <ImageView
+            android:id="@+id/ic_clock"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/ic_history"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ic_calendar"
+            app:tint="#FF9800" />
+
+        <TextView
+            android:id="@+id/tv_gio_khoi_hanh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="08:30 Sáng"
+            android:textColor="#424242"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/ic_clock"
+            app:layout_constraintStart_toEndOf="@+id/ic_clock"
+            app:layout_constraintTop_toTopOf="@+id/ic_clock" />
+
+        <ImageView
+            android:id="@+id/ic_group"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_groups_person"
+            app:layout_constraintBottom_toBottomOf="@+id/ic_clock"
+            app:layout_constraintStart_toEndOf="@+id/tv_gio_khoi_hanh"
+            app:layout_constraintTop_toTopOf="@+id/ic_clock"
+            app:tint="#757575" />
+
+        <TextView
+            android:id="@+id/tv_so_luong"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Tối đa: 30"
+            android:textColor="#616161"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ic_group"
+            app:layout_constraintEnd_toStartOf="@+id/barrier_buttons"
+            app:layout_constraintStart_toEndOf="@+id/ic_group"
+            app:layout_constraintTop_toTopOf="@+id/ic_group" />
+
+        <ImageView
+            android:id="@+id/ic_guide"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/ic_person"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ic_clock"
+            app:tint="#757575" />
+
+        <TextView
+            android:id="@+id/tv_hdv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="HDV: Lê Văn Hùng"
+            android:textColor="#616161"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ic_guide"
+            app:layout_constraintEnd_toStartOf="@+id/barrier_buttons"
+            app:layout_constraintStart_toEndOf="@+id/ic_guide"
+            app:layout_constraintTop_toTopOf="@+id/ic_guide" />
+
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="start" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/btn_edit_lich"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="8dp"
+                android:src="@drawable/ic_edit"
+                android:tooltipText="Chỉnh sửa"
+                app:tint="#667eea" />
+
+            <ImageView
+                android:id="@+id/btn_delete_lich"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="4dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="8dp"
+                android:src="@drawable/ic_delete"
+                android:tooltipText="Xóa"
+                app:tint="#F44336" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.apptravel.R;
 import com.example.apptravel.ui.DangNhapActivity;
+import com.example.apptravel.ui.activitys.admin.MainAdminActivity;
 import com.example.apptravel.ui.fragments.user.DanhSachTourFragment;
 import com.example.apptravel.ui.fragments.user.LichTrinhFragment;
 import com.example.apptravel.ui.fragments.user.TaoTourTheoYeuCauFragment;
@@ -26,12 +27,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         SplashScreen.installSplashScreen(this);
-
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
 
         quanLyDangNhap = new QuanLyDangNhap(this);
+
+        if(quanLyDangNhap.isLoggedIn())
+        {
+            String vaiTro = quanLyDangNhap.LayVaiTro();
+
+            if(vaiTro != null && vaiTro.equalsIgnoreCase("Admin")){
+                startActivity(new Intent(MainActivity.this, MainAdminActivity.class));
+                finish();
+                return;
+            }
+        }
+
+        setContentView(R.layout.activity_main);
+
+
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
 
         if (savedInstanceState == null) {
