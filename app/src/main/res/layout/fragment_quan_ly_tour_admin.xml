@@ -181,9 +181,9 @@
             android:paddingEnd="16dp"
             android:paddingBottom="88dp" />
 
-        <!-- Add Tour (đè lên danh sách) -->
+        <!-- them Tour  -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_add_tour"
+            android:id="@+id/ic_them_tour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
