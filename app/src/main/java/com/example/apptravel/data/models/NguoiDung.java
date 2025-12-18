@@ -6,10 +6,7 @@ import java.time.LocalDateTime;
 public class NguoiDung {
 
     private Integer maNguoiDung;
-
-    private String tenDangNhap;
     private String email;
-    private String matKhau;
     private String hoTen;
     private String soDienThoai;
     private String diaChi;
@@ -17,8 +14,6 @@ public class NguoiDung {
     private String gioiTinh;
     private String anhDaiDien;
     private String vaiTro;
-    private String trangThai;
-    private String thoiGianTao;
 
     public Integer getMaNguoiDung() {
         return maNguoiDung;
@@ -28,13 +23,6 @@ public class NguoiDung {
         this.maNguoiDung = maNguoiDung;
     }
 
-    public String getTenDangNhap() {
-        return tenDangNhap;
-    }
-
-    public void setTenDangNhap(String tenDangNhap) {
-        this.tenDangNhap = tenDangNhap;
-    }
 
     public String getEmail() {
         return email;
@@ -42,14 +30,6 @@ public class NguoiDung {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getMatKhau() {
-        return matKhau;
-    }
-
-    public void setMatKhau(String matKhau) {
-        this.matKhau = matKhau;
     }
 
     public String getHoTen() {
@@ -106,21 +86,5 @@ public class NguoiDung {
 
     public void setVaiTro(String vaiTro) {
         this.vaiTro = vaiTro;
-    }
-
-    public String getTrangThai() {
-        return trangThai;
-    }
-
-    public void setTrangThai(String trangThai) {
-        this.trangThai = trangThai;
-    }
-
-    public String getThoiGianTao() {
-        return thoiGianTao;
-    }
-
-    public void setThoiGianTao(String thoiGianTao) {
-        this.thoiGianTao = thoiGianTao;
     }
 }

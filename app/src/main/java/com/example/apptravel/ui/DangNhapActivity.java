@@ -19,6 +19,10 @@ import com.example.apptravel.ui.activitys.user.DangKyActivity;
 import com.example.apptravel.ui.activitys.user.MainActivity;
 import com.example.apptravel.util.QuanLyDangNhap;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -75,37 +79,62 @@ public class DangNhapActivity extends AppCompatActivity {
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
                 if (response.isSuccessful() && response.body() != null) {
-                    LoginResponse res = response.body();
 
-                    if (res.getVaiTro().equalsIgnoreCase("ADMIN")) {
-                        quanLyDangNhap.LuuDangNhap(res.getMaNguoiDung(),true ,res.getHoTen(), res.getEmail(), res.getAnhDaiDien(), res.getVaiTro());
-                        Toast.makeText(DangNhapActivity.this, res.getMessage(), Toast.LENGTH_SHORT).show();
+                    LoginResponse user = response.body();
+                    String ngaySinhHienThi = "";
 
+                    // Xử lý chuyển đổi từ yyyy-MM-dd sang dd/MM/yyyy
+                    if (user.getNgaySinh() != null && !user.getNgaySinh().isEmpty()) {
+                        try {
+                            SimpleDateFormat formatVao = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                            SimpleDateFormat formatRa = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                            Date date = formatVao.parse(user.getNgaySinh());
+                            ngaySinhHienThi = formatRa.format(date);
+                        } catch (Exception e) {
+                            ngaySinhHienThi = user.getNgaySinh(); // Nếu lỗi thì lưu chuỗi gốc
+                        }
+                    }
+
+                    quanLyDangNhap.LuuDangNhap(
+                            user.getToken(),
+                            user.getMaNguoiDung(),
+                            true,
+                            user.getHoTen(),
+                            user.getEmail(),
+                            user.getAnhDaiDien(),
+                            user.getVaiTro(),
+                            user.getSoDienThoai(),
+                            user.getDiaChi(),
+                            user.getGioiTinh(),
+                            ngaySinhHienThi
+                    );
+
+                    if (user.getVaiTro().equalsIgnoreCase("Admin")) {
                         startActivity(new Intent(DangNhapActivity.this, MainAdminActivity.class));
-
-                    } else if(res.getVaiTro().equalsIgnoreCase("KhachHang")){
-                        quanLyDangNhap.LuuDangNhap(res.getMaNguoiDung(),true, res.getHoTen(), res.getEmail(), res.getAnhDaiDien(), res.getVaiTro());
-                        Toast.makeText(DangNhapActivity.this, res.getMessage(), Toast.LENGTH_SHORT).show();
-
-                        // CHUYỂN SANG MainActivity VÀ CHỈ ĐỊNH MỞ TRANG CÁ NHÂN
+                        finish();
+                    } else if(user.getVaiTro().equalsIgnoreCase("KhachHang")){
                         Intent intent = new Intent(DangNhapActivity.this, MainActivity.class);
-                        // 1. Chỉ định Fragment cần mở
                         intent.putExtra("fragment_name", "TrangCaNhanFragment");
                         startActivity(intent);
+                        finish();
                     }
-                    else{
-                        Toast.makeText(DangNhapActivity.this, "Không có trang nhân viên", Toast.LENGTH_SHORT).show();
-                        return;
+                    else {
+                        Toast.makeText(DangNhapActivity.this,
+                                "Giao diện và chức năng cho hướng dẫn viên đang được phát triển",
+                                Toast.LENGTH_SHORT).show();
                     }
-                    finish();
                 } else {
-                    Toast.makeText(DangNhapActivity.this, "Sai tài khoản hoặc mật khẩu!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DangNhapActivity.this,
+                            "Sai tài khoản hoặc mật khẩu",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(DangNhapActivity.this, "Không thể kết nối server!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DangNhapActivity.this,
+                        "Không kết nối được server",
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }

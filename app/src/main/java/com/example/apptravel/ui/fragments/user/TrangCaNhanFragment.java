@@ -1,10 +1,13 @@
 package com.example.apptravel.ui.fragments.user;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +17,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.apptravel.data.api.ApiClient;
 import com.example.apptravel.ui.DangNhapActivity;
 import com.example.apptravel.R;
@@ -76,11 +83,11 @@ public class TrangCaNhanFragment extends Fragment {
     }
 
     private void GanThongTin() {
-        // 1. Hiển thị tên và email
+        // Hiển thị tên và email
         txtTen.setText(quanLyDangNhap.LayHoTen());
         txtEmail.setText(quanLyDangNhap.LayEmail());
 
-        // 2. Lấy tên file ảnh từ SharedPreferences (VD: "hinh1.jpg")
+        // Lấy tên file ảnh từ SharedPreferences
         String tenFileAnh = quanLyDangNhap.LayAnhDaiDien();
 
         // 3. Kiểm tra xem có tên ảnh không để tránh lỗi null
@@ -100,11 +107,11 @@ public class TrangCaNhanFragment extends Fragment {
                     .into(anhDaiDien); // Load vào UI
         }
     }
-
-    // Cập nhật lại giao diện mỗi khi Fragment được hiển thị lại
-    @Override
-    public void onResume() {
-        super.onResume();
-        GanThongTin();
-    }
+//
+//    // Cập nhật lại giao diện mỗi khi Fragment được hiển thị lại
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        GanThongTin();
+//    }
 }

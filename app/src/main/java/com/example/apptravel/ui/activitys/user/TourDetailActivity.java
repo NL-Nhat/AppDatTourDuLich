@@ -1,5 +1,6 @@
 package com.example.apptravel.ui.activitys.user;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -147,8 +148,9 @@ public class TourDetailActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> finish()); // Quay lại màn hình trước
 
         btnDatNgay.setOnClickListener(v -> {
-            // Chuyển sang màn hình Đặt Tour (Bạn sẽ làm sau)
-            Toast.makeText(this, "Chức năng đặt tour đang phát triển", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(TourDetailActivity.this, NhapThongTinActivity.class);
+            intent.putExtra("object_tour", tour);
+            startActivity(intent);
         });
     }
 }

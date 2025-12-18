@@ -6,22 +6,31 @@ import android.content.SharedPreferences;
 public class QuanLyDangNhap {
 
     SharedPreferences pref;
-    SharedPreferences.Editor editor;
-
     public QuanLyDangNhap(Context context) {
         pref = context.getSharedPreferences("USER_DATA", Context.MODE_PRIVATE);
-        editor = pref.edit();
     }
 
     // Lưu trạng thái đăng nhập
-    public void LuuDangNhap(int maNguoiDung, Boolean login, String hoTen, String email, String anhDaiDien, String vaiTro){
+    public void LuuDangNhap(String token, int maNguoiDung, boolean login, String hoTen, String email, String anhDaiDien,
+                            String vaiTro, String soDienThoai, String diaChi, String gioiTinh, String ngaySinh) {
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("token", token);
         editor.putInt("maNguoiDung", maNguoiDung);
         editor.putBoolean("login", login);
         editor.putString("hoTen", hoTen);
         editor.putString("email", email);
         editor.putString("anhDaiDien", anhDaiDien);
         editor.putString("vaiTro", vaiTro);
-        editor.apply();
+        editor.putString("soDienThoai", soDienThoai);
+        editor.putString("diaChi", diaChi);
+        editor.putString("gioiTinh", gioiTinh);
+        editor.putString("ngaySinh", ngaySinh);
+        editor.commit();
+    }
+
+
+    public String LayToken() {
+        return pref.getString("token", "");
     }
 
     // Kiểm tra đã đăng nhập chưa
@@ -47,10 +56,16 @@ public class QuanLyDangNhap {
     public int LayMaNguoiDung() {
         return pref.getInt("maNguoiDung", 0);
     }
+    public String LaySoDienThoai() { return pref.getString("soDienThoai", ""); }
+    public String LayDiaChi() { return pref.getString("diaChi", ""); }
+    public String LayGioiTinh() { return pref.getString("gioiTinh", ""); }
+    public String LayNgaySinh() { return pref.getString("ngaySinh", ""); }
+
 
     // Đăng xuất
     public void DangXuat(){
+        SharedPreferences.Editor editor = pref.edit();
         editor.clear();
-        editor.apply();
+        editor.commit();
     }
 }

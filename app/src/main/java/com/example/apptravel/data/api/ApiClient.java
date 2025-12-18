@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 
+import com.example.apptravel.util.QuanLyDangNhap;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -19,15 +21,13 @@ public class ApiClient {
                         || Build.HARDWARE.contains("ranchu")
                         || Build.HARDWARE.contains("goldfish");
 
-
         String EMULATOR_URL = "http://10.0.2.2:8080/";
-        String DEVICE_URL = "http://192.168.1.20:8080/";
+        String DEVICE_URL = "http://192.168.1.15:8080/";
 
         Log.d("ApiClient", "isEmulator = " + isEmulator);
 
         return isEmulator ? EMULATOR_URL : DEVICE_URL;
     }
-
 
 
     // Hàm dùng để load ảnh (avatar, tour, hotel…)
@@ -37,17 +37,29 @@ public class ApiClient {
 
     public static Retrofit getClient(Context context) {
         String baseUrl = getBaseUrl(context);
-
-        // Chuẩn hóa URL (đảm bảo có / cuối)
-        if (!baseUrl.endsWith("/")) {
-            baseUrl += "/";
-        }
+        // Chuẩn hóa URL
+        if (!baseUrl.endsWith("/")) baseUrl += "/";
 
         if (retrofit == null || !retrofit.baseUrl().toString().equals(baseUrl)) {
             synchronized (ApiClient.class) {
                 if (retrofit == null || !retrofit.baseUrl().toString().equals(baseUrl)) {
+
+                    // Giữ lại Interceptor từ code cũ để bảo mật
+                    okhttp3.OkHttpClient client = new okhttp3.OkHttpClient.Builder()
+                            .addInterceptor(chain -> {
+                                QuanLyDangNhap session = new QuanLyDangNhap(context);
+                                String token = session.LayToken();
+                                okhttp3.Request.Builder builder = chain.request().newBuilder();
+                                if (token != null && !token.isEmpty()) {
+                                    builder.addHeader("Authorization", "Bearer " + token);
+                                }
+                                return chain.proceed(builder.build());
+                            }).build();
+
+                    // Tạo Retrofit với đầy đủ tính năng
                     retrofit = new Retrofit.Builder()
                             .baseUrl(baseUrl)
+                            .client(client) // Rất quan trọng
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
                 }
@@ -55,5 +67,4 @@ public class ApiClient {
         }
         return retrofit;
     }
-
 }
