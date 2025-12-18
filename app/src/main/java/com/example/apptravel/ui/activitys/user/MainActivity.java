@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         quanLyDangNhap = new QuanLyDangNhap(this);
 
+        // kiểm tra nếu là admin thì chuyển sang trang admin
         if(quanLyDangNhap.isLoggedIn())
         {
             String vaiTro = quanLyDangNhap.LayVaiTro();
