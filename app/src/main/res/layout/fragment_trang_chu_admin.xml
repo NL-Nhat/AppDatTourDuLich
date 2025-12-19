@@ -54,11 +54,14 @@
                     android:layout_height="48dp"
                     app:cardCornerRadius="24dp"
                     app:cardElevation="0dp"
-                    app:cardBackgroundColor="#E0E0E0"> <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/nen"
-                    android:scaleType="centerCrop"/>
+                    app:cardBackgroundColor="#E0E0E0">
+
+                    <ImageView
+                        android:id="@+id/admin_avatar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/nen"
+                        android:scaleType="centerCrop"/>
 
                 </androidx.cardview.widget.CardView>
 
@@ -120,7 +123,7 @@
                             android:layout_marginTop="8dp"/>
 
                         <TextView
-                            android:id="@+id/stat_revenue"
+                            android:id="@+id/txt_doanhThu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="45.2M VND"
@@ -164,7 +167,7 @@
                             android:layout_marginTop="8dp"/>
 
                         <TextView
-                            android:id="@+id/stat_orders"
+                            android:id="@+id/txt_soDatTour"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="156"
@@ -218,7 +221,7 @@
                             android:layout_marginTop="8dp"/>
 
                         <TextView
-                            android:id="@+id/stat_tours"
+                            android:id="@+id/txt_soTour"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="48"
@@ -262,7 +265,7 @@
                             android:layout_marginTop="8dp"/>
 
                         <TextView
-                            android:id="@+id/stat_users"
+                            android:id="@+id/txt_soNguoiDung"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="1,234"
@@ -312,6 +315,7 @@
                 android:background="?android:attr/selectableItemBackground">
 
                 <ImageView
+                    android:id="@+id/btn_themTour"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:src="@drawable/ic_add_noncircle"
@@ -343,6 +347,7 @@
                 android:background="?android:attr/selectableItemBackground">
 
                 <ImageView
+                    android:id="@+id/btn_quanlydon"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:src="@drawable/ic_list"
@@ -407,6 +412,7 @@
                 android:background="?android:attr/selectableItemBackground">
 
                 <ImageView
+                    android:id="@+id/btn_caiDat"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:src="@drawable/ic_setting"
@@ -446,16 +452,16 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            app:cardCornerRadius="12dp"
             app:cardElevation="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_recent_activities"
+                    android:id="@+id/rcv_hoatdong"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"/>
@@ -467,7 +473,7 @@
         <!-- Bottom space -->
         <View
             android:layout_width="match_parent"
-            android:layout_height="80dp"/>
+            android:layout_height="40dp"/>
 
     </LinearLayout>
 
