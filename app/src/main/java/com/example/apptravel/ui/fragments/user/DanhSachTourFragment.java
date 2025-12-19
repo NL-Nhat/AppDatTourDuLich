@@ -38,24 +38,17 @@ public class DanhSachTourFragment extends Fragment implements TourAdapter.OnTour
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_danh_sach_tour, container, false);
 
-        // 1. Ánh xạ RecyclerView (Kiểm tra ID trong file XML của bạn)
-        recyclerView = view.findViewById(R.id.recycler_view_tours); // Đảm bảo ID này đúng với layout XML
-
-        // 2. Cài đặt LayoutManager (Grid 2 cột)
+        recyclerView = view.findViewById(R.id.recycler_view_tours);
+        //đặt LayoutManager (Grid 2 cột)
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        // 3. Khởi tạo Adapter và Repository
-        tourAdapter = new TourAdapter(getContext());
+        tourAdapter = new TourAdapter(getContext(), TourAdapter.TYPE_NORMAL);
         tourRepository = new TourRepository(getContext());
 
-        // 4. Gán sự kiện click (Quan trọng)
         tourAdapter.setOnTourClickListener(this);
-
-        // 5. Gán Adapter cho RecyclerView
         recyclerView.setAdapter(tourAdapter);
 
-        // 6. Gọi API lấy dữ liệu
         loadData();
 
         return view;
@@ -79,16 +72,9 @@ public class DanhSachTourFragment extends Fragment implements TourAdapter.OnTour
     }
 
     @Override
-    public void onTourClick(int position) {
-        // Lấy đối tượng tour tại vị trí được click
-        Tour selectedTour = listTour.get(position);
-
-        // Chuyển màn hình và gửi dữ liệu
+    public void onTourClick(Tour tour) {
         Intent intent = new Intent(getActivity(), TourDetailActivity.class);
-
-        //Class Tour phải "implements Serializable" mới gửi được kiểu này
-        intent.putExtra("object_tour", selectedTour);
-
+        intent.putExtra("object_tour", tour);
         startActivity(intent);
     }
 }

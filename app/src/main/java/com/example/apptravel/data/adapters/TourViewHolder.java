@@ -20,5 +20,6 @@ public class TourViewHolder extends RecyclerView.ViewHolder {
         tourTitle = itemView.findViewById(R.id.tour_title);
         tourPrice = itemView.findViewById(R.id.tour_price);
         tourRating = itemView.findViewById(R.id.tour_rating);
+
     }
 }

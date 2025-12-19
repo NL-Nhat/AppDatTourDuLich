@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:backgroundTint="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="190dp"
+    android:layout_height="match_parent"
+    android:layout_marginEnd="20dp"
+    app:cardCornerRadius="16dp"
+    android:layout_marginBottom="5dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/tour_image"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            tools:ignore="ContentDescription"
+            android:background="@drawable/banahill"/>
+
+        <LinearLayout
+            android:padding="15dp"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tour_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bà Nà Hill"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/ic_star"/>
+
+                <TextView
+                    android:id="@+id/tour_rating"
+                    android:textSize="11sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="4.5 | 162 đánh giá"
+                    android:textColor="#666666"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tour_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2.000.000VNĐ"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:ignore="InefficientWeight" />
+
+                <ImageView
+                    android:id="@+id/favorite_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/ic_heart"
+                    app:backgroundTint="#888888"
+                    tools:ignore="ContentDescription" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
