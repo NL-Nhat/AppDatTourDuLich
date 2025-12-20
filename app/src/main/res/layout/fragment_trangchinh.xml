@@ -794,7 +794,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="$100"
+                                    android:text="$1.000.000"
                                     android:textSize="16sp"
                                     android:textStyle="bold"
                                     android:textColor="#2196F3"/>
@@ -878,9 +878,10 @@
                                     android:layout_marginBottom="4dp"/>
 
                                 <TextView
+                                    android:id="@+id/txtTien"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="$100"
+                                    android:text="1.000.000VNĐ"
                                     android:textSize="16sp"
                                     android:textStyle="bold"
                                     android:textColor="#2196F3"/>

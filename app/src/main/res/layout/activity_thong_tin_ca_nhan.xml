@@ -171,16 +171,23 @@
                 android:textColor="@android:color/black"
                 android:layout_marginBottom="8dp"/>
 
-            <EditText
+           <EditText
                 android:id="@+id/edit_birthday"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="01-11-2005"
+                android:text="01/11/2005"
                 android:textSize="16sp"
                 android:textColor="@android:color/black"
                 android:background="@drawable/textbox_background"
                 android:padding="12dp"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="16dp"
+                android:focusable="false"
+                android:clickable="true"
+                android:inputType="none"
+                android:drawableEnd="@drawable/ic_calendar"
+                android:drawableTint="@android:color/darker_gray"
+                android:hint="Chọn ngày sinh"/>
+
 
             <!-- Địa chỉ -->
             <TextView

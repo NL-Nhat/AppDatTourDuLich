@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 public class TrangChinhFragment extends Fragment {
 
     private TextView txtXemThem;
+    private TextView txttien;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class TrangChinhFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        txttien = (TextView) view.findViewById(R.id.txtTien);
 
         return view;
     }
