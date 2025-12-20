@@ -14,60 +14,113 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.apptravel.R;
 import com.example.apptravel.data.api.ApiClient;
-import com.example.apptravel.data.models.LichTrinhYeuCau;
+import com.example.apptravel.data.models.DatTourHistoryItem;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
 /**
- * Adapter này hiển thị danh sách các tour trong các tab của TinhTrangXacNhanFragment.
- * Nó sử dụng layout 'item_lich_trinh_yeu_cau.xml' để hiển thị thông tin chi tiết
- * và ẩn đi CheckBox không cần thiết.
+ * Adapter hiển thị lịch sử đặt tour theo trạng thái.
+ * Tái sử dụng layout item_lich_trinh_yeu_cau.xml và bổ sung nút Hủy (chỉ hiện khi được phép).
  */
 public class TinhTrangAdapter extends RecyclerView.Adapter<TinhTrangAdapter.ViewHolder> {
 
-    private final Context context;
-    private final List<LichTrinhYeuCau> tourList;
+    public interface OnCancelClickListener {
+        void onCancelClick(DatTourHistoryItem item);
+    }
 
-    public TinhTrangAdapter(Context context, List<LichTrinhYeuCau> tourList) {
+    private final Context context;
+    private final List<DatTourHistoryItem> bookingList;
+    private final boolean showCancelButton;
+    private final OnCancelClickListener cancelClickListener;
+
+    public TinhTrangAdapter(Context context,
+                            List<DatTourHistoryItem> bookingList,
+                            boolean showCancelButton,
+                            OnCancelClickListener cancelClickListener) {
         this.context = context;
-        this.tourList = tourList;
+        this.bookingList = bookingList;
+        this.showCancelButton = showCancelButton;
+        this.cancelClickListener = cancelClickListener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Sử dụng layout item_lich_trinh_yeu_cau để có đầy đủ thông tin
         View view = LayoutInflater.from(context).inflate(R.layout.item_lich_trinh_yeu_cau, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        LichTrinhYeuCau currentTour = tourList.get(position);
+        DatTourHistoryItem item = bookingList.get(position);
 
-        if (currentTour.getImageUrl() != null && !currentTour.getImageUrl().isEmpty()) {
-            String url = currentTour.getImageUrl();
+        String title = item.getTenTour() != null ? item.getTenTour() : "";
+        String location = item.getDiaDiem() != null ? item.getDiaDiem() : "";
+        String date = formatDateRange(item.getNgayKhoiHanh(), item.getNgayKetThuc());
+
+        holder.tvTitle.setText(title);
+        holder.tvLocation.setText(location);
+        holder.tvDate.setText(date);
+
+        String imageUrl = item.getUrlHinhAnhChinh();
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            String url = imageUrl.trim();
+
+            // Backend thường trả về tên file (vd: tour_bana.jpg).
+            // Static resources đang serve từ thư mục uploads/, trong đó ảnh tour nằm ở uploads/tour/...
+            // Các màn khác cũng prefix "tour/" + filename (xem TourAdapter).
             if (!url.startsWith("http")) {
+                // bỏ dấu '/' đầu nếu có để tránh baseUrl//path
+                while (url.startsWith("/")) url = url.substring(1);
+
+                // nếu chỉ là filename -> prefix tour/
+                if (!url.contains("/")) {
+                    url = "tour/" + url;
+                }
+
                 url = ApiClient.getFullImageUrl(context, url);
             }
+
             Glide.with(context)
                     .load(url)
                     .placeholder(R.drawable.nen)
                     .error(R.drawable.nen)
                     .into(holder.ivImage);
         } else {
-            holder.ivImage.setImageResource(currentTour.getImageResId());
+            holder.ivImage.setImageResource(R.drawable.nen);
         }
 
-        holder.tvTitle.setText(currentTour.getTitle());
-        holder.tvLocation.setText(currentTour.getLocation());
-        holder.tvDate.setText(currentTour.getDate());
-
+        // Nút Hủy: chỉ show ở tab Chờ xác nhận
+        if (holder.btnCancel != null) {
+            holder.btnCancel.setVisibility(showCancelButton ? View.VISIBLE : View.GONE);
+            holder.btnCancel.setOnClickListener(v -> {
+                if (cancelClickListener != null) cancelClickListener.onCancelClick(item);
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
-        return tourList.size();
+        return bookingList.size();
+    }
+
+    private String formatDateRange(String start, String end) {
+        String s = compactDate(start);
+        String e = compactDate(end);
+        if (s.isEmpty() && e.isEmpty()) return "";
+        if (e.isEmpty()) return s;
+        if (s.isEmpty()) return e;
+        return s + " - " + e;
+    }
+
+    private String compactDate(String iso) {
+        if (iso == null) return "";
+        int tIdx = iso.indexOf('T');
+        if (tIdx > 0) return iso.substring(0, tIdx);
+        int spaceIdx = iso.indexOf(' ');
+        if (spaceIdx > 0) return iso.substring(0, spaceIdx);
+        return iso;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -76,15 +129,16 @@ public class TinhTrangAdapter extends RecyclerView.Adapter<TinhTrangAdapter.View
         final TextView tvDate;
         final TextView tvLocation;
         final CheckBox cbChonTour;
+        final MaterialButton btnCancel;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Ánh xạ các view từ layout item_lich_trinh_yeu_cau.xml
             ivImage = itemView.findViewById(R.id.iv_lich_trinh_image);
             tvTitle = itemView.findViewById(R.id.tv_lich_trinh_title);
             tvDate = itemView.findViewById(R.id.tv_lich_trinh_date);
             tvLocation = itemView.findViewById(R.id.tv_lich_trinh_location);
             cbChonTour = itemView.findViewById(R.id.cb_chon_tour);
+            btnCancel = itemView.findViewById(R.id.btn_cancel_booking);
 
             if (cbChonTour != null) {
                 cbChonTour.setVisibility(View.GONE);
@@ -92,3 +146,4 @@ public class TinhTrangAdapter extends RecyclerView.Adapter<TinhTrangAdapter.View
         }
     }
 }
+

@@ -15,8 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptravel.R;
 import com.example.apptravel.data.adapters.TinhTrangAdapter;
+import androidx.appcompat.app.AlertDialog;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
 import com.example.apptravel.data.models.DatTourHistoryItem;
-import com.example.apptravel.data.models.LichTrinhYeuCau;
 import com.example.apptravel.data.repository.DatTourRepository;
 import com.example.apptravel.util.QuanLyDangNhap;
 
@@ -35,7 +40,7 @@ public class TinhTrangListFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private TinhTrangAdapter adapter;
-    private final List<LichTrinhYeuCau> tourList = new ArrayList<>();
+    private final List<DatTourHistoryItem> bookingList = new ArrayList<>();
 
     private String trangThai;
 
@@ -63,7 +68,8 @@ public class TinhTrangListFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view_page);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        adapter = new TinhTrangAdapter(getContext(), tourList);
+        boolean showCancel = "CHO_XAC_NHAN".equals(trangThai);
+        adapter = new TinhTrangAdapter(getContext(), bookingList, showCancel, this::showCancelDialog);
         recyclerView.setAdapter(adapter);
 
         loadBookings();
@@ -84,7 +90,7 @@ public class TinhTrangListFragment extends Fragment {
         if (!session.isLoggedIn()) {
             Log.w(TAG, "User not logged in -> clear list");
             Toast.makeText(getContext(), "Chưa đăng nhập - không tải được lịch sử", Toast.LENGTH_SHORT).show();
-            tourList.clear();
+            bookingList.clear();
             if (adapter != null) adapter.notifyDataSetChanged();
             return;
         }
@@ -117,22 +123,8 @@ public class TinhTrangListFragment extends Fragment {
                     Toast.makeText(getContext(), "Không có dữ liệu cho trạng thái này", Toast.LENGTH_SHORT).show();
                 }
 
-                tourList.clear();
-                for (DatTourHistoryItem item : body) {
-                    String title = item.getTenTour() != null ? item.getTenTour() : "";
-                    String location = item.getDiaDiem() != null ? item.getDiaDiem() : "";
-                    String date = formatDateRange(item.getNgayKhoiHanh(), item.getNgayKetThuc());
-                    String imageUrl = item.getUrlHinhAnhChinh();
-
-                    // Dùng ảnh URL nếu có, fallback drawable mặc định
-                    LichTrinhYeuCau uiItem;
-                    if (imageUrl != null && !imageUrl.isEmpty()) {
-                        uiItem = new LichTrinhYeuCau(imageUrl, title, date, location, false);
-                    } else {
-                        uiItem = new LichTrinhYeuCau(R.drawable.nen, title, date, location, false);
-                    }
-                    tourList.add(uiItem);
-                }
+                bookingList.clear();
+                bookingList.addAll(body);
 
                 if (adapter != null) adapter.notifyDataSetChanged();
             }
@@ -161,27 +153,60 @@ public class TinhTrangListFragment extends Fragment {
         }
     }
 
-    private String formatDateRange(String start, String end) {
-        String s = compactDate(start);
-        String e = compactDate(end);
-        if (s.isEmpty() && e.isEmpty()) return "";
-        if (e.isEmpty()) return s;
-        if (s.isEmpty()) return e;
-        return s + " - " + e;
+    private void showCancelDialog(DatTourHistoryItem item) {
+        if (getContext() == null) return;
+
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_cancel_booking, null, false);
+        TextInputLayout til = dialogView.findViewById(R.id.til_cancel_reason);
+        TextInputEditText et = dialogView.findViewById(R.id.et_cancel_reason);
+
+        AlertDialog dialog = new MaterialAlertDialogBuilder(getContext())
+                .setTitle("Hủy đặt tour")
+                .setMessage("Vui lòng cho biết lý do hủy.")
+                .setView(dialogView)
+                .setNegativeButton("Đóng", (d, w) -> d.dismiss())
+                // set null listener để tự xử lý validate và KHÔNG auto dismiss khi lỗi
+                .setPositiveButton("Hủy tour", null)
+                .create();
+
+        dialog.setOnShowListener(d -> {
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+                String reason = et.getText() != null ? et.getText().toString().trim() : "";
+
+                if (reason.isEmpty()) {
+                    til.setError("Vui lòng nhập lý do hủy");
+                    return;
+                }
+
+                til.setError(null);
+                dialog.dismiss();
+                callCancelBooking(item.getMaDatTour(), reason);
+            });
+        });
+
+        dialog.show();
     }
 
-    private String compactDate(String iso) {
-        if (iso == null) return "";
-        // backend thường trả ISO: 2025-11-20T08:00:00
-        int tIdx = iso.indexOf('T');
-        if (tIdx > 0) {
-            return iso.substring(0, tIdx);
-        }
-        // nếu có khoảng trắng: 2025-11-20 08:00:00
-        int spaceIdx = iso.indexOf(' ');
-        if (spaceIdx > 0) {
-            return iso.substring(0, spaceIdx);
-        }
-        return iso;
+    private void callCancelBooking(int maDatTour, String reason) {
+        if (getContext() == null) return;
+
+        DatTourRepository repo = new DatTourRepository(getContext());
+        repo.cancelBooking(maDatTour, reason).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(getContext(), "Hủy thất bại (HTTP " + response.code() + ")", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Toast.makeText(getContext(), "Đã hủy đặt tour", Toast.LENGTH_SHORT).show();
+                loadBookings();
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                Toast.makeText(getContext(), "Lỗi kết nối: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
+

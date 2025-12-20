@@ -34,7 +34,7 @@ public class LichTrinhFragment extends Fragment {
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
             switch (position) {
                 case 0:
-                    tab.setText("Đã lưu");
+                    tab.setText("Chờ xác nhận");
                     break;
                 case 1:
                     tab.setText("Đã đặt");

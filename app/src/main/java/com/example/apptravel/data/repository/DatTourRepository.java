@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.apptravel.data.api.ApiClient;
 import com.example.apptravel.data.api.ApiService;
+import com.example.apptravel.data.models.CancelBookingRequest;
 import com.example.apptravel.data.models.DatTourHistoryItem;
 
 import java.util.List;
@@ -21,4 +22,9 @@ public class DatTourRepository {
     public Call<List<DatTourHistoryItem>> getLichSuDatTour(String status) {
         return api.getUserBookings(status);
     }
+
+    public Call<Void> cancelBooking(int maDatTour, String lyDoHuy) {
+        return api.cancelUserBooking(maDatTour, new CancelBookingRequest(lyDoHuy));
+    }
 }
+

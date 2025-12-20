@@ -1,5 +1,6 @@
 package com.example.apptravel.data.api;
 
+import com.example.apptravel.data.models.CancelBookingRequest;
 import com.example.apptravel.data.models.DanhGia;
 import com.example.apptravel.data.models.DatTourHistoryItem;
 import com.example.apptravel.data.models.HoatDong;
@@ -32,5 +33,8 @@ public interface ApiService {
 
     @GET("api/user/bookings")
     Call<List<DatTourHistoryItem>> getUserBookings(@Query("status") String status);
+
+    @POST("api/user/bookings/{id}/cancel")
+    Call<Void> cancelUserBooking(@Path("id") int maDatTour, @Body CancelBookingRequest request);
 
 }
