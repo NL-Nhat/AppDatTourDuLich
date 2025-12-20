@@ -1,6 +1,7 @@
 package com.example.apptravel.data.api;
 
 import com.example.apptravel.data.models.DanhGia;
+import com.example.apptravel.data.models.DatTourHistoryItem;
 import com.example.apptravel.data.models.HoatDong;
 import com.example.apptravel.data.models.LichKhoiHanh;
 import com.example.apptravel.data.models.LoginRequest;
@@ -14,6 +15,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
@@ -27,5 +29,8 @@ public interface ApiService {
     Call<List<DanhGia>> getDanhGia(@Path("id") int maTour);
     @GET("api/admin/hoatdong")
     Call<List<HoatDong>> getHoatDong();
+
+    @GET("api/user/bookings")
+    Call<List<DatTourHistoryItem>> getUserBookings(@Query("status") String status);
 
 }

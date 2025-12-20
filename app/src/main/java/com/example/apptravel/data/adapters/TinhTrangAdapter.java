@@ -11,7 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.apptravel.R;
+import com.example.apptravel.data.api.ApiClient;
 import com.example.apptravel.data.models.LichTrinhYeuCau;
 
 import java.util.List;
@@ -43,13 +45,24 @@ public class TinhTrangAdapter extends RecyclerView.Adapter<TinhTrangAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         LichTrinhYeuCau currentTour = tourList.get(position);
 
-        holder.ivImage.setImageResource(currentTour.getImageResId());
+        if (currentTour.getImageUrl() != null && !currentTour.getImageUrl().isEmpty()) {
+            String url = currentTour.getImageUrl();
+            if (!url.startsWith("http")) {
+                url = ApiClient.getFullImageUrl(context, url);
+            }
+            Glide.with(context)
+                    .load(url)
+                    .placeholder(R.drawable.nen)
+                    .error(R.drawable.nen)
+                    .into(holder.ivImage);
+        } else {
+            holder.ivImage.setImageResource(currentTour.getImageResId());
+        }
+
         holder.tvTitle.setText(currentTour.getTitle());
         holder.tvLocation.setText(currentTour.getLocation());
+        holder.tvDate.setText(currentTour.getDate());
 
-        // Giả sử LichTrinhYeuCau có một trường cho ngày tháng.
-        // Nếu không có, bạn có thể bỏ dòng này hoặc cập nhật model.
-        // holder.tvDate.setText(currentTour.getDate()); // Ví dụ
     }
 
     @Override
