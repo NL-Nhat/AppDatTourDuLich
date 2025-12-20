@@ -8,24 +8,17 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.apptravel.R;
-import com.example.apptravel.data.adapters.LichTrinhAdapter;
-import com.example.apptravel.data.models.BookedTour;
-import com.example.apptravel.data.models.Tour;
+import com.example.apptravel.data.adapters.LichSuDatTourPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 public class LichTrinhFragment extends Fragment {
 
-    private RecyclerView recyclerView;
-    private LichTrinhAdapter adapter;
-    private List<BookedTour> bookedTourList;
     private TabLayout tabLayout;
+    private ViewPager2 viewPager;
 
     @Nullable
     @Override
@@ -33,23 +26,24 @@ public class LichTrinhFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_lich_trinh, container, false);
 
         tabLayout = view.findViewById(R.id.tab_layout);
-        recyclerView = view.findViewById(R.id.recycler_view_lich_trinh);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        viewPager = view.findViewById(R.id.view_pager_lich_su);
 
-//        // Lấy dữ liệu gốc từ TourData
-//        bookedTourList = new ArrayList<>();
-//        List<Tour> allTours = TourData.getTourList();
-//    // Lấy 2 tour đầu tiên
-//        if (allTours.size() >= 2) {
-//            Tour tour1 = allTours.get(0);// Lấy tour
-//            bookedTourList.add(new BookedTour(tour1.getImageResId(), tour1.getTitle().replace("-\n", " "), "Ngày 28 - Ngày 29/09/2025", tour1.getLocation()));
-//
-//            Tour tour2 = allTours.get(2); // Lấy tour
-//            bookedTourList.add(new BookedTour(tour2.getImageResId(), tour2.getTitle().replace("-\n", " "), "Ngày 18 - Ngày 20/09/2025", tour2.getLocation()));
-//        }
-//
-//        adapter = new LichTrinhAdapter(getContext(), bookedTourList);
-//        recyclerView.setAdapter(adapter);
+        LichSuDatTourPagerAdapter pagerAdapter = new LichSuDatTourPagerAdapter(this);
+        viewPager.setAdapter(pagerAdapter);
+
+        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
+            switch (position) {
+                case 0:
+                    tab.setText("Chờ xác nhận");
+                    break;
+                case 1:
+                    tab.setText("Đã đặt");
+                    break;
+                case 2:
+                    tab.setText("Đã hủy");
+                    break;
+            }
+        }).attach();
 
         return view;
     }
@@ -57,6 +51,9 @@ public class LichTrinhFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        tabLayout.selectTab(tabLayout.getTabAt(1));
+        // Mặc định chọn tab "Đã đặt" (giống UI cũ)
+        if (viewPager != null) {
+            viewPager.setCurrentItem(1, false);
+        }
     }
 }

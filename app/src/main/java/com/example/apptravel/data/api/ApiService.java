@@ -1,8 +1,10 @@
 package com.example.apptravel.data.api;
 
+import com.example.apptravel.data.models.CancelBookingRequest;
+import com.example.apptravel.data.models.DanhGia;
+import com.example.apptravel.data.models.DatTourHistoryItem;
 import com.example.apptravel.data.models.BookingRequest;
 import com.example.apptravel.data.models.BookingResponse;
-import com.example.apptravel.data.models.DanhGia;
 import com.example.apptravel.data.models.DistrictResponse;
 import com.example.apptravel.data.models.HoatDong;
 import com.example.apptravel.data.models.LichKhoiHanh;
@@ -10,6 +12,7 @@ import com.example.apptravel.data.models.LoginRequest;
 import com.example.apptravel.data.models.LoginResponse;
 import com.example.apptravel.data.models.Province;
 import com.example.apptravel.data.models.Tour;
+import com.example.apptravel.data.models.AdminBookingItem;
 import com.example.apptravel.data.models.WardResponse;
 
 import java.util.List;
@@ -20,6 +23,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
@@ -43,6 +47,26 @@ public interface ApiService {
     @GET("/api/address/wards/{code}")
     Call<WardResponse> getWards(@Path("code") String code);
 
+    @GET("api/user/bookings")
+    Call<List<DatTourHistoryItem>> getUserBookings(@Query("status") String status);
+
+    @POST("api/user/bookings/{id}/cancel")
+    Call<Void> cancelUserBooking(@Path("id") int maDatTour, @Body CancelBookingRequest request);
+
+    // Admin - bookings
+    @GET("api/admin/bookings")
+    Call<List<AdminBookingItem>> getAdminBookings(@Query("status") String status, @Query("q") String q);
+
+    @GET("api/admin/bookings/{id}")
+    Call<AdminBookingItem> getAdminBookingDetail(@Path("id") int maDatTour);
+
+    @POST("api/admin/bookings/{id}/confirm")
+    Call<Void> confirmAdminBooking(@Path("id") int maDatTour);
+
+    @POST("api/admin/bookings/{id}/cancel")
+    Call<Void> cancelAdminBooking(@Path("id") int maDatTour, @Body CancelBookingRequest request);
+
     @POST("/api/bookings/create")
     Call<BookingResponse> createBooking(@Body BookingRequest bookingRequest);
 }
+
