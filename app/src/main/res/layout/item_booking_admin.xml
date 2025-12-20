@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="3dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Customer Info -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/nen"
+                android:background="@drawable/circle_background"
+                android:scaleType="centerCrop"
+                android:clipToOutline="true"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="12dp">
+
+                <TextView
+                    android:id="@+id/customer_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nguyễn Văn An"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@drawable/ic_phone"
+                        app:tint="#757575"/>
+
+                    <TextView
+                        android:id="@+id/customer_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0989904735"
+                        android:textSize="12sp"
+                        android:textColor="#757575"
+                        android:layout_marginStart="4dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/booking_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chờ xác nhận"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:background="@drawable/trangthai_tour_dong"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"/>
+
+        </LinearLayout>
+
+        <!-- Tour Info -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/quanly_tour_cardbackground"
+            android:padding="12dp"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:id="@+id/tour_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tour du lịch Quảng Ninh"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@drawable/ic_calendar"
+                        app:tint="#757575"/>
+
+                    <TextView
+                        android:id="@+id/tour_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="15/12/2025"
+                        android:textSize="12sp"
+                        android:textColor="#757575"
+                        android:layout_marginStart="4dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@drawable/ic_groups_person"
+                        app:tint="#757575"/>
+
+                    <TextView
+                        android:id="@+id/tour_people"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2 người lớn + 1 trẻ em"
+                        android:textSize="12sp"
+                        android:textColor="#757575"
+                        android:layout_marginStart="4dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Price & Payment -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tổng tiền"
+                    android:textSize="12sp"
+                    android:textColor="#757575"/>
+
+                <TextView
+                    android:id="@+id/booking_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3,450,000 VND"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#667eea"
+                    android:layout_marginTop="2dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/payment_status_icon"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_tick"
+                    app:tint="#4CAF50"/>
+
+                <TextView
+                    android:id="@+id/payment_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đã thanh toán"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="#4CAF50"
+                    android:layout_marginStart="4dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Actions -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/btn_view_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_input_border"
+                android:minWidth="0dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Chi tiết"
+                android:textAllCaps="false"
+                android:textColor="#667eea"
+                android:textSize="13sp"
+                app:backgroundTint="@color/material_dynamic_neutral90" />
+
+            <Button
+                android:id="@+id/btn_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Xác nhận"
+                android:textSize="13sp"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bg_input_border"
+                app:backgroundTint="@color/blue"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textAllCaps="false"
+                android:layout_marginStart="8dp"
+                android:minWidth="0dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

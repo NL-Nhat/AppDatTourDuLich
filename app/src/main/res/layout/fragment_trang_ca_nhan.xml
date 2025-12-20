@@ -67,6 +67,7 @@
             android:layout_toStartOf="@id/arrow_right">
 
             <TextView
+                android:id="@+id/txtTen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nguyễn Long Nhật"
@@ -75,6 +76,7 @@
                 android:textColor="@android:color/black"/>
 
             <TextView
+                android:id="@+id/txtEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="nguyenlongnhat@gmail.com"
@@ -145,6 +147,7 @@
 
             <!-- Cài đặt -->
             <LinearLayout
+                android:id="@+id/caiDat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -196,41 +199,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Thông báo"
-                    android:textSize="16sp"
-                    android:textColor="@android:color/black"
-                    android:layout_marginStart="16dp"/>
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_arrow_forward"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#E0E0E0"
-                android:layout_marginStart="56dp"/>
-
-            <!-- Tài khoản và bảo mật -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_security"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Tài khoản và bảo mật"
                     android:textSize="16sp"
                     android:textColor="@android:color/black"
                     android:layout_marginStart="16dp"/>
@@ -301,41 +269,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Liên kết tài khoản"
-                    android:textSize="16sp"
-                    android:textColor="@android:color/black"
-                    android:layout_marginStart="16dp"/>
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_arrow_forward"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#E0E0E0"
-                android:layout_marginStart="56dp"/>
-
-            <!-- Giao diện -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_visibility"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Giao diện"
                     android:textSize="16sp"
                     android:textColor="@android:color/black"
                     android:layout_marginStart="16dp"/>
@@ -463,11 +396,13 @@
                 android:layout_marginTop="8dp">
 
                 <ImageView
+                    android:id="@+id/ic_logout"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_logout"/>
 
                 <TextView
+                    android:id="@+id/txtDangXuat"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

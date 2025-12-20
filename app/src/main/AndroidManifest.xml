@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -10,36 +12,50 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppTravel">
+        android:theme="@style/Theme.AppTravel"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".KetQuaThanhToanActivity"
+            android:name=".ui.activitys.admin.ThemTourActivity"
             android:exported="false" />
         <activity
-            android:name=".NhapThongTinActivity"
+            android:name=".ui.activitys.admin.MainAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".PhuongThucThanhToanActivity"
+            android:name=".ui.activitys.user.DoiMatKhauActivity"
             android:exported="false" />
         <activity
-            android:name=".TourDetailActivity"
+            android:name=".ui.activitys.user.CaiDatActivity"
             android:exported="false" />
         <activity
-            android:name=".ThongTinCaNhanActivity"
+            android:name=".ui.activitys.user.KetQuaThanhToanActivity"
             android:exported="false" />
         <activity
-            android:name=".DangKyActivity"
+            android:name=".ui.activitys.user.NhapThongTinActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activitys.user.PhuongThucThanhToanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activitys.user.TourDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activitys.user.ThongTinCaNhanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activitys.user.DangKyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activitys.user.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.AppTravel.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".DangNhapActivity"
+            android:name=".ui.DangNhapActivity"
             android:exported="false" />
     </application>
 
