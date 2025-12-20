@@ -53,6 +53,7 @@
                     android:layout_width="30dp"
                     android:layout_height="45dp"
                     android:background="@drawable/ic_share"
+                    app:backgroundTint="@color/white"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"/>
 
@@ -61,6 +62,7 @@
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:background="@drawable/ic_heart"
+                    android:backgroundTint="@color/white"
                     android:padding="6dp"
                     android:layout_toStartOf="@id/btn_share"
                     android:layout_marginEnd="12dp"
