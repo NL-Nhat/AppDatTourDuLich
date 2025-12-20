@@ -21,7 +21,8 @@ public class LichKhoiHanhAdapter extends RecyclerView.Adapter<LichKhoiHanhViewHo
 
     private Context context;
     private List<LichKhoiHanh> list;
-
+    // Biến lưu vị trí item được chọn
+    private int selectedPosition = -1;
     private final SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
     private final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
@@ -29,6 +30,14 @@ public class LichKhoiHanhAdapter extends RecyclerView.Adapter<LichKhoiHanhViewHo
     public LichKhoiHanhAdapter(Context context, List<LichKhoiHanh> list) {
         this.context = context;
         this.list = list;
+    }
+
+    // Phương thức để lấy lịch khởi hành đã chọn
+    public LichKhoiHanh getSelectedSchedule() {
+        if (selectedPosition != -1) {
+            return list.get(selectedPosition);
+        }
+        return null;
     }
 
     @NonNull
@@ -41,6 +50,21 @@ public class LichKhoiHanhAdapter extends RecyclerView.Adapter<LichKhoiHanhViewHo
     @Override
     public void onBindViewHolder(@NonNull LichKhoiHanhViewHolder holder, int position) {
         LichKhoiHanh item = list.get(position);
+
+        // Hiển thị trạng thái Checkbox dựa trên vị trí được chọn
+        holder.checkbox.setChecked(position == selectedPosition);
+
+        // Xử lý sự kiện click vào Checkbox hoặc toàn bộ Item
+        View.OnClickListener clickListener = v -> {
+            int previousSelected = selectedPosition;
+            selectedPosition = holder.getAdapterPosition();
+
+            // Chỉ cập nhật lại 2 item: cái vừa bỏ chọn và cái vừa được chọn để tối ưu hiệu năng
+            notifyItemChanged(previousSelected);
+            notifyItemChanged(selectedPosition);
+        };
+        holder.checkbox.setOnClickListener(clickListener);
+        holder.itemView.setOnClickListener(clickListener);
 
         try{
             Date ngayDi = inputFormat.parse(item.getNgayKhoiHanh());
@@ -57,7 +81,7 @@ public class LichKhoiHanhAdapter extends RecyclerView.Adapter<LichKhoiHanhViewHo
             holder.txtTime.setText("—");
         }
 
-        // Kiểm tra null cho Hướng dẫn viên để tránh Crash
+        // Kiểm tra null cho Hướng dẫn viên
         if (item.getHuongDanVien() != null) {
             holder.txtHDV.setText("HDV: " + item.getHuongDanVien().getHoTen());
         } else {

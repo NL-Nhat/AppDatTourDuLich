@@ -1,35 +1,49 @@
 package com.example.apptravel.data.models;
 
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-public class NguoiDung implements Serializable {
+public class BookingRequest {
 
-    private Integer maNguoiDung;
-    private String email;
+    private int maNguoiDung;
+    private int maLichKhoiHanh;
+    private int soNguoiLon;
+    private int soTreEm;
     private String hoTen;
     private String soDienThoai;
+    private String gioiTinh;
     private String diaChi;
     private String ngaySinh;
-    private String gioiTinh;
-    private String anhDaiDien;
 
-    public Integer getMaNguoiDung() {
+    public int getMaNguoiDung() {
         return maNguoiDung;
     }
 
-    public void setMaNguoiDung(Integer maNguoiDung) {
+    public void setMaNguoiDung(int maNguoiDung) {
         this.maNguoiDung = maNguoiDung;
     }
 
-
-    public String getEmail() {
-        return email;
+    public int getMaLichKhoiHanh() {
+        return maLichKhoiHanh;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMaLichKhoiHanh(int maLichKhoiHanh) {
+        this.maLichKhoiHanh = maLichKhoiHanh;
+    }
+
+    public int getSoNguoiLon() {
+        return soNguoiLon;
+    }
+
+    public void setSoNguoiLon(int soNguoiLon) {
+        this.soNguoiLon = soNguoiLon;
+    }
+
+    public int getSoTreEm() {
+        return soTreEm;
+    }
+
+    public void setSoTreEm(int soTreEm) {
+        this.soTreEm = soTreEm;
     }
 
     public String getHoTen() {
@@ -48,6 +62,14 @@ public class NguoiDung implements Serializable {
         this.soDienThoai = soDienThoai;
     }
 
+    public String getGioiTinh() {
+        return gioiTinh;
+    }
+
+    public void setGioiTinh(String gioiTinh) {
+        this.gioiTinh = gioiTinh;
+    }
+
     public String getDiaChi() {
         return diaChi;
     }
@@ -63,21 +85,4 @@ public class NguoiDung implements Serializable {
     public void setNgaySinh(String ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
-
-    public String getGioiTinh() {
-        return gioiTinh;
-    }
-
-    public void setGioiTinh(String gioiTinh) {
-        this.gioiTinh = gioiTinh;
-    }
-
-    public String getAnhDaiDien() {
-        return anhDaiDien;
-    }
-
-    public void setAnhDaiDien(String anhDaiDien) {
-        this.anhDaiDien = anhDaiDien;
-    }
-
 }

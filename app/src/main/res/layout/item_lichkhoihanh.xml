@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="2dp">
+    app:cardCornerRadius="14dp"
+    android:background="@color/white"
+    android:backgroundTint="#ffffff">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,7 +15,7 @@
         android:padding="10dp">
 
         <CheckBox
-            android:id="@+id/checkbox_remember"
+            android:id="@+id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -119,7 +120,7 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/schedule_slots"
+                    android:id="@+id/txt_slot"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="20/30 chỗ"

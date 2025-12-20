@@ -17,15 +17,5 @@ public class KetQuaThanhToanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ket_qua_thanh_toan);
 
-        btn_home = findViewById(R.id.btn_home);
-
-        btn_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(KetQuaThanhToanActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
     }
 }
