@@ -15,6 +15,9 @@
         android:theme="@style/Theme.AppTravel"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.activitys.admin.AdminBookingDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activitys.admin.ThemTourActivity"
             android:exported="false" />
         <activity

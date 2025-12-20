@@ -8,6 +8,7 @@ import com.example.apptravel.data.models.LichKhoiHanh;
 import com.example.apptravel.data.models.LoginRequest;
 import com.example.apptravel.data.models.LoginResponse;
 import com.example.apptravel.data.models.Tour;
+import com.example.apptravel.data.models.AdminBookingItem;
 
 import java.util.List;
 
@@ -37,4 +38,18 @@ public interface ApiService {
     @POST("api/user/bookings/{id}/cancel")
     Call<Void> cancelUserBooking(@Path("id") int maDatTour, @Body CancelBookingRequest request);
 
+    // Admin - bookings
+    @GET("api/admin/bookings")
+    Call<List<AdminBookingItem>> getAdminBookings(@Query("status") String status, @Query("q") String q);
+
+    @GET("api/admin/bookings/{id}")
+    Call<AdminBookingItem> getAdminBookingDetail(@Path("id") int maDatTour);
+
+    @POST("api/admin/bookings/{id}/confirm")
+    Call<Void> confirmAdminBooking(@Path("id") int maDatTour);
+
+    @POST("api/admin/bookings/{id}/cancel")
+    Call<Void> cancelAdminBooking(@Path("id") int maDatTour, @Body CancelBookingRequest request);
+
 }
+
