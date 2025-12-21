@@ -1,5 +1,6 @@
 package com.example.apptravel.ui.activitys.user;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -7,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +23,7 @@ import com.example.apptravel.data.models.DanhGia;
 import com.example.apptravel.data.models.LichKhoiHanh;
 import com.example.apptravel.data.models.Tour;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -35,9 +38,9 @@ public class TourDetailActivity extends AppCompatActivity {
     private TextView txtTenTour, txtSoSao, txtDanhGia, txtDiaChi, txtGiaNguoiLon, txtGiaTreEm, txtMoTa, txtGiaTong;
     private RecyclerView rcvLich, rcvDanhGia;
     private Button btnDatNgay;
-
-    private Tour tour; // Object nhận từ Intent
+    private Tour tour;
     private ApiService apiService;
+    private LichKhoiHanhAdapter lichKhoiHanhAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +78,7 @@ public class TourDetailActivity extends AppCompatActivity {
         rcvDanhGia.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    @SuppressLint("SetTextI18n")
     private void layDuLieuIntent() {
         // Nhận object từ DanhSachTourFragment gửi sang
         tour = (Tour) getIntent().getSerializableExtra("object_tour");
@@ -87,11 +91,10 @@ public class TourDetailActivity extends AppCompatActivity {
             txtDanhGia.setText("(" + tour.getSoLuongDanhGia() + " đánh giá)");
             txtDiaChi.setText(tour.getDiemDen().getThanhPho());
 
-            // Format tiền
-            NumberFormat format = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
-            txtGiaNguoiLon.setText(format.format(tour.getGiaNguoiLon()));
-            txtGiaTreEm.setText(format.format(tour.getGiaTreEm()));
-            txtGiaTong.setText(format.format(tour.getGiaNguoiLon())); // Mặc định hiển thị giá người lớn
+            DecimalFormat decimalFormat = new DecimalFormat("#,###");
+            txtGiaNguoiLon.setText(decimalFormat.format(tour.getGiaNguoiLon()) + " VNĐ");
+            txtGiaTreEm.setText(decimalFormat.format(tour.getGiaTreEm()) + " VNĐ");
+            txtGiaTong.setText(decimalFormat.format(tour.getGiaNguoiLon()) + " VNĐ");
 
             String duongDanAnh = "tour/" + tour.getUrlHinhAnhChinh();
 
@@ -116,12 +119,12 @@ public class TourDetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<LichKhoiHanh>> call, Response<List<LichKhoiHanh>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    LichKhoiHanhAdapter adapter = new LichKhoiHanhAdapter(TourDetailActivity.this, response.body());
-                    rcvLich.setAdapter(adapter);
+                    lichKhoiHanhAdapter = new LichKhoiHanhAdapter(TourDetailActivity.this, response.body());
+                    rcvLich.setAdapter(lichKhoiHanhAdapter);
                 }
             }
             @Override
-            public void onFailure(Call<List<LichKhoiHanh>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<LichKhoiHanh>> call, Throwable t) {
                 android.util.Log.e("LoiAPI", "Lỗi lấy lịch: " + t.getMessage());
                 Toast.makeText(TourDetailActivity.this, "Lỗi tải lịch trình!", Toast.LENGTH_SHORT).show();
             }
@@ -131,14 +134,14 @@ public class TourDetailActivity extends AppCompatActivity {
     private void loadDanhGia(int maTour) {
         apiService.getDanhGia(maTour).enqueue(new Callback<List<DanhGia>>() {
             @Override
-            public void onResponse(Call<List<DanhGia>> call, Response<List<DanhGia>> response) {
+            public void onResponse(@NonNull Call<List<DanhGia>> call, @NonNull Response<List<DanhGia>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     DanhGiaAdapter adapter = new DanhGiaAdapter(TourDetailActivity.this, response.body());
                     rcvDanhGia.setAdapter(adapter);
                 }
             }
             @Override
-            public void onFailure(Call<List<DanhGia>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<DanhGia>> call, @NonNull Throwable t) {
                 android.util.Log.e("LoiAPI", "Lỗi lấy đánh giá: " + t.getMessage());
             }
         });
@@ -148,9 +151,22 @@ public class TourDetailActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> finish()); // Quay lại màn hình trước
 
         btnDatNgay.setOnClickListener(v -> {
+            //Lấy lịch khởi hành đã chọn từ adapter
+            LichKhoiHanh selectedSchedule = (lichKhoiHanhAdapter != null) ? lichKhoiHanhAdapter.getSelectedSchedule() : null;
+
+            if (selectedSchedule == null) {
+                Toast.makeText(this, "Vui lòng chọn một ngày khởi hành!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            // Chuyển sang NhapThongTinActivity và truyền cả Tour + Lịch đã chọn
             Intent intent = new Intent(TourDetailActivity.this, NhapThongTinActivity.class);
+
+            // Model tour và lichkhoihanh phải implements Serializable
             intent.putExtra("object_tour", tour);
+            intent.putExtra("object_lich", selectedSchedule);
+
             startActivity(intent);
+            finish();
         });
     }
 }

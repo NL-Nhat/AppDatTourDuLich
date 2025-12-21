@@ -23,7 +23,7 @@ public class ApiClient {
 
         String EMULATOR_URL = "http://10.0.2.2:8080/";
 
-        String DEVICE_URL = "http://172.20.10.3:8080/";
+        String DEVICE_URL = "http://192.168.1.87:8080/";
 
         Log.d("ApiClient", "isEmulator = " + isEmulator);
 
