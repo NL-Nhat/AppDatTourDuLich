@@ -30,12 +30,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+// Import các thư viện này
+import android.util.Log;
+
 public class TrangChinhFragment extends Fragment implements TourAdapter.OnTourClickListener{
     private TextView txtXemThem;
     private RecyclerView rcv_tour_doc, rcv_tour_ngang;
     private TourAdapter tourAdapter, tourAdapter2;
     private TourRepository tourRepository;
     private List<Tour> listTour = new ArrayList<>();
+    private static final String API_TAG = "TrangChinh_API";
+
 
     @Nullable
     @Override
@@ -81,10 +86,16 @@ public class TrangChinhFragment extends Fragment implements TourAdapter.OnTourCl
     }
 
     private void loadData() {
+        Log.i(API_TAG, "Bắt đầu gọi API để lấy danh sách tour...");
+
         tourRepository.getAllTours().enqueue(new Callback<List<Tour>>() {
             @Override
             public void onResponse(Call<List<Tour>> call, Response<List<Tour>> response) {
                 if (response.isSuccessful() && response.body() != null) {
+                    Log.i(API_TAG, "THÀNH CÔNG! Mã HTTP: " + response.code());
+                    listTour = response.body();
+                    Log.i(API_TAG, "Số lượng tour nhận được: " + listTour.size());
+
                     listTour = response.body(); // Lưu vào biến toàn cục
                     tourAdapter.setTourList(listTour); // Đẩy vào adapter
 
@@ -106,6 +117,10 @@ public class TrangChinhFragment extends Fragment implements TourAdapter.OnTourCl
                         int startPos = middle - (middle % listTop10.size());
                         rcv_tour_ngang.scrollToPosition(startPos);
                     }
+                }else{
+                    Log.e(API_TAG, "THẤT BẠI! Server phản hồi với mã lỗi HTTP: " + response.code());
+                    Log.e(API_TAG, "Thông điệp lỗi: " + response.message());
+
                 }
             }
 
