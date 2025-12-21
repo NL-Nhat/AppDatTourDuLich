@@ -1,7 +1,10 @@
 package com.example.apptravel.ui.activitys.user;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,8 +14,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.apptravel.R;
 import com.example.apptravel.data.api.ApiClient;
+import com.example.apptravel.data.api.ApiService;
+import com.example.apptravel.data.models.NguoiDung;
 import com.example.apptravel.util.QuanLyDangNhap;
 import java.util.Calendar;
+
+import android.widget.Toast;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ThongTinCaNhanActivity extends AppCompatActivity {
 
@@ -24,6 +35,9 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
     private QuanLyDangNhap quanLyDangNhap;
     private ImageView anhDaiDien;
 
+    private ApiService apiService;
+    private NguoiDung currentNguoiDung;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +56,15 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
         txtNgaySinh = findViewById(R.id.txtNgaySinh);
         cmbGioiTinh = findViewById(R.id.cmbGioiTinh);
 
+        apiService = ApiClient.getClient(this).create(ApiService.class);
+        quanLyDangNhap = new QuanLyDangNhap(this);
+        int idInt = quanLyDangNhap.LayMaNguoiDung();
+        if (idInt != 0) {
+            userId = String.valueOf(idInt);
+        }
+
         //Xử lý Spinner Giới tính
-        String[] genders = {"Nam", "Nữ"};
+        String[] genders = {"Nam", "Nu"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, genders);
         cmbGioiTinh.setAdapter(adapter);
 
@@ -66,6 +87,10 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> finish());
         btnHuy.setOnClickListener(v -> finish());
+        btnLuu.setOnClickListener(v -> {
+            saveUserProfile();
+        });
+        loadUserProfileFromServer();
     }
 
     private void GanThongTin() {
@@ -97,5 +122,72 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
                     .error(R.drawable.ic_launcher_background)
                     .into(anhDaiDien);
         }
+    }
+    private void loadUserProfileFromServer() {
+        Log.i(TAG, "Bắt đầu tải thông tin người dùng với ID: " + userId);
+
+        apiService.getNguoiDungById(userId).enqueue(new Callback<NguoiDung>() {
+            @Override
+            public void onResponse(Call<NguoiDung> call, Response<NguoiDung> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    currentNguoiDung = response.body();
+                    displayUserData();
+                }
+            }
+            @Override
+            public void onFailure(Call<NguoiDung> call, Throwable t) {
+                Log.e(TAG, "Lỗi: " + t.getMessage());
+            }
+        });
+    }
+    private void displayUserData() {
+        if (currentNguoiDung == null) return;
+
+        txtHoTen.setText(currentNguoiDung.getHoTen());
+        txtNgaySinh.setText(currentNguoiDung.getNgaySinh());
+        String tenFileAnh = currentNguoiDung.getAnhDaiDien();
+    }
+
+    private void saveUserProfile() {
+        NguoiDung updateInfo = new NguoiDung();
+        updateInfo.setHoTen(txtHoTen.getText().toString().trim());
+        updateInfo.setSoDienThoai(txtSDT.getText().toString().trim());
+        updateInfo.setNgaySinh(txtNgaySinh.getText().toString().trim());
+        updateInfo.setEmail(txtEmail.getText().toString().trim());
+        updateInfo.setDiaChi(txtDiaChi.getText().toString().trim());
+        updateInfo.setGioiTinh(cmbGioiTinh.getSelectedItem().toString());
+
+        apiService.updateNguoiDung(userId, updateInfo).enqueue(new Callback<NguoiDung>() {
+            @Override
+            public void onResponse(Call<NguoiDung> call, Response<NguoiDung> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    NguoiDung updatedUser = response.body();
+
+                    quanLyDangNhap.LuuDangNhap(
+                            quanLyDangNhap.LayToken(),
+                            updatedUser.getMaNguoiDung(),
+                            true,
+                            updatedUser.getHoTen(),
+                            updatedUser.getEmail(),
+                            updatedUser.getAnhDaiDien(),
+                            updatedUser.getVaiTro(),
+                            updatedUser.getSoDienThoai(),
+                            updatedUser.getDiaChi(),
+                            updatedUser.getGioiTinh(),
+                            updatedUser.getNgaySinh()
+                    );
+
+                    Toast.makeText(ThongTinCaNhanActivity.this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(ThongTinCaNhanActivity.this, "Cập nhật thất bại (Lỗi " + response.code() + ")", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<NguoiDung> call, Throwable t) {
+                Toast.makeText(ThongTinCaNhanActivity.this, "Lỗi kết nối mạng", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

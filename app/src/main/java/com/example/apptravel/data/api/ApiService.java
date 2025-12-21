@@ -11,6 +11,7 @@ import com.example.apptravel.data.models.LichKhoiHanh;
 import com.example.apptravel.data.models.LoginRequest;
 import com.example.apptravel.data.models.LoginResponse;
 import com.example.apptravel.data.models.Province;
+import com.example.apptravel.data.models.NguoiDung;
 import com.example.apptravel.data.models.ThanhToanRequest;
 import com.example.apptravel.data.models.Tour;
 import com.example.apptravel.data.models.AdminBookingItem;
@@ -25,8 +26,9 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -51,7 +53,12 @@ public interface ApiService {
     //Lấy phường xã theo quận huyện
     @GET("/api/address/wards/{code}")
     Call<WardResponse> getWards(@Path("code") String code);
-
+    @GET("api/auth/user/{id}")
+    Call<NguoiDung> getNguoiDungById(@Path("id") String maNguoiDung);
+    @Headers("No-Authentication: true")
+    @PUT("api/auth/user/{id}")
+    Call<NguoiDung> updateNguoiDung(@Path("id") String userId, @Body NguoiDung nguoiDung);
+    
     @GET("api/user/bookings")
     Call<List<DatTourHistoryItem>> getUserBookings(@Query("status") String status);
 

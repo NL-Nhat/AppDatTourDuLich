@@ -47,6 +47,13 @@ public class ApiClient {
                     // Giữ lại Interceptor từ code cũ để bảo mật
                     okhttp3.OkHttpClient client = new okhttp3.OkHttpClient.Builder()
                             .addInterceptor(chain -> {
+                                okhttp3.Request originalRequest = chain.request();
+                                if (originalRequest.header("No-Authentication") != null) {
+                                    okhttp3.Request newRequest = originalRequest.newBuilder()
+                                            .removeHeader("No-Authentication")
+                                            .build();
+                                    return chain.proceed(newRequest);
+                                }
                                 QuanLyDangNhap session = new QuanLyDangNhap(context);
                                 String token = session.LayToken();
                                 okhttp3.Request.Builder builder = chain.request().newBuilder();
