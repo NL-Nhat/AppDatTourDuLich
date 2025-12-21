@@ -474,7 +474,7 @@
 
                     <!-- Báo cáo thống kê -->
                     <LinearLayout
-                        android:id="@+id/menu_reports"
+                        android:id="@+id/menu_qr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -486,14 +486,14 @@
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/ic_report"
+                            android:src="@drawable/ic_qr"
                             app:tint="#424242"/>
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Báo cáo thống kê"
+                            android:text="Quét QR"
                             android:textSize="15sp"
                             android:textColor="@android:color/black"
                             android:layout_marginStart="16dp"/>
