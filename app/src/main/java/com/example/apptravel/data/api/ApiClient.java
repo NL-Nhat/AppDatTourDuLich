@@ -22,7 +22,7 @@ public class ApiClient {
                         || Build.HARDWARE.contains("goldfish");
 
         String EMULATOR_URL = "http://10.0.2.2:8080/";
-        String DEVICE_URL = "http://10.116.107.56:8080/";
+        String DEVICE_URL = "http://192.168.1.8:8080/";
 
         Log.d("ApiClient", "isEmulator = " + isEmulator);
 

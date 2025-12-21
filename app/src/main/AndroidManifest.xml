@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +19,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTravel"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation"
+            android:stateNotNeeded="true" />
+        <activity
+            android:name=".ui.activitys.user.VeDienTuActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activitys.admin.AdminBookingDetailActivity"
             android:exported="false" />

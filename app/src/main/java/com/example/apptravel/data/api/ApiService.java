@@ -11,10 +11,13 @@ import com.example.apptravel.data.models.LichKhoiHanh;
 import com.example.apptravel.data.models.LoginRequest;
 import com.example.apptravel.data.models.LoginResponse;
 import com.example.apptravel.data.models.Province;
+import com.example.apptravel.data.models.ThanhToanRequest;
 import com.example.apptravel.data.models.Tour;
 import com.example.apptravel.data.models.AdminBookingItem;
+import com.example.apptravel.data.models.ViDienTuResponse;
 import com.example.apptravel.data.models.WardResponse;
 import com.example.apptravel.data.models.RegisterRequest;
+import com.example.apptravel.ui.activitys.user.KetQuaThanhToanActivity;
 
 import java.util.List;
 
@@ -73,5 +76,10 @@ public interface ApiService {
 
     @POST("api/auth/register")
     Call<ResponseBody> register(@Body RegisterRequest request);
+    @GET("/api/bookings/{id}")
+    Call<ViDienTuResponse> getLayThongTinVi(@Path("id") int maDatTour);
+
+    @POST("/api/thanhtoan/create")
+    Call<Void> createThanhToan(@Body ThanhToanRequest thanhToanRequest);
 }
 
