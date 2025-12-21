@@ -2,6 +2,7 @@ package com.example.apptravel.data.models;
 
 public class LichTrinhYeuCau implements DisplayableItem{
     private int imageResId;
+    private String imageUrl;
     private String title;
     private String date;
     private String location;
@@ -15,9 +16,21 @@ public class LichTrinhYeuCau implements DisplayableItem{
         this.isSelected = isSelected;
     }
 
+    public LichTrinhYeuCau(String imageUrl, String title, String date, String location, boolean isSelected) {
+        this.imageUrl = imageUrl;
+        this.title = title;
+        this.date = date;
+        this.location = location;
+        this.isSelected = isSelected;
+    }
+
     // Getters
     public int getImageResId() {
         return imageResId;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public String getTitle() {
@@ -39,6 +52,10 @@ public class LichTrinhYeuCau implements DisplayableItem{
     // Setters
     public void setImageResId(int imageResId) {
         this.imageResId = imageResId;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public void setTitle(String title) {

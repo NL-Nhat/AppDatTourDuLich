@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:paddingBottom="92dp">
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+            <!-- Header card: tour image + booking id + status chips -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_tour_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/nen" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+
+                        <TextView
+                            android:id="@+id/tv_ma_dat_tour"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="#"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:textColor="@color/text_black" />
+
+                        <TextView
+                            android:id="@+id/tv_ten_tour"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_black"
+                            android:layout_marginTop="6dp" />
+
+                        <TextView
+                            android:id="@+id/tv_dia_diem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/text_gray"
+                            android:layout_marginTop="2dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/chip_trang_thai_dat_tour"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="6dp"
+                                android:paddingBottom="6dp"
+                                android:text=""
+                                android:textStyle="bold"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_black"
+                                android:background="@drawable/bg_chip_pending" />
+
+                            <TextView
+                                android:id="@+id/chip_trang_thai_thanh_toan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="6dp"
+                                android:paddingBottom="6dp"
+                                android:text=""
+                                android:textStyle="bold"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_black"
+                                android:background="@drawable/bg_chip_paid" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Customer card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Khách hàng"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_black"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp">
+
+                        <ImageView
+                            android:id="@+id/iv_customer_avatar"
+                            android:layout_width="46dp"
+                            android:layout_height="46dp"
+                            android:src="@drawable/nen"
+                            android:scaleType="centerCrop"
+                            android:background="@drawable/circle_background"
+                            android:clipToOutline="true" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="10dp">
+
+                            <TextView
+                                android:id="@+id/tv_khach_hang"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textStyle="bold"
+                                android:textColor="@color/text_black" />
+
+                            <TextView
+                                android:id="@+id/tv_email"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textColor="@color/text_gray"
+                                android:layout_marginTop="2dp" />
+
+                            <TextView
+                                android:id="@+id/tv_so_dien_thoai"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textColor="@color/text_gray"
+                                android:layout_marginTop="2dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Tour info card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Thông tin tour"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_ngay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_marginTop="10dp" />
+
+                    <TextView
+                        android:id="@+id/tv_so_nguoi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_marginTop="6dp" />
+
+                    <TextView
+                        android:id="@+id/tv_tong_tien"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textStyle="bold"
+                        android:textColor="@color/text_black"
+                        android:layout_marginTop="6dp" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Booking meta card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Thông tin đơn"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_ngay_dat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_marginTop="10dp" />
+
+                    <TextView
+                        android:id="@+id/tv_ngay_huy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_marginTop="6dp" />
+
+                    <TextView
+                        android:id="@+id/tv_ly_do_huy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_marginTop="6dp" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom action bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:padding="12dp"
+        android:background="@android:color/white">
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:text="Hủy đơn"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bg_input_border"
+            app:backgroundTint="@color/red" />
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_marginStart="8dp"
+            android:text="Xác nhận"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bg_input_border"
+            app:backgroundTint="@color/blue" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
