@@ -14,9 +14,11 @@ import com.example.apptravel.data.models.Province;
 import com.example.apptravel.data.models.Tour;
 import com.example.apptravel.data.models.AdminBookingItem;
 import com.example.apptravel.data.models.WardResponse;
+import com.example.apptravel.data.models.RegisterRequest;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -68,5 +70,8 @@ public interface ApiService {
 
     @POST("/api/bookings/create")
     Call<BookingResponse> createBooking(@Body BookingRequest bookingRequest);
+
+    @POST("api/auth/register")
+    Call<ResponseBody> register(@Body RegisterRequest request);
 }
 
