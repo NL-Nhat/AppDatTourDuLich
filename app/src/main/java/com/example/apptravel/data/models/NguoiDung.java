@@ -14,6 +14,8 @@ public class NguoiDung implements Serializable {
     private String ngaySinh;
     private String gioiTinh;
     private String anhDaiDien;
+    private String vaiTro;
+
 
     public Integer getMaNguoiDung() {
         return maNguoiDung;
@@ -78,6 +80,13 @@ public class NguoiDung implements Serializable {
 
     public void setAnhDaiDien(String anhDaiDien) {
         this.anhDaiDien = anhDaiDien;
+    }
+    public String getVaiTro() {
+        return vaiTro;
+    }
+
+    public void setVaiTro(String vaiTro) {
+        this.vaiTro = vaiTro;
     }
 
 }
