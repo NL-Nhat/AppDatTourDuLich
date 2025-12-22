@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:background="@android:color/white">
 
     <TextView
@@ -14,16 +14,13 @@
         android:text="Thêm lịch khởi hành"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:scrollbars="none"
+        android:layout_height="wrap_content"
         android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/tv_title"
-        app:layout_constraintBottom_toTopOf="@+id/layout_buttons">
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -167,7 +164,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Chọn hướng dẫn viên"
-                    android:inputType="none"
+                    android:inputType="text"
                     android:paddingLeft="15dp"
                     android:textColorHint="@color/gray"
                     android:textSize="14sp" />
@@ -190,7 +187,7 @@
                 app:boxCornerRadiusBottomEnd="8dp"
                 app:boxCornerRadiusBottomStart="8dp"
                 app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
+                app.boxCornerRadiusTopStart="8dp"
                 app:boxStrokeColor="#667eea"
                 app:hintEnabled="false"
                 app:suffixText=" khách"
@@ -217,8 +214,7 @@
         android:weightSum="2"
         android:padding="16dp"
         android:background="@android:color/white"
-        android:elevation="16dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:elevation="16dp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_huy"
@@ -248,4 +244,4 @@
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
