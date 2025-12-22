@@ -55,19 +55,17 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
     private Spinner cmbGioiTinh;
     private QuanLyDangNhap quanLyDangNhap;
     private ImageView anhDaiDien;
-    private ImageView btnEditAnhDaiDien; // THÊM MỚI
+    private ImageView btnEditAnhDaiDien;
 
 
     private ApiService apiService;
     private NguoiDung currentNguoiDung;
     private String userId;
 
-    // --- CÁC BIẾN MỚI CHO TÍNH NĂNG CẬP NHẬT ẢNH ---
     private Uri imageUri;
     private ActivityResultLauncher<String[]> requestPermissionLauncher;
     private ActivityResultLauncher<Intent> galleryLauncher;
     private ActivityResultLauncher<Uri> cameraLauncher;
-    // --- KẾT THÚC KHAI BÁO BIẾN MỚI ---
 
 
     @Override
@@ -86,14 +84,9 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
         // Đăng ký các launchers cho việc chọn ảnh và xin quyền
         registerActivityLaunchers();
 
-        // Thiết lập Spinner, DatePicker
         setupUIComponents();
-
-        // Gán thông tin đã lưu và tải thông tin mới từ server
         GanThongTin();
         loadUserProfileFromServer();
-
-        // Thiết lập sự kiện click
         btnBack.setOnClickListener(v -> finish());
         btnHuy.setOnClickListener(v -> finish());
         btnLuu.setOnClickListener(v -> {
@@ -136,7 +129,6 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
             datePickerDialog.show();
         });
     }
-    // --- CÁC PHƯƠNG THỨC MỚI CHO VIỆC CHỌN VÀ TẢI ẢNH ---
 
     private void registerActivityLaunchers() {
         // Launcher xin quyền
@@ -186,9 +178,9 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Thay đổi ảnh đại diện");
         builder.setItems(options, (dialog, which) -> {
-            if (which == 0) { // Camera
+            if (which == 0) {
                 checkCameraPermissionAndOpenCamera();
-            } else { // Gallery
+            } else {
                 checkStoragePermissionAndOpenGallery();
             }
         });
@@ -196,7 +188,6 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
     }
 
     private void checkStoragePermissionAndOpenGallery() {
-        // Khai báo biến permission trước khi sử dụng
         String permission = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
                 ? android.Manifest.permission.READ_MEDIA_IMAGES
                 : android.Manifest.permission.READ_EXTERNAL_STORAGE;
@@ -236,7 +227,6 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
         File file = createTempFileFromUri(imageUriToUpload);
         if (file == null) return;
 
-        // Chú ý: "file" phải khớp với @RequestParam("file") ở Backend
         RequestBody requestFile = RequestBody.create(okhttp3.MediaType.parse(getContentResolver().getType(imageUriToUpload)), file);;
         MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
 
@@ -246,10 +236,7 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    // Lấy fileName từ Map {"fileName": "tên_file.jpg"}
                     String newFileName = response.body().get("fileName");
-
-                    // Cập nhật vào SharedPreferences để khi nhấn "Lưu" thông tin sẽ lấy tên này
                     quanLyDangNhap.LuuAnhDaiDien(newFileName);
 
                     Toast.makeText(ThongTinCaNhanActivity.this, "Tải ảnh thành công!", Toast.LENGTH_SHORT).show();
@@ -285,7 +272,6 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
         }
     }
 
-    // --- CÁC PHƯƠNG THỨC CŨ CỦA BẠN (GIỮ NGUYÊN) ---
 
     private void GanThongTin() {
         txtHoTen.setText(quanLyDangNhap.LayHoTen());
