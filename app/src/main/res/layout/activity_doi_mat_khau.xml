@@ -112,7 +112,7 @@
                         android:id="@+id/btn_toggle_current"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_visibility" />
+                        android:src="@drawable/ic_visibility_off" />
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
@@ -165,7 +165,7 @@
                         android:id="@+id/btn_toggle_new"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_visibility" />
+                        android:src="@drawable/ic_visibility_off" />
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
@@ -218,7 +218,7 @@
                         android:id="@+id/btn_toggle_confirm"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_visibility" />
+                        android:src="@drawable/ic_visibility_off" />
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>

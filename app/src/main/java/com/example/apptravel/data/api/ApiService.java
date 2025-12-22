@@ -1,6 +1,7 @@
 package com.example.apptravel.data.api;
 
 import com.example.apptravel.data.models.CancelBookingRequest;
+import com.example.apptravel.data.models.ChangePasswordRequest;
 import com.example.apptravel.data.models.DanhGia;
 import com.example.apptravel.data.models.DatTourHistoryItem;
 import com.example.apptravel.data.models.BookingRequest;
@@ -71,7 +72,8 @@ public interface ApiService {
 
     @POST("api/user/bookings/{id}/cancel")
     Call<Void> cancelUserBooking(@Path("id") int maDatTour, @Body CancelBookingRequest request);
-
+    @PUT("api/auth/user/{id}/doiMatKhau")
+    Call<ResponseBody> doiMatKhau(@Path("id") String userId, @Body ChangePasswordRequest request);
     // Admin - bookings
     @GET("api/admin/bookings")
     Call<List<AdminBookingItem>> getAdminBookings(@Query("status") String status, @Query("q") String q);
