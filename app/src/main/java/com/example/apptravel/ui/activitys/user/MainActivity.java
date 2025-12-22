@@ -88,7 +88,11 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
     }
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        quanLyDangNhap = new QuanLyDangNhap(this);
+    }
     private void setupInitialFragment(BottomNavigationView bottomNav) {
 
         String fragmentName = getIntent().getStringExtra("fragment_name");

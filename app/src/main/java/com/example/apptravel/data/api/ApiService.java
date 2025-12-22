@@ -58,7 +58,7 @@ public interface ApiService {
     @Headers("No-Authentication: true")
     @PUT("api/auth/user/{id}")
     Call<NguoiDung> updateNguoiDung(@Path("id") String userId, @Body NguoiDung nguoiDung);
-    
+
     @GET("api/user/bookings")
     Call<List<DatTourHistoryItem>> getUserBookings(@Query("status") String status);
 

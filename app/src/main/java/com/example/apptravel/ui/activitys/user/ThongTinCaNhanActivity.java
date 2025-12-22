@@ -105,7 +105,7 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
         if (gioiTinhDaLuu != null) {
             if (gioiTinhDaLuu.equals("Nam")) {
                 cmbGioiTinh.setSelection(0);
-            } else if (gioiTinhDaLuu.equals("Nữ")) {
+            } else if (gioiTinhDaLuu.equals("Nu")) {
                 cmbGioiTinh.setSelection(1);
             }
         }
@@ -178,6 +178,7 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
                     );
 
                     Toast.makeText(ThongTinCaNhanActivity.this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show();
+                    setResult(RESULT_OK);
                     finish();
                 } else {
                     Toast.makeText(ThongTinCaNhanActivity.this, "Cập nhật thất bại (Lỗi " + response.code() + ")", Toast.LENGTH_SHORT).show();
