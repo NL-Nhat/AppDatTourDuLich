@@ -3,24 +3,45 @@ package com.example.apptravel.ui.activitys.user;
 import static android.content.ContentValues.TAG;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import com.bumptech.glide.Glide;
 import com.example.apptravel.R;
 import com.example.apptravel.data.api.ApiClient;
 import com.example.apptravel.data.api.ApiService;
 import com.example.apptravel.data.models.NguoiDung;
 import com.example.apptravel.util.QuanLyDangNhap;
-import java.util.Calendar;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Calendar;
+import java.util.Map;
+//import java.util.jar.Manifest;
+import android.Manifest;
 import android.widget.Toast;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,27 +55,27 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
     private Spinner cmbGioiTinh;
     private QuanLyDangNhap quanLyDangNhap;
     private ImageView anhDaiDien;
+    private ImageView btnEditAnhDaiDien; // THÊM MỚI
+
 
     private ApiService apiService;
     private NguoiDung currentNguoiDung;
     private String userId;
 
+    // --- CÁC BIẾN MỚI CHO TÍNH NĂNG CẬP NHẬT ẢNH ---
+    private Uri imageUri;
+    private ActivityResultLauncher<String[]> requestPermissionLauncher;
+    private ActivityResultLauncher<Intent> galleryLauncher;
+    private ActivityResultLauncher<Uri> cameraLauncher;
+    // --- KẾT THÚC KHAI BÁO BIẾN MỚI ---
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thong_tin_ca_nhan);
+        anhXaViews();
 
-        btnBack = findViewById(R.id.btn_back);
-        btnHuy = findViewById(R.id.btn_cancel);
-        btnLuu = findViewById(R.id.btn_save);
-        quanLyDangNhap = new QuanLyDangNhap(this);
-        txtHoTen = findViewById(R.id.txtHoTen);
-        txtEmail = findViewById(R.id.txtEmail);
-        txtSDT = findViewById(R.id.txtSDT);
-        anhDaiDien = findViewById(R.id.profile_image);
-        txtDiaChi = findViewById(R.id.txtDiaChi);
-        txtNgaySinh = findViewById(R.id.txtNgaySinh);
-        cmbGioiTinh = findViewById(R.id.cmbGioiTinh);
 
         apiService = ApiClient.getClient(this).create(ApiService.class);
         quanLyDangNhap = new QuanLyDangNhap(this);
@@ -62,7 +83,39 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
         if (idInt != 0) {
             userId = String.valueOf(idInt);
         }
+        // Đăng ký các launchers cho việc chọn ảnh và xin quyền
+        registerActivityLaunchers();
 
+        // Thiết lập Spinner, DatePicker
+        setupUIComponents();
+
+        // Gán thông tin đã lưu và tải thông tin mới từ server
+        GanThongTin();
+        loadUserProfileFromServer();
+
+        // Thiết lập sự kiện click
+        btnBack.setOnClickListener(v -> finish());
+        btnHuy.setOnClickListener(v -> finish());
+        btnLuu.setOnClickListener(v -> {
+            saveUserProfile();
+        });
+        btnEditAnhDaiDien.setOnClickListener(v -> showImagePickDialog());
+        loadUserProfileFromServer();
+    }
+    private void anhXaViews() {
+        btnBack = findViewById(R.id.btn_back);
+        btnHuy = findViewById(R.id.btn_cancel);
+        btnLuu = findViewById(R.id.btn_save);
+        txtHoTen = findViewById(R.id.txtHoTen);
+        txtEmail = findViewById(R.id.txtEmail);
+        txtSDT = findViewById(R.id.txtSDT);
+        anhDaiDien = findViewById(R.id.profile_image);
+        txtDiaChi = findViewById(R.id.txtDiaChi);
+        txtNgaySinh = findViewById(R.id.txtNgaySinh);
+        cmbGioiTinh = findViewById(R.id.cmbGioiTinh);
+        btnEditAnhDaiDien = findViewById(R.id.btn_edit_anhdaidien); // THÊM MỚI
+    }
+    private void setupUIComponents() {
         //Xử lý Spinner Giới tính
         String[] genders = {"Nam", "Nu"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, genders);
@@ -82,16 +135,157 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
             }, year, month, day);
             datePickerDialog.show();
         });
-
-        GanThongTin();
-
-        btnBack.setOnClickListener(v -> finish());
-        btnHuy.setOnClickListener(v -> finish());
-        btnLuu.setOnClickListener(v -> {
-            saveUserProfile();
-        });
-        loadUserProfileFromServer();
     }
+    // --- CÁC PHƯƠNG THỨC MỚI CHO VIỆC CHỌN VÀ TẢI ẢNH ---
+
+    private void registerActivityLaunchers() {
+        // Launcher xin quyền
+        requestPermissionLauncher = registerForActivityResult(
+                new ActivityResultContracts.RequestMultiplePermissions(),
+                permissions -> {
+                    boolean cameraGranted = permissions.getOrDefault(Manifest.permission.CAMERA, false);
+                    String storagePermission = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ? Manifest.permission.READ_MEDIA_IMAGES : Manifest.permission.READ_EXTERNAL_STORAGE;
+                    boolean storageGranted = permissions.getOrDefault(storagePermission, false);
+
+                    if (cameraGranted) {
+                        openCamera();
+                    } else if (storageGranted) {
+                        openGallery();
+                    } else {
+                        Toast.makeText(this, "Quyền truy cập bị từ chối", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        // Launcher mở thư viện
+        galleryLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        Uri selectedImageUri = result.getData().getData();
+                        if (selectedImageUri != null) {
+                            imageUri = selectedImageUri;
+                            Glide.with(this).load(imageUri).into(anhDaiDien);
+                            uploadAvatarToServer(imageUri);
+                        }
+                    }
+                });
+
+        // Launcher mở camera
+        cameraLauncher = registerForActivityResult(
+                new ActivityResultContracts.TakePicture(),
+                success -> {
+                    if (success) {
+                        Glide.with(this).load(imageUri).into(anhDaiDien);
+                        uploadAvatarToServer(imageUri);
+                    }
+                });
+    }
+
+    private void showImagePickDialog() {
+        String[] options = {"Chụp ảnh mới", "Chọn từ thư viện"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Thay đổi ảnh đại diện");
+        builder.setItems(options, (dialog, which) -> {
+            if (which == 0) { // Camera
+                checkCameraPermissionAndOpenCamera();
+            } else { // Gallery
+                checkStoragePermissionAndOpenGallery();
+            }
+        });
+        builder.create().show();
+    }
+
+    private void checkStoragePermissionAndOpenGallery() {
+        // Khai báo biến permission trước khi sử dụng
+        String permission = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+                ? android.Manifest.permission.READ_MEDIA_IMAGES
+                : android.Manifest.permission.READ_EXTERNAL_STORAGE;
+
+        if (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED) {
+            openGallery();
+        } else {
+            requestPermissionLauncher.launch(new String[]{permission});
+        }
+    }
+
+    private void checkCameraPermissionAndOpenCamera() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            openCamera();
+        } else {
+            requestPermissionLauncher.launch(new String[]{Manifest.permission.CAMERA});
+        }
+    }
+
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        galleryLauncher.launch(intent);
+    }
+
+    private void openCamera() {
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.TITLE, "New Avatar");
+        values.put(MediaStore.Images.Media.DESCRIPTION, "From Camera");
+        imageUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+        cameraLauncher.launch(imageUri);
+    }
+
+    private void uploadAvatarToServer(Uri imageUriToUpload) {
+        if (imageUriToUpload == null) return;
+
+        File file = createTempFileFromUri(imageUriToUpload);
+        if (file == null) return;
+
+        // Chú ý: "file" phải khớp với @RequestParam("file") ở Backend
+        RequestBody requestFile = RequestBody.create(okhttp3.MediaType.parse(getContentResolver().getType(imageUriToUpload)), file);;
+        MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+
+        Toast.makeText(this, "Đang tải ảnh lên...", Toast.LENGTH_SHORT).show();
+
+        apiService.uploadAnhDaiDien(body).enqueue(new Callback<Map<String, String>>() {
+            @Override
+            public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    // Lấy fileName từ Map {"fileName": "tên_file.jpg"}
+                    String newFileName = response.body().get("fileName");
+
+                    // Cập nhật vào SharedPreferences để khi nhấn "Lưu" thông tin sẽ lấy tên này
+                    quanLyDangNhap.LuuAnhDaiDien(newFileName);
+
+                    Toast.makeText(ThongTinCaNhanActivity.this, "Tải ảnh thành công!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ThongTinCaNhanActivity.this, "Lỗi server khi tải ảnh", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Map<String, String>> call, Throwable t) {
+                Log.e(TAG, "Lỗi upload: " + t.getMessage());
+            }
+        });
+    }
+
+    private File createTempFileFromUri(Uri uri) {
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(uri);
+            File tempFile = File.createTempFile("avatar", ".jpg", getCacheDir());
+            tempFile.deleteOnExit();
+            try (OutputStream out = new FileOutputStream(tempFile)) {
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    out.write(buffer, 0, bytesRead);
+                }
+            }
+            inputStream.close();
+            return tempFile;
+        } catch (Exception e) {
+            Log.e(TAG, "Lỗi tạo file tạm: ", e);
+            return null;
+        }
+    }
+
+    // --- CÁC PHƯƠNG THỨC CŨ CỦA BẠN (GIỮ NGUYÊN) ---
 
     private void GanThongTin() {
         txtHoTen.setText(quanLyDangNhap.LayHoTen());
@@ -156,6 +350,7 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
         updateInfo.setEmail(txtEmail.getText().toString().trim());
         updateInfo.setDiaChi(txtDiaChi.getText().toString().trim());
         updateInfo.setGioiTinh(cmbGioiTinh.getSelectedItem().toString());
+        updateInfo.setAnhDaiDien(quanLyDangNhap.LayAnhDaiDien());
 
         apiService.updateNguoiDung(userId, updateInfo).enqueue(new Callback<NguoiDung>() {
             @Override
