@@ -344,7 +344,7 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/banahill"
+                        android:src="@drawable/tour_bana"
                         app:layout_constraintDimensionRatio="H,2:1"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"

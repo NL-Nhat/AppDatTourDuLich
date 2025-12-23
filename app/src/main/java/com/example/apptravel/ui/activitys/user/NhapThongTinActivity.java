@@ -29,6 +29,7 @@ import com.example.apptravel.data.models.WardResponse;
 import com.example.apptravel.util.QuanLyDangNhap;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -56,7 +57,7 @@ public class NhapThongTinActivity extends AppCompatActivity {
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
     private final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
     private int soNguoiLon = 1, soTreEm = 0;
-    private double tongTien = 0;
+    private Double tongTien;
     private ApiService apiService;
     private EditText etTinhThanh, etQuanHuyen, etPhuongXa, etSoNha;
     private String selectedProvinceCode = "";
@@ -208,6 +209,13 @@ public class NhapThongTinActivity extends AppCompatActivity {
 
             if (hoTen.isEmpty() || sdt.isEmpty()) {
                 Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin bắt buộc", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String regex = "^0\\d{9}$";
+
+            if (!sdt.matches(regex)) {
+                txtSoDienThoai.setError("Số điện thoại không hợp lệ");
                 return;
             }
 

@@ -104,6 +104,7 @@ public class TrangCaNhanFragment extends Fragment {
                     .load(fullUrl)
                     .placeholder(R.drawable.nen)
                     .error(R.drawable.ic_launcher_background)
+                    .timeout(60000)
                     .into(anhDaiDien); // Load vào UI
         }
     }

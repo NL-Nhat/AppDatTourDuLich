@@ -22,11 +22,10 @@ import com.example.apptravel.data.api.ApiService;
 import com.example.apptravel.data.models.DanhGia;
 import com.example.apptravel.data.models.LichKhoiHanh;
 import com.example.apptravel.data.models.Tour;
+import com.example.apptravel.util.QuanLyDangNhap;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,13 +33,14 @@ import retrofit2.Response;
 
 public class TourDetailActivity extends AppCompatActivity {
 
-    private ImageView imgTour, btnBack, btnShare, btnFavorite;
+    private ImageView imgTour, btnBack, btnFavorite;
     private TextView txtTenTour, txtSoSao, txtDanhGia, txtDiaChi, txtGiaNguoiLon, txtGiaTreEm, txtMoTa, txtGiaTong;
     private RecyclerView rcvLich, rcvDanhGia;
     private Button btnDatNgay;
     private Tour tour;
     private ApiService apiService;
     private LichKhoiHanhAdapter lichKhoiHanhAdapter;
+    private QuanLyDangNhap quanLyDangNhap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +48,7 @@ public class TourDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tour_detail);
 
         apiService = ApiClient.getClient(this).create(ApiService.class);
+        quanLyDangNhap = new QuanLyDangNhap(this);
 
         anhXa();
         layDuLieuIntent();
@@ -57,9 +58,8 @@ public class TourDetailActivity extends AppCompatActivity {
     private void anhXa() {
         imgTour = findViewById(R.id.tour_image);
         btnBack = findViewById(R.id.btn_back);
-        btnShare = findViewById(R.id.btn_share);
+        // btnShare đã bị xóa vì không có trong layout
         btnFavorite = findViewById(R.id.btn_favorite);
-
         txtTenTour = findViewById(R.id.txt_tour_name);
         txtSoSao = findViewById(R.id.ttx_soSao);
         txtDanhGia = findViewById(R.id.ttx_danhGia);
@@ -80,11 +80,9 @@ public class TourDetailActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void layDuLieuIntent() {
-        // Nhận object từ DanhSachTourFragment gửi sang
         tour = (Tour) getIntent().getSerializableExtra("object_tour");
 
         if (tour != null) {
-            // 1. Hiển thị thông tin cơ bản
             txtTenTour.setText(tour.getTenTour());
             txtMoTa.setText(tour.getMoTa());
             txtSoSao.setText(String.valueOf(tour.getDiemDanhGiaTrungBinh()));
@@ -97,18 +95,14 @@ public class TourDetailActivity extends AppCompatActivity {
             txtGiaTong.setText(decimalFormat.format(tour.getGiaNguoiLon()) + " VNĐ");
 
             String duongDanAnh = "tour/" + tour.getUrlHinhAnhChinh();
-
-            //Tạo URL đầy đủ
             String fullUrl = ApiClient.getFullImageUrl(this, duongDanAnh);
 
-            // Load ảnh vào ImageView (biến anhDaiDien)
             Glide.with(this)
                     .load(fullUrl)
                     .placeholder(R.drawable.nen)
                     .error(R.drawable.ic_launcher_background)
-                    .into(imgTour); // Load vào UI
+                    .into(imgTour);
 
-            // 2. Gọi API lấy dữ liệu phụ (Lịch & Đánh giá)
             loadLichKhoiHanh(tour.getMaTour());
             loadDanhGia(tour.getMaTour());
         }
@@ -148,25 +142,27 @@ public class TourDetailActivity extends AppCompatActivity {
     }
 
     private void suKienClick() {
-        btnBack.setOnClickListener(v -> finish()); // Quay lại màn hình trước
+        btnBack.setOnClickListener(v -> finish());
 
         btnDatNgay.setOnClickListener(v -> {
-            //Lấy lịch khởi hành đã chọn từ adapter
-            LichKhoiHanh selectedSchedule = (lichKhoiHanhAdapter != null) ? lichKhoiHanhAdapter.getSelectedSchedule() : null;
+            if(quanLyDangNhap.isLoggedIn()){
+                LichKhoiHanh selectedSchedule = (lichKhoiHanhAdapter != null) ? lichKhoiHanhAdapter.getSelectedSchedule() : null;
 
-            if (selectedSchedule == null) {
-                Toast.makeText(this, "Vui lòng chọn một ngày khởi hành!", Toast.LENGTH_SHORT).show();
-                return;
+                if (selectedSchedule == null) {
+                    Toast.makeText(this, "Vui lòng chọn một ngày khởi hành!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Intent intent = new Intent(TourDetailActivity.this, NhapThongTinActivity.class);
+                intent.putExtra("object_tour", tour);
+                intent.putExtra("object_lich", selectedSchedule);
+
+                startActivity(intent);
+                finish();
             }
-            // Chuyển sang NhapThongTinActivity và truyền cả Tour + Lịch đã chọn
-            Intent intent = new Intent(TourDetailActivity.this, NhapThongTinActivity.class);
-
-            // Model tour và lichkhoihanh phải implements Serializable
-            intent.putExtra("object_tour", tour);
-            intent.putExtra("object_lich", selectedSchedule);
-
-            startActivity(intent);
-            finish();
+            else {
+                Toast.makeText(this, "Vui lòng đăng nhập để đặt tour!", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }
