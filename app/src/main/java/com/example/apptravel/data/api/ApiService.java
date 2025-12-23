@@ -100,6 +100,5 @@ public interface ApiService {
 
     @GET("api/auth/users")
     Call<List<NguoiDung>> getAllUsers();
-
 }
 

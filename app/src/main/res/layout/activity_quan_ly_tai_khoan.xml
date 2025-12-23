@@ -21,16 +21,38 @@
         android:background="@android:color/white"
         app:elevation="4dp"/>
 
-    <!-- Thanh tìm kiếm -->
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_view"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:queryHint="Tìm kiếm tài khoản..."
-        android:background="@drawable/search_background"
-        app:iconifiedByDefault="false"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp">
 
+        <!-- Thanh tìm kiếm  -->
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:queryHint="Tìm kiếm tài khoản"
+            android:background="@drawable/search_background"
+            app:iconifiedByDefault="false"/>
+
+        <!-- Nút Tạo tài khoản -->
+        <Button
+            android:id="@+id/btn_tao_tai_khoan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            style="@style/Widget.Material3.Button.IconButton"
+            app:icon="@drawable/ic_add_noncircle"
+            android:tooltipText="Tạo tài khoản mới"/>
+        <!-- Hoặc dùng icon ic_add nếu bạn muốn -->
+
+    </LinearLayout>
     <!-- Tiêu đề bảng -->
     <LinearLayout
         android:layout_width="match_parent"
