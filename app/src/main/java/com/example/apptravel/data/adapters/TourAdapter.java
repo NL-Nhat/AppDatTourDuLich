@@ -73,7 +73,7 @@ public class TourAdapter extends RecyclerView.Adapter<TourViewHolder> {
         if (tour == null) return;
 
         holder.tourTitle.setText(tour.getTenTour());
-        double price = tour.getGiaNguoiLon() != null ? tour.getGiaNguoiLon() : 0;
+        double price = tour.getGiaNguoiLon() != null ? tour.getGiaNguoiLon().doubleValue() : 0.0;
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
         holder.tourPrice.setText(currencyFormat.format(price));
 

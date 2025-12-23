@@ -1,9 +1,8 @@
 package com.example.apptravel.data.models;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
+// THÊM Serializable VÀO ĐÂY
 public class NguoiDung implements Serializable {
 
     private Integer maNguoiDung;
@@ -14,6 +13,8 @@ public class NguoiDung implements Serializable {
     private String ngaySinh;
     private String gioiTinh;
     private String anhDaiDien;
+    private String vaiTro;
+
 
     public Integer getMaNguoiDung() {
         return maNguoiDung;
@@ -78,6 +79,13 @@ public class NguoiDung implements Serializable {
 
     public void setAnhDaiDien(String anhDaiDien) {
         this.anhDaiDien = anhDaiDien;
+    }
+    public String getVaiTro() {
+        return vaiTro;
+    }
+
+    public void setVaiTro(String vaiTro) {
+        this.vaiTro = vaiTro;
     }
 
 }

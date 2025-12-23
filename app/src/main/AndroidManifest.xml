@@ -8,8 +8,10 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
-
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <application
+
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -30,6 +32,10 @@
         <activity
             android:name=".ui.activitys.admin.AdminBookingDetailActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.activitys.admin.SuaTourActivity"
+            android:exported="false" />
+
         <activity
             android:name=".ui.activitys.admin.ThemTourActivity"
             android:exported="false" />

@@ -31,4 +31,7 @@
     <color name="star_yellow">#FFC107</color>
     <color name="text_black">#333333</color>
     <color name="success_green">#4CAF50</color>
+
+    <!-- MÀU ĐƯỢC THÊM VÀO -->
+    <color name="colorPrimary">#6200EE</color>
 </resources>

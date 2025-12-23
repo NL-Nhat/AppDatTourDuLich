@@ -18,10 +18,11 @@ import com.example.apptravel.ui.fragments.user.TrangCaNhanFragment;
 import com.example.apptravel.ui.fragments.user.TrangChinhFragment;
 import com.example.apptravel.util.QuanLyDangNhap;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 public class MainActivity extends AppCompatActivity {
 
     private QuanLyDangNhap quanLyDangNhap;
+    private static final String API_TEST_TAG = "APITest";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_main);
-
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
 
@@ -88,7 +88,11 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
     }
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        quanLyDangNhap = new QuanLyDangNhap(this);
+    }
     private void setupInitialFragment(BottomNavigationView bottomNav) {
 
         String fragmentName = getIntent().getStringExtra("fragment_name");
@@ -118,4 +122,5 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.fragment_container, fragment)
                 .commit();
     }
+
 }

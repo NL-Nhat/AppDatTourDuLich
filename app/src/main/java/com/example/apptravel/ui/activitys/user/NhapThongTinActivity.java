@@ -29,6 +29,7 @@ import com.example.apptravel.data.models.WardResponse;
 import com.example.apptravel.util.QuanLyDangNhap;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -56,7 +57,7 @@ public class NhapThongTinActivity extends AppCompatActivity {
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
     private final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
     private int soNguoiLon = 1, soTreEm = 0;
-    private double tongTien = 0;
+    private BigDecimal tongTien = BigDecimal.ZERO;
     private ApiService apiService;
     private EditText etTinhThanh, etQuanHuyen, etPhuongXa, etSoNha;
     private String selectedProvinceCode = "";
@@ -261,9 +262,18 @@ public class NhapThongTinActivity extends AppCompatActivity {
     }
 
     private void tinhTongTien() {
-        tongTien = tour.getGiaNguoiLon() * soNguoiLon + tour.getGiaTreEm() * soTreEm;
-        DecimalFormat decimalFormat = new DecimalFormat("#,###");
-        txtTongTien.setText(decimalFormat.format(tongTien) + " VNĐ");
+        if (tour != null) {
+            BigDecimal giaNguoiLon = tour.getGiaNguoiLon();
+            BigDecimal giaTreEm = tour.getGiaTreEm();
+            
+            BigDecimal tongNguoiLon = giaNguoiLon.multiply(new BigDecimal(soNguoiLon));
+            BigDecimal tongTreEm = giaTreEm.multiply(new BigDecimal(soTreEm));
+            
+            tongTien = tongNguoiLon.add(tongTreEm);
+            
+            DecimalFormat decimalFormat = new DecimalFormat("#,###");
+            txtTongTien.setText(decimalFormat.format(tongTien) + " VNĐ");
+        }
     }
 
     private void loadProvinces() {
