@@ -1,5 +1,6 @@
 package com.example.apptravel.ui.fragments.admin;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +21,7 @@ import com.example.apptravel.data.adapters.HoatDongAdapter;
 import com.example.apptravel.data.api.ApiClient;
 import com.example.apptravel.data.models.HoatDong;
 import com.example.apptravel.data.repository.HoatDongRepository;
+import com.example.apptravel.ui.activitys.admin.QuanLyNguoiDungActivity;
 import com.example.apptravel.util.QuanLyDangNhap;
 
 import java.util.List;
@@ -35,6 +38,8 @@ public class TrangChuAdminFragment extends Fragment {
     private RecyclerView recyclerView;
     private HoatDongRepository hoatDongRepository;
     private List<HoatDong> listHoatDong;
+    private ImageView btnQuanLyNguoiDung;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,6 +54,21 @@ public class TrangChuAdminFragment extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
         recyclerView.setLayoutManager(gridLayoutManager);
         hoatDongRepository = new HoatDongRepository(getContext());
+
+        // --- BẮT ĐẦU PHẦN THÊM MỚI ---
+        // 1. Ánh xạ nút từ layout
+        btnQuanLyNguoiDung = view.findViewById(R.id.btn_quanlynguoidung);
+
+        // 2. Gán sự kiện click cho nút
+        btnQuanLyNguoiDung.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Tạo một Intent để mở QuanLyNguoiDungActivity
+                Intent intent = new Intent(getActivity(), QuanLyNguoiDungActivity.class);
+                startActivity(intent);
+            }
+        });
+        // --- KẾT THÚC PHẦN THÊM MỚI ---
 
         LoadData();
 

@@ -130,6 +130,7 @@ public class DangNhapActivity extends AppCompatActivity {
                 }
             }
 
+
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 Toast.makeText(DangNhapActivity.this,

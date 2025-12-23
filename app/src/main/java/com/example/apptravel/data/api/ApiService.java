@@ -98,5 +98,8 @@ public interface ApiService {
     @POST("/api/thanhtoan/create")
     Call<Void> createThanhToan(@Body ThanhToanRequest thanhToanRequest);
 
+    @GET("api/auth/users")
+    Call<List<NguoiDung>> getAllUsers();
+
 }
 
