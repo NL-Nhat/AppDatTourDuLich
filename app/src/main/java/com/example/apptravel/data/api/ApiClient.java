@@ -12,55 +12,73 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
     private static Retrofit retrofit;
+    private static final boolean IS_PRODUCTION = false; // Đổi thành true khi muốn chạy backend trên Render, false khi chạy trên máy local
+    private static final String RENDER_URL = "https://backend-apptravel-api.onrender.com/";
 
-    // Hàm lấy BASE_URL linh hoạt (máy ảo / máy thật)
     private static String getBaseUrl(Context context) {
-        boolean isEmulator =
-                Build.FINGERPRINT.startsWith("generic")
-                        || Build.FINGERPRINT.toLowerCase().contains("emulator")
-                        || Build.HARDWARE.contains("ranchu")
-                        || Build.HARDWARE.contains("goldfish");
+        if (IS_PRODUCTION) {
+            return RENDER_URL; //
+        }
+
+        // Logic cho môi trường Local (VS Code)
+        boolean isEmulator = Build.FINGERPRINT.startsWith("generic")
+                || Build.FINGERPRINT.toLowerCase().contains("emulator")
+                || Build.HARDWARE.contains("ranchu")
+                || Build.HARDWARE.contains("goldfish");
 
         String EMULATOR_URL = "http://10.0.2.2:8080/";
-        String DEVICE_URL = "http://192.168.1.8:8080/";
-
-        Log.d("ApiClient", "isEmulator = " + isEmulator);
+        String DEVICE_URL = "http://192.168.1.13:8080/"; // Đổi theo IP máy bạn
 
         return isEmulator ? EMULATOR_URL : DEVICE_URL;
     }
 
-
-    // Hàm dùng để load ảnh (avatar, tour, hotel…)
+    // Hàm lấy đường dẫn ảnh đầy đủ
     public static String getFullImageUrl(Context context, String relativePath) {
-        return getBaseUrl(context) + relativePath;
+        String baseUrl = getBaseUrl(context);
+
+        if (!baseUrl.endsWith("/")) baseUrl += "/";
+
+        // Nếu relativePath đã có dấu / ở đầu thì xóa đi để tránh trùng lặp //
+        if (relativePath != null && relativePath.startsWith("/")) {
+            relativePath = relativePath.substring(1);
+        }
+
+        return baseUrl + relativePath;
     }
 
     public static Retrofit getClient(Context context) {
         String baseUrl = getBaseUrl(context);
+
         // Chuẩn hóa URL
         if (!baseUrl.endsWith("/")) baseUrl += "/";
 
         if (retrofit == null || !retrofit.baseUrl().toString().equals(baseUrl)) {
             synchronized (ApiClient.class) {
-                if (retrofit == null || !retrofit.baseUrl().toString().equals(baseUrl)) {
 
+                if (retrofit == null || !retrofit.baseUrl().toString().equals(baseUrl)) {
                     // Giữ lại Interceptor từ code cũ để bảo mật
                     okhttp3.OkHttpClient client = new okhttp3.OkHttpClient.Builder()
                             .addInterceptor(chain -> {
                                 okhttp3.Request originalRequest = chain.request();
+
                                 if (originalRequest.header("No-Authentication") != null) {
                                     okhttp3.Request newRequest = originalRequest.newBuilder()
                                             .removeHeader("No-Authentication")
                                             .build();
                                     return chain.proceed(newRequest);
                                 }
+
                                 QuanLyDangNhap session = new QuanLyDangNhap(context);
                                 String token = session.LayToken();
+
                                 okhttp3.Request.Builder builder = chain.request().newBuilder();
+
                                 if (token != null && !token.isEmpty()) {
                                     builder.addHeader("Authorization", "Bearer " + token);
                                 }
+
                                 return chain.proceed(builder.build());
+
                             }).build();
 
                     // Tạo Retrofit với đầy đủ tính năng

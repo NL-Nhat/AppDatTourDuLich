@@ -44,16 +44,6 @@ public class QuanLyTourAdminFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quan_ly_tour_admin, container, false);
 
-        // --- KIỂM TRA QUYỀN VÀ HIỂN THỊ TOAST ---
-        if (getContext() != null) {
-            QuanLyDangNhap ql = new QuanLyDangNhap(getContext());
-            String vaiTro = ql.LayVaiTro();
-            String hoTen = ql.LayHoTen();
-            // Hiển thị vai trò để debug lỗi 403
-            Toast.makeText(getContext(), "Xin chào: " + hoTen + " - Quyền: " + vaiTro, Toast.LENGTH_LONG).show();
-        }
-        // -----------------------------------------
-
         rcvTours = view.findViewById(R.id.recycler_tours);
         tvTotalTours = view.findViewById(R.id.stat_total_tours);
         tvActiveTours = view.findViewById(R.id.stat_active_tours);

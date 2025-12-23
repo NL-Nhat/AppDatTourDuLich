@@ -8,8 +8,8 @@ public class Tour implements Serializable {
     private int maTour;
     private String tenTour;
     private String moTa;
-    private BigDecimal giaNguoiLon;
-    private BigDecimal giaTreEm;
+    private Double giaNguoiLon;
+    private Double giaTreEm;
     private String urlHinhAnhChinh;
     private String trangThai;
     private DiemDen diemDen;
@@ -20,7 +20,7 @@ public class Tour implements Serializable {
 
     private List<LichKhoiHanh> lichKhoiHanhs;
 
-    public Tour(int maTour, String tenTour, String urlHinhAnhChinh, BigDecimal giaNguoiLon, DiemDen diemDen) {
+    public Tour(int maTour, String tenTour, String urlHinhAnhChinh, Double giaNguoiLon, DiemDen diemDen) {
         this.maTour = maTour;
         this.tenTour = tenTour;
         this.urlHinhAnhChinh = urlHinhAnhChinh;
@@ -54,19 +54,19 @@ public class Tour implements Serializable {
         this.moTa = moTa;
     }
 
-    public BigDecimal getGiaNguoiLon() {
+    public Double getGiaNguoiLon() {
         return giaNguoiLon;
     }
 
-    public void setGiaNguoiLon(BigDecimal giaNguoiLon) {
+    public void setGiaNguoiLon(Double giaNguoiLon) {
         this.giaNguoiLon = giaNguoiLon;
     }
 
-    public BigDecimal getGiaTreEm() {
+    public Double getGiaTreEm() {
         return giaTreEm;
     }
 
-    public void setGiaTreEm(BigDecimal giaTreEm) {
+    public void setGiaTreEm(Double giaTreEm) {
         this.giaTreEm = giaTreEm;
     }
 

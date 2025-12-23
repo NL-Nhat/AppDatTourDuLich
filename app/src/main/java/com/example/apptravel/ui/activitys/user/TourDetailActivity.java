@@ -22,6 +22,7 @@ import com.example.apptravel.data.api.ApiService;
 import com.example.apptravel.data.models.DanhGia;
 import com.example.apptravel.data.models.LichKhoiHanh;
 import com.example.apptravel.data.models.Tour;
+import com.example.apptravel.util.QuanLyDangNhap;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -39,6 +40,7 @@ public class TourDetailActivity extends AppCompatActivity {
     private Tour tour;
     private ApiService apiService;
     private LichKhoiHanhAdapter lichKhoiHanhAdapter;
+    private QuanLyDangNhap quanLyDangNhap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class TourDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tour_detail);
 
         apiService = ApiClient.getClient(this).create(ApiService.class);
+        quanLyDangNhap = new QuanLyDangNhap(this);
 
         anhXa();
         layDuLieuIntent();
@@ -142,19 +145,24 @@ public class TourDetailActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> finish());
 
         btnDatNgay.setOnClickListener(v -> {
-            LichKhoiHanh selectedSchedule = (lichKhoiHanhAdapter != null) ? lichKhoiHanhAdapter.getSelectedSchedule() : null;
+            if(quanLyDangNhap.isLoggedIn()){
+                LichKhoiHanh selectedSchedule = (lichKhoiHanhAdapter != null) ? lichKhoiHanhAdapter.getSelectedSchedule() : null;
 
-            if (selectedSchedule == null) {
-                Toast.makeText(this, "Vui lòng chọn một ngày khởi hành!", Toast.LENGTH_SHORT).show();
-                return;
+                if (selectedSchedule == null) {
+                    Toast.makeText(this, "Vui lòng chọn một ngày khởi hành!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Intent intent = new Intent(TourDetailActivity.this, NhapThongTinActivity.class);
+                intent.putExtra("object_tour", tour);
+                intent.putExtra("object_lich", selectedSchedule);
+
+                startActivity(intent);
+                finish();
             }
-
-            Intent intent = new Intent(TourDetailActivity.this, NhapThongTinActivity.class);
-            intent.putExtra("object_tour", tour);
-            intent.putExtra("object_lich", selectedSchedule);
-
-            startActivity(intent);
-            finish();
+            else {
+                Toast.makeText(this, "Vui lòng đăng nhập để đặt tour!", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }
