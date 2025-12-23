@@ -28,12 +28,11 @@ import retrofit2.Response;
 public class QuanLyNguoiDungAdapter extends RecyclerView.Adapter<QuanLyNguoiDungAdapter.UserViewHolder> {
     private List<NguoiDung> userList;
     private Context context;
-    private ApiService apiService; // Khai báo apiService ở đây
+    private ApiService apiService;
 
     public QuanLyNguoiDungAdapter(List<NguoiDung> userList, Context context) {
         this.userList = userList;
         this.context = context;
-        // Khởi tạo apiService thông qua ApiClient
         this.apiService = ApiClient.getClient(context).create(ApiService.class);
     }
 
@@ -51,7 +50,6 @@ public class QuanLyNguoiDungAdapter extends RecyclerView.Adapter<QuanLyNguoiDung
         holder.txtId.setText(user.getMaNguoiDung().toString());
         holder.txtName.setText(user.getHoTen());
 
-        // --- SỰ KIỆN XEM CHI TIẾT ---
         holder.itemView.setOnClickListener(v -> {
             StringBuilder sb = new StringBuilder();
             sb.append("🆔 ID: ").append(user.getMaNguoiDung()).append("\n\n");
@@ -75,11 +73,8 @@ public class QuanLyNguoiDungAdapter extends RecyclerView.Adapter<QuanLyNguoiDung
             Toast.makeText(context, "Sửa người dùng: " + user.getHoTen(), Toast.LENGTH_SHORT).show();
         });
 
-        // --- LOGIC NÚT KHÓA ---
-        // 1. Kiểm tra trạng thái: dùng "Khoa" (Khớp 100% với DB của bạn)
         boolean isLocked = "Khoa".equalsIgnoreCase(user.getTrangThai());
 
-        // 2. Thiết lập hiển thị nút
         holder.btnKhoa.setText(isLocked ? "Mở Khóa" : "Khóa");
         holder.btnKhoa.setBackgroundTintList(ColorStateList.valueOf(isLocked ? Color.GRAY : Color.RED));
 
@@ -87,7 +82,6 @@ public class QuanLyNguoiDungAdapter extends RecyclerView.Adapter<QuanLyNguoiDung
             int currentPos = holder.getAdapterPosition();
             if (currentPos == RecyclerView.NO_POSITION) return;
 
-            // 3. Logic đảo trạng thái: HoatDong <-> Khoa
             String newStatus = isLocked ? "HoatDong" : "Khoa";
             String actionText = isLocked ? "Mở khóa" : "Khóa";
 
@@ -96,7 +90,7 @@ public class QuanLyNguoiDungAdapter extends RecyclerView.Adapter<QuanLyNguoiDung
                     .setMessage("Bạn có chắc chắn muốn " + actionText + " tài khoản này?")
                     .setPositiveButton("Đồng ý", (dialog, which) -> {
                         NguoiDung updateReq = new NguoiDung();
-                        updateReq.setTrangThai(newStatus); // Gửi chuỗi "Khoa" hoặc "HoatDong"
+                        updateReq.setTrangThai(newStatus);
 
                         apiService.updateNguoiDung(String.valueOf(user.getMaNguoiDung()), updateReq)
                                 .enqueue(new Callback<NguoiDung>() {
@@ -107,7 +101,6 @@ public class QuanLyNguoiDungAdapter extends RecyclerView.Adapter<QuanLyNguoiDung
                                             notifyItemChanged(currentPos);
                                             Toast.makeText(context, actionText + " thành công!", Toast.LENGTH_SHORT).show();
                                         } else {
-                                            // Nếu vẫn lỗi 403, Log sẽ hiện ở đây
                                             Toast.makeText(context, "Lỗi server: " + response.code(), Toast.LENGTH_SHORT).show();
                                         }
                                     }
@@ -137,7 +130,6 @@ public class QuanLyNguoiDungAdapter extends RecyclerView.Adapter<QuanLyNguoiDung
             txtId = itemView.findViewById(R.id.txt_user_id);
             txtName = itemView.findViewById(R.id.txt_user_name);
             btnSua = itemView.findViewById(R.id.btn_sua);
-            // Ánh xạ lại đúng id từ XML của bạn
             btnKhoa = itemView.findViewById(R.id.btn_xoa);
         }
     }

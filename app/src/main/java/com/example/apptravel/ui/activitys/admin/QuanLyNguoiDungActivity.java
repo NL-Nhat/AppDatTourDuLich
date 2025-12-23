@@ -32,22 +32,17 @@ public class QuanLyNguoiDungActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quan_ly_tai_khoan);
 
-        // 1. Ánh xạ View
         recyclerView = findViewById(R.id.recycler_view_users);
         SearchView searchView = findViewById(R.id.search_view);
 
-        // 2. Cấu hình RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new QuanLyNguoiDungAdapter(new ArrayList<>(), this);
         recyclerView.setAdapter(adapter);
 
-        // 3. Khởi tạo API
         apiService = ApiClient.getClient(this).create(ApiService.class);
 
-        // 4. Tải dữ liệu
         loadUsersFromServer();
 
-        // 5. Xử lý tìm kiếm
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

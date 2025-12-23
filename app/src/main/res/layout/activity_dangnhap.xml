@@ -131,7 +131,7 @@
                         android:id="@+id/btn_toggle_password"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_visibility" />
+                        android:src="@drawable/ic_visibility_off" />
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
