@@ -89,7 +89,7 @@
                             android:textSize="14sp" />
 
                         <TextView
-                            android:id="@+id/tvTotalAmount"
+                            android:id="@+id/txtTongTien"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="5,400,000 VNĐ"
@@ -118,7 +118,7 @@
                             android:textColor="#757575" />
 
                         <TextView
-                            android:id="@+id/tvBookingCode"
+                            android:id="@+id/txtTenKhachHang"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Nguyễn Long Nhật"
@@ -140,7 +140,7 @@
                             android:textColor="#757575" />
 
                         <TextView
-                            android:id="@+id/tvPaymentMethod"
+                            android:id="@+id/txtPhuongThuc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Ví điện tử Momo"
@@ -160,7 +160,7 @@
                             android:textColor="#757575" />
 
                         <TextView
-                            android:id="@+id/tvTransactionTime"
+                            android:id="@+id/txtNgayGio"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="20/12/2025 - 10:30"
@@ -184,10 +184,10 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
-            android:id="@+id/btnViewDetails"
+            android:id="@+id/btn_xemVeDienTu"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="Xem chi tiết đơn hàng"
+            android:text="Xem vé điện tử"
             android:textAllCaps="false"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -195,7 +195,7 @@
             app:cornerRadius="12dp" />
 
         <Button
-            android:id="@+id/btnGoHome"
+            android:id="@+id/btn_trangChu"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="56dp"

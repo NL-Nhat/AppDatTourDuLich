@@ -66,6 +66,7 @@
                     android:clipToOutline="true"/>
 
                 <ImageView
+                    android:id="@+id/btn_edit_anhdaidien"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_alignEnd="@id/profile_image"

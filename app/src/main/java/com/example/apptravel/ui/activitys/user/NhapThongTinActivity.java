@@ -198,6 +198,7 @@ public class NhapThongTinActivity extends AppCompatActivity {
             }
         });
 
+        // đặt tour
         btnDatNgay.setOnClickListener(v -> {
             String hoTen = txtHoten.getText().toString().trim();
             String sdt = txtSoDienThoai.getText().toString().trim();
@@ -406,6 +407,7 @@ public class NhapThongTinActivity extends AppCompatActivity {
         builder.setPositiveButton("Thanh toán ngay", (dialog, which) -> {
             Intent intent = new Intent(NhapThongTinActivity.this, PhuongThucThanhToanActivity.class);
             intent.putExtra("maDatTour", maDatTour);
+            intent.putExtra("tongTien", tongTien);
             startActivity(intent);
             finish();
         });
