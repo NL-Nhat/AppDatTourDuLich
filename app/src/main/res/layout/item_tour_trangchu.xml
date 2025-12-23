@@ -23,7 +23,7 @@
             android:layout_height="120dp"
             android:scaleType="centerCrop"
             tools:ignore="ContentDescription"
-            android:background="@drawable/banahill"/>
+            android:background="@drawable/tour_bana"/>
 
         <LinearLayout
             android:padding="15dp"

@@ -1,25 +1,40 @@
 package com.example.apptravel.data.models;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.List;
 
-public class Tour implements Serializable{
-
-    private Integer maTour;
+public class Tour implements Serializable {
+    private int maTour;
     private String tenTour;
     private String moTa;
     private Double giaNguoiLon;
     private Double giaTreEm;
     private String urlHinhAnhChinh;
-    private Double diemDanhGiaTrungBinh;
-    private Integer soLuongDanhGia;
     private String trangThai;
     private DiemDen diemDen;
+    
+    // Bổ sung các trường đánh giá
+    private Double diemDanhGiaTrungBinh;
+    private Integer soLuongDanhGia;
 
-    public Integer getMaTour() {
+    private List<LichKhoiHanh> lichKhoiHanhs;
+
+    public Tour(int maTour, String tenTour, String urlHinhAnhChinh, Double giaNguoiLon, DiemDen diemDen) {
+        this.maTour = maTour;
+        this.tenTour = tenTour;
+        this.urlHinhAnhChinh = urlHinhAnhChinh;
+        this.giaNguoiLon = giaNguoiLon;
+        this.diemDen = diemDen;
+    }
+
+    // === Getters & Setters ===
+
+    public int getMaTour() {
         return maTour;
     }
 
-    public void setMaTour(Integer maTour) {
+    public void setMaTour(int maTour) {
         this.maTour = maTour;
     }
 
@@ -63,6 +78,23 @@ public class Tour implements Serializable{
         this.urlHinhAnhChinh = urlHinhAnhChinh;
     }
 
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
+    }
+
+    public DiemDen getDiemDen() {
+        return diemDen;
+    }
+
+    public void setDiemDen(DiemDen diemDen) {
+        this.diemDen = diemDen;
+    }
+    
+    // Getter/Setter cho đánh giá
     public Double getDiemDanhGiaTrungBinh() {
         return diemDanhGiaTrungBinh;
     }
@@ -79,19 +111,11 @@ public class Tour implements Serializable{
         this.soLuongDanhGia = soLuongDanhGia;
     }
 
-    public String getTrangThai() {
-        return trangThai;
+    public List<LichKhoiHanh> getLichKhoiHanhs() {
+        return lichKhoiHanhs;
     }
 
-    public void setTrangThai(String trangThai) {
-        this.trangThai = trangThai;
-    }
-
-    public DiemDen getDiemDen() {
-        return diemDen;
-    }
-
-    public void setDiemDen(DiemDen diemDen) {
-        this.diemDen = diemDen;
+    public void setLichKhoiHanhs(List<LichKhoiHanh> lichKhoiHanhs) {
+        this.lichKhoiHanhs = lichKhoiHanhs;
     }
 }

@@ -300,6 +300,7 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
                     .load(fullUrl)
                     .placeholder(R.drawable.nen)
                     .error(R.drawable.ic_launcher_background)
+                    .timeout(60000)
                     .into(anhDaiDien);
         }
     }

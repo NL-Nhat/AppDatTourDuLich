@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <!-- Tour Image -->
@@ -20,7 +21,7 @@
             <ImageView
                 android:id="@+id/tour_image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 android:src="@drawable/quang_ninh"/>
 
@@ -79,7 +80,7 @@
         <!-- Tour Info -->
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
             android:padding="12dp">
@@ -112,10 +113,10 @@
                     android:id="@+id/tour_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
                     android:text="Quảng Ninh"
-                    android:textSize="12sp"
-                    android:textColor="#757575"
-                    android:layout_marginStart="4dp"/>
+                    android:textColor="@color/gray"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -136,10 +137,10 @@
                     android:id="@+id/tour_bookings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
                     android:text="24 đơn đặt"
-                    android:textSize="12sp"
-                    android:textColor="#757575"
-                    android:layout_marginStart="4dp"/>
+                    android:textColor="@color/gray"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
