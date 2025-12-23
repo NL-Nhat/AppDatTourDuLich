@@ -89,12 +89,13 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
         String tenFileAnh = quanLyDangNhap.LayAnhDaiDien();
         if (tenFileAnh != null && !tenFileAnh.isEmpty()) {
             String duongDanAnh = "avatar/" + tenFileAnh;
-            String fullUrl = ApiClient.getFullImageUrl(this, duongDanAnh);
+            String fullUrl = ApiClient.getFullImageUrl( duongDanAnh);
 
             Glide.with(this)
                     .load(fullUrl)
                     .placeholder(R.drawable.nen)
                     .error(R.drawable.ic_launcher_background)
+                    .timeout(60000)
                     .into(anhDaiDien);
         }
     }

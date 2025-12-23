@@ -99,13 +99,14 @@ public class TourDetailActivity extends AppCompatActivity {
             String duongDanAnh = "tour/" + tour.getUrlHinhAnhChinh();
 
             //Tạo URL đầy đủ
-            String fullUrl = ApiClient.getFullImageUrl(this, duongDanAnh);
+            String fullUrl = ApiClient.getFullImageUrl(duongDanAnh);
 
             // Load ảnh vào ImageView (biến anhDaiDien)
             Glide.with(this)
                     .load(fullUrl)
                     .placeholder(R.drawable.nen)
                     .error(R.drawable.ic_launcher_background)
+                    .timeout(60000)
                     .into(imgTour); // Load vào UI
 
             // 2. Gọi API lấy dữ liệu phụ (Lịch & Đánh giá)

@@ -79,13 +79,14 @@ public class TinhTrangAdapter extends RecyclerView.Adapter<TinhTrangAdapter.View
                     url = "tour/" + url;
                 }
 
-                url = ApiClient.getFullImageUrl(context, url);
+                url = ApiClient.getFullImageUrl( url);
             }
 
             Glide.with(context)
                     .load(url)
                     .placeholder(R.drawable.nen)
                     .error(R.drawable.nen)
+                    .timeout(60000)
                     .into(holder.ivImage);
         } else {
             holder.ivImage.setImageResource(R.drawable.nen);

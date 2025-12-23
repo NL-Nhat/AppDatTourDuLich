@@ -72,12 +72,13 @@ public class TrangCaNhanAdminFragment extends Fragment {
 
         if (tenFileAnh != null && !tenFileAnh.isEmpty()) {
             String duongDanAnh = "avatar/" + tenFileAnh;
-            String fullUrl = ApiClient.getFullImageUrl(getContext(), duongDanAnh);
+            String fullUrl = ApiClient.getFullImageUrl( duongDanAnh);
 
             Glide.with(getContext())
                     .load(fullUrl)
                     .placeholder(R.drawable.nen)
                     .error(R.drawable.ic_launcher_background)
+                    .timeout(60000)
                     .into(anhDaiDien); // Load vào UI
         }
     }
