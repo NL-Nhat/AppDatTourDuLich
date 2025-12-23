@@ -107,11 +107,11 @@ public class TrangCaNhanFragment extends Fragment {
                     .into(anhDaiDien); // Load vào UI
         }
     }
-//
-//    // Cập nhật lại giao diện mỗi khi Fragment được hiển thị lại
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        GanThongTin();
-//    }
+
+   // Cập nhật lại giao diện mỗi khi Fragment được hiển thị lại
+     @Override
+     public void onResume() {
+        super.onResume();
+        GanThongTin();
+    }
 }

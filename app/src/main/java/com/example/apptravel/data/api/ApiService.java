@@ -21,14 +21,18 @@ import com.example.apptravel.data.models.RegisterRequest;
 import com.example.apptravel.ui.activitys.user.KetQuaThanhToanActivity;
 
 import java.util.List;
+import java.util.Map;
 
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -53,12 +57,15 @@ public interface ApiService {
     //Lấy phường xã theo quận huyện
     @GET("/api/address/wards/{code}")
     Call<WardResponse> getWards(@Path("code") String code);
+    //User
     @GET("api/auth/user/{id}")
     Call<NguoiDung> getNguoiDungById(@Path("id") String maNguoiDung);
     @Headers("No-Authentication: true")
     @PUT("api/auth/user/{id}")
     Call<NguoiDung> updateNguoiDung(@Path("id") String userId, @Body NguoiDung nguoiDung);
-    
+    @Multipart
+    @POST("api/auth/uploadAnhDaiDien")
+    Call<Map<String, String>> uploadAnhDaiDien(@Part MultipartBody.Part file);
     @GET("api/user/bookings")
     Call<List<DatTourHistoryItem>> getUserBookings(@Query("status") String status);
 
@@ -88,5 +95,6 @@ public interface ApiService {
 
     @POST("/api/thanhtoan/create")
     Call<Void> createThanhToan(@Body ThanhToanRequest thanhToanRequest);
+
 }
 

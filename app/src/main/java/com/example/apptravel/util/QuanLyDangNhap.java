@@ -49,7 +49,9 @@ public class QuanLyDangNhap {
     public String LayAnhDaiDien() {
         return pref.getString("anhDaiDien", "");
     }
-
+    public void LuuAnhDaiDien(String tenFileAnh) {
+        pref.edit().putString("anhDaiDien", tenFileAnh).apply();
+    }
     public String LayVaiTro() {
         return pref.getString("vaiTro", "");
     }
