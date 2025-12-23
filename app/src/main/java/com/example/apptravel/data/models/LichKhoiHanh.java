@@ -1,8 +1,8 @@
 package com.example.apptravel.data.models;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
+// THÊM Serializable VÀO ĐÂY
 public class LichKhoiHanh implements Serializable {
 
     private Integer maLichKhoiHanh;

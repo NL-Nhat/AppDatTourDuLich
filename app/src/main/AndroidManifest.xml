@@ -33,6 +33,10 @@
             android:name=".ui.activitys.admin.AdminBookingDetailActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.activitys.admin.SuaTourActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.activitys.admin.ThemTourActivity"
             android:exported="false" />
         <activity
