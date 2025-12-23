@@ -132,6 +132,10 @@ public interface ApiService {
     @POST("api/thanhtoan/create")
     Call<Void> createThanhToan(@Body ThanhToanRequest thanhToanRequest);
 
+    // Lấy danh sách người dùng
+    @GET("api/auth/users")
+    Call<List<NguoiDung>> getAllUsers();
+
     // Lấy danh sách tour phần admin
     @GET("api/admin/tours")
     Call<List<Tour>> getAdminTours();
