@@ -97,7 +97,7 @@ public class TrangCaNhanFragment extends Fragment {
             String duongDanAnh = "avatar/" + tenFileAnh;
 
             // 5. Tạo URL đầy đủ
-            String fullUrl = ApiClient.getFullImageUrl( duongDanAnh);
+            String fullUrl = ApiClient.getFullImageUrl(getContext(), duongDanAnh);
 
             // 6. Load ảnh vào ImageView (biến anhDaiDien)
             Glide.with(getContext())

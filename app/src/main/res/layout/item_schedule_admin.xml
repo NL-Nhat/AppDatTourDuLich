@@ -10,6 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:padding="12dp">
 
         <!-- Cụm thông tin ngày tháng -->
@@ -37,18 +38,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="2025-12-22" />
+                    android:text="2025-12-22"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" -> " />
+                    android:text=" -> "
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_ngay_ve"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2025-12-23" />
+                    android:text="2025-12-23"
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -67,7 +71,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Tối đa: 11" />
+                    android:text="Tối đa: 11"
+                    android:textColor="@color/black" />
             </LinearLayout>
 
              <LinearLayout
@@ -81,12 +86,13 @@
                     android:layout_height="16dp"
                     android:src="@drawable/ic_person" />
 
-                <TextView
-                    android:id="@+id/tv_huong_dan_vien"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="Chưa chọn HDV" />
+                 <TextView
+                     android:id="@+id/tv_huong_dan_vien"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="8dp"
+                     android:text="Chưa chọn HDV"
+                     android:textColor="@color/black" />
             </LinearLayout>
 
         </LinearLayout>

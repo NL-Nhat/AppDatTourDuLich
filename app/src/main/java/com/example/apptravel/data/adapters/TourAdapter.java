@@ -91,7 +91,7 @@ public class TourAdapter extends RecyclerView.Adapter<TourViewHolder> {
 
         String duongDanAnh = "tour/" + tour.getUrlHinhAnhChinh();
         //Tạo URL đầy đủ
-        String fullUrl = ApiClient.getFullImageUrl(duongDanAnh);
+        String fullUrl = ApiClient.getFullImageUrl(context,duongDanAnh);
         // Load ảnh vào ImageView (biến anhDaiDien)
         Glide.with(context)
                 .load(fullUrl)

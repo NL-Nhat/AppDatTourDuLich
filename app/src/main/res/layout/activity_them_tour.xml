@@ -100,10 +100,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:text="Chọn hình ảnh"
-                        android:textSize="14sp"
-                        android:textColor="#757575"
-                        android:layout_marginTop="8dp"/>
+                        android:textColor="@color/gray"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -137,6 +137,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Nhập tên tour"
                     android:inputType="textCapWords"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/gray"
                     android:textSize="14sp" />
 
@@ -171,6 +172,7 @@
                     android:hint="Chọn điểm đến"
                     android:inputType="none"
                     android:paddingStart="15dp"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/gray"
                     android:textSize="14sp" />
 
@@ -205,6 +207,7 @@
                     android:hint="Nhập mô tả tour"
                     android:inputType="textMultiLine"
                     android:minHeight="100dp"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/gray"
                     android:textSize="14sp" />
 
@@ -247,6 +250,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Người lớn *"
                         android:inputType="number"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/gray"
                         android:textSize="14sp" />
 
@@ -273,6 +277,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Trẻ em"
                         android:inputType="number"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/gray"
                         android:textSize="14sp" />
 

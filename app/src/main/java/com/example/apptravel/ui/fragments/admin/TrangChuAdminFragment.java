@@ -61,7 +61,7 @@ public class TrangChuAdminFragment extends Fragment {
         String tenFileAnh = quanLyDangNhap.LayAnhDaiDien();
         if (tenFileAnh != null && !tenFileAnh.isEmpty()) {
             String duongDanAnh = "avatar/" + tenFileAnh;
-            String fullUrl = ApiClient.getFullImageUrl(duongDanAnh);
+            String fullUrl = ApiClient.getFullImageUrl(getContext(),duongDanAnh);
 
             Glide.with(this)
                     .load(fullUrl)

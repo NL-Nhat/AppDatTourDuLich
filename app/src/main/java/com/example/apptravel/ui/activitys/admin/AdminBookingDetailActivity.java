@@ -164,7 +164,7 @@ public class AdminBookingDetailActivity extends AppCompatActivity {
         // Avatar
         String avatar = item.getAnhDaiDien();
         if (avatar != null && !avatar.isEmpty()) {
-            String url = ApiClient.getFullImageUrl("avatar/" + avatar);
+            String url = ApiClient.getFullImageUrl(this, avatar);
             Glide.with(this)
                     .load(url)
                     .placeholder(R.drawable.nen)
@@ -182,7 +182,7 @@ public class AdminBookingDetailActivity extends AppCompatActivity {
         // Tour image
         String tourImage = item.getUrlHinhAnhChinh();
         if (tourImage != null && !tourImage.isEmpty()) {
-            String url = ApiClient.getFullImageUrl("tour/" + tourImage);
+            String url = ApiClient.getFullImageUrl(this, tourImage);
             Glide.with(this)
                     .load(url)
                     .placeholder(R.drawable.nen)

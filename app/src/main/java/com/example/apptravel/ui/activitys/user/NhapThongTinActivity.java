@@ -57,7 +57,7 @@ public class NhapThongTinActivity extends AppCompatActivity {
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
     private final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
     private int soNguoiLon = 1, soTreEm = 0;
-    private BigDecimal tongTien = BigDecimal.ZERO;
+    private Double tongTien;
     private ApiService apiService;
     private EditText etTinhThanh, etQuanHuyen, etPhuongXa, etSoNha;
     private String selectedProvinceCode = "";
@@ -212,6 +212,13 @@ public class NhapThongTinActivity extends AppCompatActivity {
                 return;
             }
 
+            String regex = "^0\\d{9}$";
+
+            if (!sdt.matches(regex)) {
+                txtSoDienThoai.setError("Số điện thoại không hợp lệ");
+                return;
+            }
+
             RadioButton radioButton = findViewById(radioGroup.getCheckedRadioButtonId());
             String gioiTinh = radioButton.getText().toString();
 
@@ -262,18 +269,9 @@ public class NhapThongTinActivity extends AppCompatActivity {
     }
 
     private void tinhTongTien() {
-        if (tour != null) {
-            BigDecimal giaNguoiLon = tour.getGiaNguoiLon();
-            BigDecimal giaTreEm = tour.getGiaTreEm();
-            
-            BigDecimal tongNguoiLon = giaNguoiLon.multiply(new BigDecimal(soNguoiLon));
-            BigDecimal tongTreEm = giaTreEm.multiply(new BigDecimal(soTreEm));
-            
-            tongTien = tongNguoiLon.add(tongTreEm);
-            
-            DecimalFormat decimalFormat = new DecimalFormat("#,###");
-            txtTongTien.setText(decimalFormat.format(tongTien) + " VNĐ");
-        }
+        tongTien = tour.getGiaNguoiLon() * soNguoiLon + tour.getGiaTreEm() * soTreEm;
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        txtTongTien.setText(decimalFormat.format(tongTien) + " VNĐ");
     }
 
     private void loadProvinces() {

@@ -105,6 +105,7 @@
                         android:background="@null"
                         android:hint="Nhập mật khẩu hiện tại"
                         android:inputType="textPassword"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/gray"
                         android:textSize="16sp" />
 
@@ -158,6 +159,7 @@
                         android:background="@null"
                         android:hint="Nhập mật khẩu mới"
                         android:inputType="textPassword"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/gray"
                         android:textSize="16sp" />
 
@@ -211,6 +213,7 @@
                         android:background="@null"
                         android:hint="Nhập lại mật khẩu mới"
                         android:inputType="textPassword"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/gray"
                         android:textSize="16sp" />
 
