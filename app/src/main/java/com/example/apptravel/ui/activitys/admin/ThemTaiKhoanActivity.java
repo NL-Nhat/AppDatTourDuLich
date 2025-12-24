@@ -34,6 +34,8 @@ public class ThemTaiKhoanActivity extends AppCompatActivity {
 
     private boolean laHienMatKhau = false;
     private ApiService apiService;
+    private NguoiDung nguoiDungDangSua;
+    private boolean laCheDoSua = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,40 @@ public class ThemTaiKhoanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_them_tai_khoan);
 
         anhXaGiaoDien();
+        kiemTraCheDoSua();
         caiDatSuKien();
+    }
+    private void kiemTraCheDoSua() {
+        if (getIntent().hasExtra("NGUOI_DUNG_EDIT")) {
+            nguoiDungDangSua = (NguoiDung) getIntent().getSerializableExtra("NGUOI_DUNG_EDIT");
+            laCheDoSua = true;
+            nutTaoTaiKhoan.setText("CẬP NHẬT TÀI KHOẢN");
+
+            editTenDangNhap.setText(nguoiDungDangSua.getTenDangNhap());
+            editTenDangNhap.setEnabled(false);
+
+            editHoTen.setText(nguoiDungDangSua.getHoTen());
+            editEmail.setText(nguoiDungDangSua.getEmail());
+            editSoDienThoai.setText(nguoiDungDangSua.getSoDienThoai());
+            editDiaChi.setText(nguoiDungDangSua.getDiaChi());
+            editNgaySinh.setText(nguoiDungDangSua.getNgaySinh());
+
+            editMatKhau.setHint("Để trống nếu không muốn đổi mật khẩu");
+
+            if ("Nu".equalsIgnoreCase(nguoiDungDangSua.getGioiTinh()) || "Nữ".equals(nguoiDungDangSua.getGioiTinh())) {
+                nhomGioiTinh.check(R.id.radio_nu);
+            } else {
+                nhomGioiTinh.check(R.id.radio_nam);
+            }
+
+            if ("Admin".equalsIgnoreCase(nguoiDungDangSua.getVaiTro())) {
+                nhomVaiTro.check(R.id.radio_quantrivien);
+            } else if ("HuongDanVien".equalsIgnoreCase(nguoiDungDangSua.getVaiTro())) {
+                nhomVaiTro.check(R.id.radio_huongdanvien);
+            } else {
+                nhomVaiTro.check(R.id.radio_khachhang);
+            }
+        }
     }
 
     private void anhXaGiaoDien() {
@@ -96,6 +131,46 @@ public class ThemTaiKhoanActivity extends AppCompatActivity {
                 }, year, month, day);
         datePickerDialog.show();
     }
+
+    private void thucHienThemMoi(RegisterRequest request) {
+        apiService.register(request).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(ThemTaiKhoanActivity.this, "Tạo tài khoản thành công!", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(ThemTaiKhoanActivity.this, "Lỗi: " + response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(ThemTaiKhoanActivity.this, "Lỗi kết nối!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void thucHienCapNhat(NguoiDung user) {
+        String idStr = String.valueOf(user.getMaNguoiDung());
+
+        apiService.updateNguoiDung(idStr, user).enqueue(new Callback<NguoiDung>() {
+            @Override
+            public void onResponse(Call<NguoiDung> call, Response<NguoiDung> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(ThemTaiKhoanActivity.this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(ThemTaiKhoanActivity.this, "Lỗi: " + response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<NguoiDung> call, Throwable t) {
+                Toast.makeText(ThemTaiKhoanActivity.this, "Lỗi kết nối Server!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     private void xuLyTaoTaiKhoan() {
         String tenDN = editTenDangNhap.getText().toString().trim();
         String matKhau = editMatKhau.getText().toString().trim();
@@ -123,25 +198,24 @@ public class ThemTaiKhoanActivity extends AppCompatActivity {
             vaiTroStr = "KhachHang";
         }
 
-        RegisterRequest request = new RegisterRequest(
-                tenDN, matKhau, hoTen, email, sdt, diaChi, ngaySinh, vaiTroStr, gioiTinhStr
-        );
+        // Phân luồng
+        if (laCheDoSua) {
+            nguoiDungDangSua.setHoTen(hoTen);
+            nguoiDungDangSua.setEmail(email);
+            nguoiDungDangSua.setSoDienThoai(sdt);
+            nguoiDungDangSua.setDiaChi(diaChi);
+            nguoiDungDangSua.setNgaySinh(ngaySinh);
+            nguoiDungDangSua.setGioiTinh(gioiTinhStr);
+            nguoiDungDangSua.setVaiTro(vaiTroStr);
 
-        apiService.register(request).enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(ThemTaiKhoanActivity.this, "Tạo tài khoản thành công!", Toast.LENGTH_SHORT).show();
-                    finish();
-                } else {
-                    Toast.makeText(ThemTaiKhoanActivity.this, "Lỗi: " + response.code(), Toast.LENGTH_SHORT).show();
-                }
+            if (!matKhau.isEmpty()) {
+                nguoiDungDangSua.setMatKhau(matKhau);
             }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(ThemTaiKhoanActivity.this, "Lỗi kết nối!", Toast.LENGTH_SHORT).show();
-            }
-        });
+            thucHienCapNhat(nguoiDungDangSua);
+        } else {
+            RegisterRequest newRequest = new RegisterRequest(tenDN, matKhau, hoTen, email, sdt, diaChi, ngaySinh, vaiTroStr, gioiTinhStr);
+            thucHienThemMoi(newRequest);
+        }
     }
 }
