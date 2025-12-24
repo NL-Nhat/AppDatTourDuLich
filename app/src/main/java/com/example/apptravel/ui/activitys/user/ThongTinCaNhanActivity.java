@@ -74,9 +74,9 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_thong_tin_ca_nhan);
         anhXaViews();
 
-
         apiService = ApiClient.getClient(this).create(ApiService.class);
         quanLyDangNhap = new QuanLyDangNhap(this);
+
         int idInt = quanLyDangNhap.LayMaNguoiDung();
         if (idInt != 0) {
             userId = String.valueOf(idInt);
@@ -230,15 +230,13 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
         RequestBody requestFile = RequestBody.create(okhttp3.MediaType.parse(getContentResolver().getType(imageUriToUpload)), file);;
         MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
 
-        Toast.makeText(this, "Đang tải ảnh lên...", Toast.LENGTH_SHORT).show();
-
-        apiService.uploadAnhDaiDien(body).enqueue(new Callback<Map<String, String>>() {
+        apiService.uploadAnhDaiDien(body, quanLyDangNhap.LayMaNguoiDung()).enqueue(new Callback<Map<String, String>>() {
             @Override
             public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
+
                 if (response.isSuccessful() && response.body() != null) {
                     String newFileName = response.body().get("fileName");
                     quanLyDangNhap.LuuAnhDaiDien(newFileName);
-
                     Toast.makeText(ThongTinCaNhanActivity.this, "Tải ảnh thành công!", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(ThongTinCaNhanActivity.this, "Lỗi server khi tải ảnh", Toast.LENGTH_SHORT).show();
@@ -272,7 +270,6 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
         }
     }
 
-
     private void GanThongTin() {
         txtHoTen.setText(quanLyDangNhap.LayHoTen());
         txtEmail.setText(quanLyDangNhap.LayEmail());
@@ -290,19 +287,14 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
             }
         }
 
-        // --- Xử lý Ảnh đại diện ---
-        String tenFileAnh = quanLyDangNhap.LayAnhDaiDien();
-        if (tenFileAnh != null && !tenFileAnh.isEmpty()) {
-            String duongDanAnh = "avatar/" + tenFileAnh;
-            String fullUrl = ApiClient.getFullImageUrl(this, duongDanAnh);
+        String fullUrl = ApiClient.getFullImageUrl( quanLyDangNhap.LayAnhDaiDien());
 
-            Glide.with(this)
-                    .load(fullUrl)
-                    .placeholder(R.drawable.nen)
-                    .error(R.drawable.ic_launcher_background)
-                    .timeout(60000)
-                    .into(anhDaiDien);
-        }
+        Glide.with(this)
+                .load(fullUrl)
+                .placeholder(R.drawable.nen)
+                .error(R.drawable.ic_launcher_background)
+                .timeout(60000)
+                .into(anhDaiDien);
     }
     private void loadUserProfileFromServer() {
         Log.i(TAG, "Bắt đầu tải thông tin người dùng với ID: " + userId);

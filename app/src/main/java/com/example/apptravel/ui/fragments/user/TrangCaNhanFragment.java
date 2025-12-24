@@ -87,26 +87,16 @@ public class TrangCaNhanFragment extends Fragment {
         txtTen.setText(quanLyDangNhap.LayHoTen());
         txtEmail.setText(quanLyDangNhap.LayEmail());
 
-        // Lấy tên file ảnh từ SharedPreferences
         String tenFileAnh = quanLyDangNhap.LayAnhDaiDien();
 
-        // 3. Kiểm tra xem có tên ảnh không để tránh lỗi null
-        if (tenFileAnh != null && !tenFileAnh.isEmpty()) {
+        String fullUrl = ApiClient.getFullImageUrl(tenFileAnh);
 
-            // 4. Ghép thư mục server: "avatar/" + "hinh1.jpg"
-            String duongDanAnh = "avatar/" + tenFileAnh;
-
-            // 5. Tạo URL đầy đủ
-            String fullUrl = ApiClient.getFullImageUrl(getContext(), duongDanAnh);
-
-            // 6. Load ảnh vào ImageView (biến anhDaiDien)
-            Glide.with(getContext())
-                    .load(fullUrl)
-                    .placeholder(R.drawable.nen)
-                    .error(R.drawable.ic_launcher_background)
-                    .timeout(60000)
-                    .into(anhDaiDien); // Load vào UI
-        }
+        Glide.with(getContext())
+                .load(fullUrl)
+                .placeholder(R.drawable.nen)
+                .error(R.drawable.ic_launcher_background)
+                .timeout(60000)
+                .into(anhDaiDien); // Load vào UI
     }
 
    // Cập nhật lại giao diện mỗi khi Fragment được hiển thị lại

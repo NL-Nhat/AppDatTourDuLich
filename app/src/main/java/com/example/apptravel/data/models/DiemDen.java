@@ -51,4 +51,9 @@ public class DiemDen implements Serializable {
     public void setUrlHinhAnh(String urlHinhAnh) {
         this.urlHinhAnh = urlHinhAnh;
     }
+
+    @Override
+    public String toString() {
+        return tenDiemDen;
+    }
 }

@@ -77,14 +77,14 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/img_tour_preview"
+                    android:id="@+id/img_tour"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:background="#E0E0E0"/>
 
                 <LinearLayout
-                    android:id="@+id/layout_upload_hint"
+                    android:id="@+id/btn_upload_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -132,7 +132,7 @@
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_tour_name"
+                    android:id="@+id/txt_tour_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nhập tên tour"
@@ -200,7 +200,7 @@
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_mo_ta"
+                    android:id="@+id/txt_MoTa"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="top"
@@ -245,7 +245,7 @@
                     app:prefixTextColor="#757575">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edt_gia_nguoi_lon"
+                        android:id="@+id/txt_giaNguoiLon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Người lớn *"
@@ -272,7 +272,7 @@
                     app:prefixTextColor="#757575">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edt_gia_tre_em"
+                        android:id="@+id/txt_giaTreEm"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Trẻ em"
@@ -294,7 +294,7 @@
                 android:textColor="#424242"/>
 
             <RadioGroup
-                android:id="@+id/radio_group_trang_thai"
+                android:id="@+id/rd_group_trangThai"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -302,7 +302,7 @@
                 android:layout_marginBottom="24dp">
 
                 <RadioButton
-                    android:id="@+id/radio_dang_mo"
+                    android:id="@+id/rb_dang_mo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -313,7 +313,7 @@
                     android:textSize="14sp" />
 
                 <RadioButton
-                    android:id="@+id/radio_tam_dung"
+                    android:id="@+id/rd_tamDung"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -374,7 +374,7 @@
                     android:padding="12dp">
 
                     <TextView
-                        android:id="@+id/tv_empty_lich"
+                        android:id="@+id/txt_chua_co_lich"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Chưa có lịch khởi hành nào được thêm."
