@@ -62,6 +62,8 @@ public class QuanLyDangNhap {
     public String LayDiaChi() { return pref.getString("diaChi", ""); }
     public String LayGioiTinh() { return pref.getString("gioiTinh", ""); }
     public String LayNgaySinh() { return pref.getString("ngaySinh", ""); }
+    public String LayTrangThai() { return pref.getString("trangThai", ""); }
+
 
 
     // Đăng xuất

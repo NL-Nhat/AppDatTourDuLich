@@ -2,10 +2,12 @@ package com.example.apptravel.data.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -28,6 +30,7 @@ public class TourAdapter extends RecyclerView.Adapter<TourViewHolder> {
     public static final int TYPE_NORMAL = 1;
     public static final int TYPE_HOME = 2;
     private int currentType = TYPE_NORMAL; // Mặc định
+    final boolean[] isFavorite = {false};
 
     public interface OnTourClickListener {
         void onTourClick(Tour tour);
@@ -101,6 +104,22 @@ public class TourAdapter extends RecyclerView.Adapter<TourViewHolder> {
         holder.itemView.setOnClickListener(v -> {
             if (onTourClickListener != null) {
                 onTourClickListener.onTourClick(tour);
+            }
+        });
+
+        holder.favoriteIcon.setOnClickListener(v -> {
+            isFavorite[0] = !isFavorite[0];
+
+            if (isFavorite[0]) {
+                holder.favoriteIcon.setColorFilter(
+                        ContextCompat.getColor(context, R.color.red),
+                        PorterDuff.Mode.SRC_IN
+                );
+            } else {
+                holder.favoriteIcon.setColorFilter(
+                        ContextCompat.getColor(context, R.color.white),
+                        PorterDuff.Mode.SRC_IN
+                );
             }
         });
     }

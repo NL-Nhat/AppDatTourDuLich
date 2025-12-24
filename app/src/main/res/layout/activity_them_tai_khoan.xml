@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@color/white"
         android:padding="20dp">
 
         <TextView
@@ -59,6 +60,8 @@
                     android:background="@null"
                     android:hint="Nhập tên đăng nhập"
                     android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
                     android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -101,6 +104,8 @@
                     android:background="@null"
                     android:hint="Nhập họ và tên"
                     android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
                     android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -143,6 +148,8 @@
                     android:background="@null"
                     android:hint="Nhập Email"
                     android:inputType="textEmailAddress"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
                     android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -184,6 +191,8 @@
                     android:background="@null"
                     android:hint="Nhập số điện thoại"
                     android:inputType="textPhonetic"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
                     android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -225,6 +234,8 @@
                     android:background="@null"
                     android:hint="Nhập địa chỉ"
                     android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
                     android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -267,6 +278,8 @@
                     android:background="@null"
                     android:hint="Chọn ngày sinh"
                     android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
                     android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -309,6 +322,8 @@
                     android:background="@null"
                     android:hint="Nhập mật khẩu"
                     android:inputType="textPassword"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
                     android:textSize="16sp" />
 
                 <ImageView
@@ -324,6 +339,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:background="@color/white"
             android:layout_marginBottom="16dp">
 
             <TextView
@@ -338,6 +354,7 @@
                 android:id="@+id/nhom_gioi_tinh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:orientation="horizontal"
                 android:layout_marginStart="16dp">
 
@@ -345,6 +362,7 @@
                     android:id="@+id/radio_nam"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:text="Nam"
                     android:checked="true" />
 
@@ -353,6 +371,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:textColor="@color/black"
                     android:text="Nữ" />
 
             </RadioGroup>
@@ -369,6 +388,7 @@
             android:id="@+id/radio_group_vaitro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="vertical"
             android:padding="8dp">
 
@@ -376,17 +396,20 @@
                 android:id="@+id/radio_khachhang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:text="Khách hàng" />
 
             <RadioButton
                 android:id="@+id/radio_huongdanvien"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:text="Hướng dẫn viên" />
             <RadioButton
                 android:id="@+id/radio_quantrivien"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:text="Quản trị viên" />
         </RadioGroup>
 

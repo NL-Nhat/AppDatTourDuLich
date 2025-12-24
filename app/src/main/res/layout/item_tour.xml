@@ -29,11 +29,12 @@
                 android:id="@+id/favorite_icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:padding="61dp"
                 android:layout_alignParentEnd="true"
                 android:layout_margin="8dp"
-                android:background="@drawable/ic_heart"
-                android:backgroundTint="@color/white"/>
+                android:src="@drawable/ic_heart"
+                app:tint="@color/white"
+                android:clickable="true"
+                android:focusable="true"/>
 
             <!-- Rating Badge -->
             <LinearLayout

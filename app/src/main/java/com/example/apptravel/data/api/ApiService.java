@@ -46,7 +46,7 @@ public interface ApiService {
     Call<LoginResponse> login(@Body LoginRequest request);
 
     //Lấy danh sách tour
-    @GET("api/tour/all")
+    @GET("api/tour/all-tour-by-trangthai")
     Call<List<Tour>> getAllTours();
 
     //Lấy danh sách lịch khởi hàn theo tour
