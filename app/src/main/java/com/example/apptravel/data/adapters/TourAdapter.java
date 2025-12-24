@@ -89,16 +89,14 @@ public class TourAdapter extends RecyclerView.Adapter<TourViewHolder> {
             holder.tourRating.setText(String.valueOf(rating));
         }
 
-        String duongDanAnh = "tour/" + tour.getUrlHinhAnhChinh();
-        //Tạo URL đầy đủ
-        String fullUrl = ApiClient.getFullImageUrl(context,duongDanAnh);
-        // Load ảnh vào ImageView (biến anhDaiDien)
+        String fullUrl = ApiClient.getFullImageUrl(tour.getUrlHinhAnhChinh());
+        // Load ảnh vào ImageView
         Glide.with(context)
                 .load(fullUrl)
                 .placeholder(R.drawable.nen)
                 .error(R.drawable.ic_launcher_background)
                 .timeout(60000)
-                .into(holder.tourImage); // Load vào UI
+                .into(holder.tourImage);
 
         holder.itemView.setOnClickListener(v -> {
             if (onTourClickListener != null) {

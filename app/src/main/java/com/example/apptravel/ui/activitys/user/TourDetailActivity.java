@@ -94,8 +94,7 @@ public class TourDetailActivity extends AppCompatActivity {
             txtGiaTreEm.setText(decimalFormat.format(tour.getGiaTreEm()) + " VNĐ");
             txtGiaTong.setText(decimalFormat.format(tour.getGiaNguoiLon()) + " VNĐ");
 
-            String duongDanAnh = "tour/" + tour.getUrlHinhAnhChinh();
-            String fullUrl = ApiClient.getFullImageUrl(this, duongDanAnh);
+            String fullUrl = ApiClient.getFullImageUrl(tour.getUrlHinhAnhChinh());
 
             Glide.with(this)
                     .load(fullUrl)

@@ -28,7 +28,7 @@
             android:id="@+id/info_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@id/checkbox_remember"
+            android:layout_toStartOf="@id/checkbox"
             android:orientation="vertical">
 
             <LinearLayout

@@ -81,7 +81,7 @@ public class BookingAdminAdapter extends RecyclerView.Adapter<BookingAdminAdapte
         // Avatar
         String avatar = item.getAnhDaiDien();
         if (avatar != null && !avatar.isEmpty()) {
-            String url = ApiClient.getFullImageUrl(context, avatar);
+            String url = ApiClient.getFullImageUrl( avatar);
             Glide.with(context)
                     .load(url)
                     .placeholder(R.drawable.nen)

@@ -126,7 +126,10 @@ public class TrangChinhFragment extends Fragment implements TourAdapter.OnTourCl
 
             @Override
             public void onFailure(Call<List<Tour>> call, Throwable t) {
-                Toast.makeText(getContext(), "Lỗi tải dữ liệu", Toast.LENGTH_SHORT).show();
+                if (isAdded() && getActivity() != null) {
+                    Toast.makeText(getContext(), "Lỗi tải dữ liệu", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }

@@ -9,12 +9,12 @@ import com.example.apptravel.data.models.BookingResponse;
 import com.example.apptravel.data.models.DiemDen;
 import com.example.apptravel.data.models.DistrictResponse;
 import com.example.apptravel.data.models.HoatDong;
+import com.example.apptravel.data.models.HuongDanVienResponse;
 import com.example.apptravel.data.models.LichKhoiHanh;
 import com.example.apptravel.data.models.LoginRequest;
 import com.example.apptravel.data.models.LoginResponse;
 import com.example.apptravel.data.models.NguoiDung;
 import com.example.apptravel.data.models.Province;
-import com.example.apptravel.data.models.NguoiDung;
 import com.example.apptravel.data.models.ThanhToanRequest;
 import com.example.apptravel.data.models.Tour;
 import com.example.apptravel.data.models.AdminBookingItem;
@@ -22,18 +22,16 @@ import com.example.apptravel.data.models.TourRequest;
 import com.example.apptravel.data.models.ViDienTuResponse;
 import com.example.apptravel.data.models.WardResponse;
 import com.example.apptravel.data.models.RegisterRequest;
-import com.example.apptravel.ui.activitys.user.KetQuaThanhToanActivity;
-
 import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -86,7 +84,7 @@ public interface ApiService {
     //Cập nhật ảnh đại diện
     @Multipart
     @POST("api/auth/uploadAnhDaiDien")
-    Call<Map<String, String>> uploadAnhDaiDien(@Part MultipartBody.Part file);
+    Call<Map<String, String>> uploadAnhDaiDien(@Part MultipartBody.Part file, @Part("userId") int id);
 
     //Lấy danh sách tour đã đặt
     @GET("api/user/bookings")
@@ -133,7 +131,7 @@ public interface ApiService {
     Call<Void> createThanhToan(@Body ThanhToanRequest thanhToanRequest);
 
     // Lấy danh sách tour phần admin
-    @GET("api/admin/tours")
+    @GET("api/admin/tours/all")
     Call<List<Tour>> getAdminTours();
 
     // Xem chi tiết tour phần admin
@@ -141,22 +139,25 @@ public interface ApiService {
     Call<Tour> getTourDetails(@Path("id") int tourId);
 
     // Thêm tour
+    @Multipart
     @POST("api/admin/tours/add-full")
-    Call<ResponseBody> addFullTour(@Body TourRequest request);
-
-    // Lấy danh sách hướng dẫn viên
-    @GET("api/admin/tours/huong-dan-vien")
-    Call<List<NguoiDung>> getHuongDanViens();
+    Call<ResponseBody> addFullTour(@Part("tour") RequestBody request, @Part MultipartBody.Part file);
 
     // Xóa tour
     @DELETE("api/admin/tours/{id}")
     Call<ResponseBody> deleteTour(@Path("id") int maTour);
 
     //Lấy danh sách điểm đến
-    @GET("api/admin/diem-den")
+    @GET("api/diem-den")
     Call<List<DiemDen>> getDiemDens();
 
     //Cập nhật tour
+    @Multipart
     @PUT("api/admin/tours/{id}")
-    Call<ResponseBody> updateTour(@Path("id") Integer id, @Body TourRequest request);
+    Call<ResponseBody> updateTour(@Path("id") Integer id, @Part("tour") RequestBody request, @Part MultipartBody.Part file
+    );
+
+    //Lấy danh sách hướng dẫn viên
+    @GET("api/admin/huong-dan-vien")
+    Call<List<HuongDanVienResponse>> getHuongDanViens();
 }

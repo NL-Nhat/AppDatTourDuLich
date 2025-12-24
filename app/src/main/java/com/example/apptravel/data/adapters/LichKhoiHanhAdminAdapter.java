@@ -17,90 +17,53 @@ import java.util.List;
 
 public class LichKhoiHanhAdminAdapter extends RecyclerView.Adapter<LichKhoiHanhAdminAdapter.ViewHolder> {
 
-    private final Context context;
-    private final List<TourRequest.LichKhoiHanhDTO> list;
-    private final OnItemClickListener listener;
-    private boolean isEditMode = false;
+    private List<TourRequest.LichKhoiHanhDTO> list;
+    private OnItemClickListener listener;
 
     public interface OnItemClickListener {
-        void onEditClick(int position);
-        void onDeleteClick(int position);
+        void onEdit(int position, TourRequest.LichKhoiHanhDTO item);
+        void onDelete(int position);
     }
 
-    public LichKhoiHanhAdminAdapter(Context context, List<TourRequest.LichKhoiHanhDTO> list, OnItemClickListener listener) {
-        this.context = context;
+    public LichKhoiHanhAdminAdapter(List<TourRequest.LichKhoiHanhDTO> list, OnItemClickListener listener) {
         this.list = list;
         this.listener = listener;
-    }
-
-    public void setEditMode(boolean isEditMode) {
-        this.isEditMode = isEditMode;
-        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_schedule_admin, parent, false);
-        return new ViewHolder(view);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lichkhoihanh_admin, parent, false);
+        return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        TourRequest.LichKhoiHanhDTO lich = list.get(position);
+        TourRequest.LichKhoiHanhDTO item = list.get(position);
+        // Ngay khoi hanh - Ngay ket thuc
+        holder.tvNgay.setText(item.getNgayKhoiHanh().split(" ")[0] + " - " + item.getNgayKetThuc().split(" ")[0]);
+        holder.tvGio.setText(item.getNgayKhoiHanh().split(" ")[1]);
+        holder.tvSoLuong.setText("Tối đa: " + item.getSoLuongKhachToiDa());
+        holder.tvHDV.setText("HDV: " + (item.getTenHDV() != null ? item.getTenHDV() : "Chưa chọn"));
 
-        if (lich.getNgayKhoiHanh() != null && lich.getNgayKhoiHanh().length() >= 10) {
-            holder.tvNgayDi.setText(lich.getNgayKhoiHanh().substring(0, 10));
-        }
-        if (lich.getNgayKetThuc() != null && lich.getNgayKetThuc().length() >= 10) {
-            holder.tvNgayVe.setText(lich.getNgayKetThuc().substring(0, 10));
-        }
-        
-        holder.tvSoLuong.setText("Tối đa: " + lich.getSoLuongKhachToiDa());
-
-        // SỬA LỖI: HIển thị tên HDV
-        if (lich.getTenHDV() != null && !lich.getTenHDV().isEmpty()) {
-            holder.tvHDV.setText(lich.getTenHDV());
-        } else if (lich.getMaHDV() != null) {
-            holder.tvHDV.setText("HDV (ID: " + lich.getMaHDV() + ")"); // Dự phòng nếu chỉ có mã
-        } else {
-            holder.tvHDV.setText("Chưa chọn HDV");
-        }
-
-        if (isEditMode) {
-            holder.btnEdit.setVisibility(View.VISIBLE);
-            holder.btnDelete.setVisibility(View.VISIBLE);
-        } else {
-            holder.btnEdit.setVisibility(View.GONE);
-            holder.btnDelete.setVisibility(View.GONE);
-        }
-
-        holder.btnEdit.setOnClickListener(v -> {
-            if (listener != null) listener.onEditClick(position);
-        });
-
-        holder.btnDelete.setOnClickListener(v -> {
-            if (listener != null) listener.onDeleteClick(position);
-        });
+        holder.btnEdit.setOnClickListener(v -> listener.onEdit(position, item));
+        holder.btnDelete.setOnClickListener(v -> listener.onDelete(position));
     }
 
     @Override
-    public int getItemCount() {
-        return list.size();
-    }
+    public int getItemCount() { return list.size(); }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvNgayDi, tvNgayVe, tvSoLuong, tvHDV;
+        TextView tvNgay, tvGio, tvSoLuong, tvHDV;
         ImageView btnEdit, btnDelete;
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvNgayDi = itemView.findViewById(R.id.tv_ngay_di);
-            tvNgayVe = itemView.findViewById(R.id.tv_ngay_ve);
-            tvSoLuong = itemView.findViewById(R.id.tv_so_luong_khach);
-            tvHDV = itemView.findViewById(R.id.tv_huong_dan_vien);
-            btnEdit = itemView.findViewById(R.id.btn_edit_schedule);
-            btnDelete = itemView.findViewById(R.id.btn_delete_schedule);
+            tvNgay = itemView.findViewById(R.id.tv_ngay_khoi_hanh);
+            tvGio = itemView.findViewById(R.id.tv_gio_khoi_hanh);
+            tvSoLuong = itemView.findViewById(R.id.tv_so_luong);
+            tvHDV = itemView.findViewById(R.id.tv_hdv);
+            btnEdit = itemView.findViewById(R.id.btn_edit_lich);
+            btnDelete = itemView.findViewById(R.id.btn_delete_lich);
         }
     }
 }

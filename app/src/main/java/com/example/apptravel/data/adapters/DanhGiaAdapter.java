@@ -39,9 +39,8 @@ public class DanhGiaAdapter extends RecyclerView.Adapter<DanhGiaViewHolder>{
         if (item.getNguoiDung() != null) {
             holder.txtName.setText(item.getNguoiDung().getHoTen());
 
-            String duongDanAnh = "avatar/" + item.getNguoiDung().getAnhDaiDien();
             //Tạo URL đầy đủ
-            String fullUrl = ApiClient.getFullImageUrl(context,duongDanAnh);
+            String fullUrl = ApiClient.getFullImageUrl(item.getNguoiDung().getAnhDaiDien());
             // Load ảnh vào ImageView (biến anhDaiDien)
             Glide.with(context)
                     .load(fullUrl)
