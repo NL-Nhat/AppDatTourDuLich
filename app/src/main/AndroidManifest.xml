@@ -70,6 +70,9 @@
             android:name=".ui.activitys.admin.QuanLyNguoiDungActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.activitys.admin.ThemTaiKhoanActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activitys.user.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.AppTravel.Launcher">

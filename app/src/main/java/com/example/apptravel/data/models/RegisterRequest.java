@@ -1,4 +1,4 @@
-package com.example.apptravel.data.models; // Package của Android chứ không phải Backend
+package com.example.apptravel.data.models;
 
 public class RegisterRequest {
     public String tenDangNhap;
@@ -6,11 +6,31 @@ public class RegisterRequest {
     public String hoTen;
 
     public String email;
+    public String soDienThoai;
+    public String diaChi;
+    public String ngaySinh;
+    public String vaiTro;
+    public String gioiTinh;
+
+
 
     public RegisterRequest(String user, String pass, String name, String mail) {
         this.tenDangNhap = user;
         this.matKhau = pass;
         this.hoTen = name;
         this.email = mail;
+    }
+    public RegisterRequest(String user, String pass, String name, String mail,
+                           String phone, String address, String birthday, String role, String gender) {
+        this.tenDangNhap = user;
+        this.matKhau = pass;
+        this.hoTen = name;
+        this.email = mail;
+        this.soDienThoai = phone;
+        this.diaChi = address;
+        this.ngaySinh = birthday;
+        this.vaiTro = role;
+        this.gioiTinh = gender;
+
     }
 }

@@ -1,6 +1,7 @@
 package com.example.apptravel.data.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import com.example.apptravel.R;
 import com.example.apptravel.data.api.ApiClient;
 import com.example.apptravel.data.api.ApiService;
 import com.example.apptravel.data.models.NguoiDung;
+import com.example.apptravel.ui.activitys.admin.ThemTaiKhoanActivity;
 
 import java.util.List;
 
@@ -70,7 +72,10 @@ public class QuanLyNguoiDungAdapter extends RecyclerView.Adapter<QuanLyNguoiDung
         });
 
         holder.btnSua.setOnClickListener(v -> {
-            Toast.makeText(context, "Sửa người dùng: " + user.getHoTen(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, ThemTaiKhoanActivity.class);
+            // Truyền đối tượng người dùng sang màn hình sửa
+            intent.putExtra("NGUOI_DUNG_EDIT", user);
+            context.startActivity(intent);
         });
 
         boolean isLocked = "Khoa".equalsIgnoreCase(user.getTrangThai());
@@ -83,7 +88,7 @@ public class QuanLyNguoiDungAdapter extends RecyclerView.Adapter<QuanLyNguoiDung
             if (currentPos == RecyclerView.NO_POSITION) return;
 
             String newStatus = isLocked ? "HoatDong" : "Khoa";
-            String actionText = isLocked ? "Mở khóa" : "Khóa";
+            String actionText = isLocked ? "Mở khóa" : "Khoa";
 
             new AlertDialog.Builder(context)
                     .setTitle("Xác nhận")

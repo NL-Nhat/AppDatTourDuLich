@@ -1,6 +1,9 @@
 package com.example.apptravel.ui.activitys.admin;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -26,6 +29,8 @@ public class QuanLyNguoiDungActivity extends AppCompatActivity {
     private QuanLyNguoiDungAdapter adapter;
     private List<NguoiDung> fullUserList = new ArrayList<>();
     private ApiService apiService;
+    private Button btnTaoTaiKhoan;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,19 @@ public class QuanLyNguoiDungActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         apiService = ApiClient.getClient(this).create(ApiService.class);
+
+        // --- BẮT ĐẦU PHẦN THÊM MỚI ---
+        // Ánh xạ nút
+        btnTaoTaiKhoan = findViewById(R.id.btn_tao_tai_khoan);
+        // Gán sự kiện click
+        btnTaoTaiKhoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(QuanLyNguoiDungActivity.this, ThemTaiKhoanActivity.class);
+                startActivity(intent);
+            }
+        });
+        // --- KẾT THÚC PHẦN THÊM MỚI ---
 
         loadUsersFromServer();
 

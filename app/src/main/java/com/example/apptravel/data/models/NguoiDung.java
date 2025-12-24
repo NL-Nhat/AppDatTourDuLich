@@ -6,6 +6,8 @@ import java.io.Serializable;
 public class NguoiDung implements Serializable {
 
     private Integer maNguoiDung;
+    private String tenDangNhap;
+    private String matKhau;
     private String email;
     private String hoTen;
     private String soDienThoai;
@@ -84,16 +86,25 @@ public class NguoiDung implements Serializable {
     public String getVaiTro() {
         return vaiTro;
     }
-
     public void setVaiTro(String vaiTro) {
         this.vaiTro = vaiTro;
     }
     public String getTrangThai() {
         return trangThai;
     }
-
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
-
+    public String getTenDangNhap() {
+        return tenDangNhap;
+    }
+    public void setTenDangNhap(String tenDangNhap) {
+        this.tenDangNhap = tenDangNhap;
+    }
+    public String getMatKhau() {
+        return matKhau;
+    }
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
+    }
 }
