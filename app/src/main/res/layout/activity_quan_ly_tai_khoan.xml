@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F5F5F5"
+    android:background="@color/white"
     tools:context=".ui.activitys.admin.QuanLyNguoiDungActivity">
 
     <!-- Thanh tiêu đề -->
@@ -18,7 +18,7 @@
         android:textColor="@android:color/black"
         android:gravity="center"
         android:padding="16dp"
-        android:background="@android:color/white"
+        android:background="@color/white"
         app:elevation="4dp"/>
 
     <LinearLayout

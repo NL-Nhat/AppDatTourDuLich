@@ -1,5 +1,6 @@
 package com.example.apptravel.ui.activitys.admin;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,7 +39,8 @@ public class MainAdminActivity extends AppCompatActivity {
             } else if (itemId == R.id.nav_admin_bookings) {
                 selectedFragment = new BookingAdminFragment();
             } else if (itemId == R.id.nav_admin_users) {
-                //selectedFragment = new AdminDashboardFragment();
+                Intent intent = new Intent(MainAdminActivity.this, QuanLyNguoiDungActivity.class);
+                startActivity(intent);
             } else if (itemId == R.id.nav_admin_profile) {
                 selectedFragment = new TrangCaNhanAdminFragment();
             }

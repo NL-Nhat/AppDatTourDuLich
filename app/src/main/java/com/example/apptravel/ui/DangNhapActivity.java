@@ -34,11 +34,9 @@ public class DangNhapActivity extends AppCompatActivity {
     private Button btnDangNhap;
     private EditText editUsername, editPassword;
     private AuthRepository authRepository;
-
     private QuanLyDangNhap quanLyDangNhap;
     private ImageView btnTogglePassword;
     private boolean isPasswordVisible = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +77,6 @@ public class DangNhapActivity extends AppCompatActivity {
 
         quanLyDangNhap = new QuanLyDangNhap(this);
         btnDangNhap.setOnClickListener(v -> login());
-
     }
 
     private void login() {
@@ -146,12 +143,29 @@ public class DangNhapActivity extends AppCompatActivity {
                                 Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(DangNhapActivity.this,
-                            "Sai tài khoản hoặc mật khẩu",
-                            Toast.LENGTH_SHORT).show();
+                    String errorMessage = "Đăng nhập thất bại";
+
+                    switch (response.code()) {
+                        case 423:
+                            Toast.makeText(DangNhapActivity.this,
+                                    "Tài khoản đã bị khóa",
+                                    Toast.LENGTH_SHORT).show();
+                            break;
+
+                        case 401:
+                            Toast.makeText(DangNhapActivity.this,
+                                    "Sai tài khoản hoặc mật khẩu",
+                                    Toast.LENGTH_SHORT).show();
+                            break;
+
+                        default:
+                            Toast.makeText(DangNhapActivity.this,
+                                    errorMessage,
+                                    Toast.LENGTH_SHORT).show();
+                            break;
+                    }
                 }
             }
-
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
