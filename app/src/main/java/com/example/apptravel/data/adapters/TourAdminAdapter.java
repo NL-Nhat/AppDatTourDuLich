@@ -58,7 +58,7 @@ public class TourAdminAdapter extends RecyclerView.Adapter<TourAdminAdapter.View
             holder.tvLocation.setText("Chưa xác định");
         }
 
-        holder.tvRating.setText("4.8");
+        holder.tvRating.setText(String.valueOf(tour.getDiemDanhGiaTrungBinh()));
         holder.tvBookings.setText("0 đơn đặt");
 
         if (tour.getGiaNguoiLon() != null) {
@@ -74,21 +74,13 @@ public class TourAdminAdapter extends RecyclerView.Adapter<TourAdminAdapter.View
             holder.tvTrangThai.setBackgroundResource(R.drawable.trangthai_tour_dong);
         }
 
-        // Tải hình ảnh
-        String relativePath = tour.getUrlHinhAnhChinh();
-        if (relativePath != null && !relativePath.isEmpty()) {
-            String fullUrl = relativePath.startsWith("http")
-                    ? relativePath
-                    : ApiClient.getFullImageUrl(context, relativePath);
+        String fullUrl = ApiClient.getFullImageUrl(tour.getUrlHinhAnhChinh());
 
-            Glide.with(context)
-                    .load(fullUrl)
-                    .placeholder(R.drawable.quang_ninh)
-                    .error(R.drawable.quang_ninh)
-                    .into(holder.imgTour);
-        } else {
-            holder.imgTour.setImageResource(R.drawable.quang_ninh);
-        }
+        Glide.with(context)
+                .load(fullUrl)
+                .placeholder(R.drawable.quang_ninh)
+                .error(R.drawable.quang_ninh)
+                .into(holder.imgTour);
 
         // ================== THÊM SỰ KIỆN NÚT SỬA ==================
         holder.btnEdit.setOnClickListener(v -> {

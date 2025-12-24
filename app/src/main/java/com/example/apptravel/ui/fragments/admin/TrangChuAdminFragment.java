@@ -79,9 +79,9 @@ public class TrangChuAdminFragment extends Fragment {
         txt_name.setText(quanLyDangNhap.LayHoTen());
 
         String tenFileAnh = quanLyDangNhap.LayAnhDaiDien();
+
         if (tenFileAnh != null && !tenFileAnh.isEmpty()) {
-            String duongDanAnh = "avatar/" + tenFileAnh;
-            String fullUrl = ApiClient.getFullImageUrl(getContext(),duongDanAnh);
+            String fullUrl = ApiClient.getFullImageUrl(tenFileAnh);
 
             Glide.with(this)
                     .load(fullUrl)
@@ -101,8 +101,10 @@ public class TrangChuAdminFragment extends Fragment {
             }
             @Override
             public void onFailure(Call<List<HoatDong>> call, Throwable t) {
-                android.util.Log.e("LoiAPI", "Lỗi lấy hoạt động: " + t.getMessage());
-                Toast.makeText(getContext(), "Lỗi tải hoạt động!", Toast.LENGTH_SHORT).show();
+                if (isAdded() && getActivity() != null) {
+                    android.util.Log.e("LoiAPI", "Lỗi lấy hoạt động: " + t.getMessage());
+                    Toast.makeText(getContext(), "Lỗi tải hoạt động!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

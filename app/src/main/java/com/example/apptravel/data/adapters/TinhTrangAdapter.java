@@ -64,33 +64,14 @@ public class TinhTrangAdapter extends RecyclerView.Adapter<TinhTrangAdapter.View
         holder.tvDate.setText(date);
 
         String imageUrl = item.getUrlHinhAnhChinh();
-        if (imageUrl != null && !imageUrl.isEmpty()) {
-            String url = imageUrl.trim();
+        String url = ApiClient.getFullImageUrl(imageUrl);
 
-            // Backend thường trả về tên file (vd: tour_bana.jpg).
-            // Static resources đang serve từ thư mục uploads/, trong đó ảnh tour nằm ở uploads/tour/...
-            // Các màn khác cũng prefix "tour/" + filename (xem TourAdapter).
-            if (!url.startsWith("http")) {
-                // bỏ dấu '/' đầu nếu có để tránh baseUrl//path
-                while (url.startsWith("/")) url = url.substring(1);
-
-                // nếu chỉ là filename -> prefix tour/
-                if (!url.contains("/")) {
-                    url = "tour/" + url;
-                }
-
-                url = ApiClient.getFullImageUrl(context, url);
-            }
-
-            Glide.with(context)
-                    .load(url)
-                    .placeholder(R.drawable.nen)
-                    .error(R.drawable.nen)
-                    .timeout(60000)
-                    .into(holder.ivImage);
-        } else {
-            holder.ivImage.setImageResource(R.drawable.nen);
-        }
+        Glide.with(context)
+                .load(url)
+                .placeholder(R.drawable.nen)
+                .error(R.drawable.nen)
+                .timeout(60000)
+                .into(holder.ivImage);
 
         // Nút Hủy: chỉ show ở tab Chờ xác nhận
         if (holder.btnCancel != null) {

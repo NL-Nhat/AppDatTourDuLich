@@ -14,36 +14,40 @@ public class ApiClient {
     private static Retrofit retrofit;
     private static final boolean IS_PRODUCTION = false; // Đổi thành true khi muốn chạy backend trên Render, false khi chạy trên máy local
     private static final String RENDER_URL = "https://backend-apptravel-api.onrender.com/";
+    private static final String CLOUDINARY_URL = "https://res.cloudinary.com/dgwjvcvox/image/upload/";
 
     private static String getBaseUrl(Context context) {
+
         if (IS_PRODUCTION) {
-            return RENDER_URL; //
+            return RENDER_URL;
         }
 
-        // Logic cho môi trường Local (VS Code)
+        // Nếu chạy trên Local
         boolean isEmulator = Build.FINGERPRINT.startsWith("generic")
                 || Build.FINGERPRINT.toLowerCase().contains("emulator")
                 || Build.HARDWARE.contains("ranchu")
                 || Build.HARDWARE.contains("goldfish");
 
         String EMULATOR_URL = "http://10.0.2.2:8080/";
-        String DEVICE_URL = "http://192.168.1.13:8080/"; // Đổi theo IP máy bạn
+        String DEVICE_URL = "http://192.168.1.20:8080/"; // Đổi theo IP máy bạn
 
         return isEmulator ? EMULATOR_URL : DEVICE_URL;
     }
 
     // Hàm lấy đường dẫn ảnh đầy đủ
-    public static String getFullImageUrl(Context context, String relativePath) {
-        String baseUrl = getBaseUrl(context);
+    public static String getFullImageUrl(String imageNameOrPath) {
 
-        if (!baseUrl.endsWith("/")) baseUrl += "/";
-
-        // Nếu relativePath đã có dấu / ở đầu thì xóa đi để tránh trùng lặp //
-        if (relativePath != null && relativePath.startsWith("/")) {
-            relativePath = relativePath.substring(1);
+        if (imageNameOrPath == null || imageNameOrPath.isEmpty()) {
+            return "";
         }
 
-        return baseUrl + relativePath;
+        // Xử lý dấu gạch chéo đầu dòng nếu có (để tránh bị //)
+        if (imageNameOrPath.startsWith("/")) {
+            imageNameOrPath = imageNameOrPath.substring(1);
+        }
+
+        // Link Cloudinary + Tên ảnh
+        return CLOUDINARY_URL + imageNameOrPath;
     }
 
     public static Retrofit getClient(Context context) {

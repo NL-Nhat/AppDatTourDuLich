@@ -95,7 +95,7 @@ public class DangKyActivity extends AppCompatActivity {
         }
 
         // Gọi API (Giả sử số điện thoại bạn để trống hoặc bổ sung thêm trường)
-        RegisterRequest request = new RegisterRequest(username, password, fullname, email, "");
+        RegisterRequest request = new RegisterRequest(username, password, fullname, email);
 
         ApiService apiService = ApiClient.getClient(this).create(ApiService.class);
         apiService.register(request).enqueue(new Callback<ResponseBody>() {

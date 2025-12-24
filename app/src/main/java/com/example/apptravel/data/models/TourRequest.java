@@ -6,19 +6,18 @@ import java.util.List;
 public class TourRequest {
     private String tenTour;
     private String moTa;
-    private BigDecimal giaNguoiLon;
-    private BigDecimal giaTreEm;
-    private String urlHinhAnhChinh;
+    private Double giaNguoiLon;
+    private Double giaTreEm;
     private String trangThai;
-    private Integer maDiemDen;
+    private int maDiemDen;
     private List<LichKhoiHanhDTO> lichKhoiHanhs;
 
     public static class LichKhoiHanhDTO {
-        private Integer maLichKhoiHanh;
+        private int maLichKhoiHanh;
         private String ngayKhoiHanh;
         private String ngayKetThuc;
-        private Integer soLuongKhachToiDa;
-        private Integer maHDV;
+        private int soLuongKhachToiDa;
+        private int maHDV;
         private String tenHDV;
 
         public LichKhoiHanhDTO(String ngayKH, String ngayKT, Integer soKhach) {
@@ -47,16 +46,32 @@ public class TourRequest {
     public void setTenTour(String tenTour) { this.tenTour = tenTour; }
     public String getMoTa() { return moTa; }
     public void setMoTa(String moTa) { this.moTa = moTa; }
-    public BigDecimal getGiaNguoiLon() { return giaNguoiLon; }
-    public void setGiaNguoiLon(BigDecimal giaNguoiLon) { this.giaNguoiLon = giaNguoiLon; }
-    public BigDecimal getGiaTreEm() { return giaTreEm; }
-    public void setGiaTreEm(BigDecimal giaTreEm) { this.giaTreEm = giaTreEm; }
-    public String getUrlHinhAnhChinh() { return urlHinhAnhChinh; }
-    public void setUrlHinhAnhChinh(String urlHinhAnhChinh) { this.urlHinhAnhChinh = urlHinhAnhChinh; }
     public String getTrangThai() { return trangThai; }
     public void setTrangThai(String trangThai) { this.trangThai = trangThai; }
-    public Integer getMaDiemDen() { return maDiemDen; }
-    public void setMaDiemDen(Integer maDiemDen) { this.maDiemDen = maDiemDen; }
     public List<LichKhoiHanhDTO> getLichKhoiHanhs() { return lichKhoiHanhs; }
     public void setLichKhoiHanhs(List<LichKhoiHanhDTO> lichKhoiHanhs) { this.lichKhoiHanhs = lichKhoiHanhs; }
+
+    public Double getGiaNguoiLon() {
+        return giaNguoiLon;
+    }
+
+    public void setGiaNguoiLon(Double giaNguoiLon) {
+        this.giaNguoiLon = giaNguoiLon;
+    }
+
+    public Double getGiaTreEm() {
+        return giaTreEm;
+    }
+
+    public void setGiaTreEm(Double giaTreEm) {
+        this.giaTreEm = giaTreEm;
+    }
+
+    public int getMaDiemDen() {
+        return maDiemDen;
+    }
+
+    public void setMaDiemDen(int maDiemDen) {
+        this.maDiemDen = maDiemDen;
+    }
 }

@@ -35,6 +35,7 @@ public class QuanLyTourAdminFragment extends Fragment {
     private RecyclerView rcvTours;
     private TourAdminAdapter adapter;
     private List<Tour> tourList = new ArrayList<>();
+    private  ApiService apiService;
 
     private TextView tvTotalTours, tvActiveTours, tvInactiveTours;
     private FloatingActionButton btnAddTour;
@@ -44,6 +45,19 @@ public class QuanLyTourAdminFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quan_ly_tour_admin, container, false);
 
+        apiService = ApiClient.getClient(getContext()).create(ApiService.class);
+
+        anhXa(view);
+
+        btnAddTour.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), ThemTourActivity.class);
+            startActivity(intent);
+        });
+
+        return view;
+    }
+
+    private void anhXa(View view) {
         rcvTours = view.findViewById(R.id.recycler_tours);
         tvTotalTours = view.findViewById(R.id.stat_total_tours);
         tvActiveTours = view.findViewById(R.id.stat_active_tours);
@@ -53,13 +67,6 @@ public class QuanLyTourAdminFragment extends Fragment {
         rcvTours.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new TourAdminAdapter(tourList, getContext());
         rcvTours.setAdapter(adapter);
-
-        btnAddTour.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), ThemTourActivity.class);
-            startActivity(intent);
-        });
-
-        return view;
     }
 
     @Override
