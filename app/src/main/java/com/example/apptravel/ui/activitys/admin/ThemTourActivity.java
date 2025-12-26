@@ -52,7 +52,7 @@ import retrofit2.Response;
 
 public class ThemTourActivity extends AppCompatActivity {
 
-    private ImageView imgTour;
+    private ImageView imgTour, btnBack;
     private EditText txtTourName, txt_moTa, txt_giaNguoiLon, txt_giaTreEm;
     private TextView txtChuaCoLich;
     private AutoCompleteTextView spinnerDiemDen;
@@ -98,6 +98,7 @@ public class ThemTourActivity extends AppCompatActivity {
 
     private void anhXa() {
         imgTour = findViewById(R.id.img_tour);
+        btnBack = findViewById(R.id.btn_back);
         txtTourName = findViewById(R.id.txt_tour_name);
         txtChuaCoLich = findViewById(R.id.txt_chua_co_lich);
         txt_moTa = findViewById(R.id.txt_MoTa);
@@ -141,6 +142,7 @@ public class ThemTourActivity extends AppCompatActivity {
 
     private void xuLySuKien() {
         btn_cancel.setOnClickListener(v -> finish());
+        btnBack.setOnClickListener(v -> finish());
 
         spinnerDiemDen.setOnItemClickListener((parent, view, position, id) -> {
             DiemDen selected = (DiemDen) parent.getItemAtPosition(position);
@@ -251,7 +253,6 @@ public class ThemTourActivity extends AppCompatActivity {
         tourRequest.setGiaTreEm(giaTEStr.isEmpty() ? 0.0 : Double.parseDouble(giaTEStr));
         // listLKH đã được gán vào tourRequest trong showDialogLichKhoiHanh thông qua tourRequest.setLichKhoiHanhs(listLKH)
 
-        // 3. Hiển thị Loading (Tùy chọn)
         btn_save.setEnabled(false);
         btn_save.setText("Đang lưu...");
 
@@ -262,7 +263,6 @@ public class ThemTourActivity extends AppCompatActivity {
                 jsonTour
         );
 
-        //Chuẩn bị file ảnh
         File file = getFileFromUri(selectedImageUri);
         if (file == null) return;
 
@@ -303,11 +303,10 @@ public class ThemTourActivity extends AppCompatActivity {
     }
 
     private void showDialogLichKhoiHanh(boolean isEdit, int position, TourRequest.LichKhoiHanhDTO editItem) {
-        Dialog dialog = new Dialog(this, android.R.style.Theme_Material_Light_Dialog_NoActionBar);
+        Dialog dialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
         dialog.setContentView(R.layout.dialog_themlichkhoihanh_admin);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        // Ánh xạ các view trong dialog
         TextInputEditText txtNgayKH = dialog.findViewById(R.id.txt_ngay_khoi_hanh);
         TextInputEditText txtNgayKT = dialog.findViewById(R.id.txt_ngay_ket_thuc);
         TextInputEditText txtGioKH = dialog.findViewById(R.id.txt_gio_khoi_hanh);
@@ -331,7 +330,7 @@ public class ThemTourActivity extends AppCompatActivity {
         }
 
         //Thiết lập Adapter cho HDV
-        ArrayAdapter<HuongDanVienResponse> hdvAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, listHDV);
+        ArrayAdapter<HuongDanVienResponse> hdvAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, listHDV);
         cmbHDV.setAdapter(hdvAdapter);
 
         cmbHDV.setOnItemClickListener((parent, view, pos, id) -> {

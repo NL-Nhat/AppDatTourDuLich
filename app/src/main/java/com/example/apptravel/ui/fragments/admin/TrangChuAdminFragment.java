@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.example.apptravel.R;
 import com.example.apptravel.data.adapters.HoatDongAdapter;
 import com.example.apptravel.data.api.ApiClient;
+import com.example.apptravel.data.api.ApiService;
 import com.example.apptravel.data.models.HoatDong;
 import com.example.apptravel.data.repository.HoatDongRepository;
 import com.example.apptravel.ui.activitys.admin.QuanLyNguoiDungActivity;
@@ -33,12 +34,13 @@ import retrofit2.Response;
 public class TrangChuAdminFragment extends Fragment {
 
     private ImageView img_avatar;
-    private TextView txt_name;
+    private TextView txt_name, txt_soTour, txt_soNguoiDung;
     private QuanLyDangNhap quanLyDangNhap;
     private RecyclerView recyclerView;
     private HoatDongRepository hoatDongRepository;
     private List<HoatDong> listHoatDong;
     private ImageView btnQuanLyNguoiDung;
+    private ApiService apiService;
 
 
     @Override
@@ -49,7 +51,11 @@ public class TrangChuAdminFragment extends Fragment {
         quanLyDangNhap = new QuanLyDangNhap(getContext());
         img_avatar = view.findViewById(R.id.admin_avatar);
         txt_name = view.findViewById(R.id.admin_name);
+        txt_soTour = view.findViewById(R.id.txt_soTour);
+        txt_soNguoiDung = view.findViewById(R.id.txt_soNguoiDung);
         recyclerView = view.findViewById(R.id.rcv_hoatdong);
+
+        apiService = ApiClient.getClient(getContext()).create(ApiService.class);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -105,6 +111,36 @@ public class TrangChuAdminFragment extends Fragment {
                     android.util.Log.e("LoiAPI", "Lỗi lấy hoạt động: " + t.getMessage());
                     Toast.makeText(getContext(), "Lỗi tải hoạt động!", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        apiService.countTour().enqueue(new Callback<Long>() {
+            @Override
+            public  void onResponse(Call<Long> call, Response<Long> response) {
+                if (response.isSuccessful()) {
+                    Long count = response.body();
+                    txt_soTour.setText(count.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Long> call, Throwable t) {
+                Toast.makeText(getContext(), "Lỗi tải số tour: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        apiService.countUser().enqueue(new Callback<Long>() {
+            @Override
+            public void onResponse(Call<Long> call, Response<Long> response) {
+                if (response.isSuccessful()) {
+                    Long count = response.body();
+                    txt_soNguoiDung.setText(count.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Long> call, Throwable t) {
+                Toast.makeText(getContext(), "Lỗi tải số người dùng: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
