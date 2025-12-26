@@ -34,8 +34,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.Normalizer;
 import java.util.Calendar;
 import java.util.Map;
+import java.util.regex.Pattern;
 //import java.util.jar.Manifest;
 import android.Manifest;
 import android.widget.Toast;
@@ -110,7 +112,7 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
     }
     private void setupUIComponents() {
         //Xử lý Spinner Giới tính
-        String[] genders = {"Nam", "Nu"};
+        String[] genders = {"Nam", "Nữ"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, genders);
         cmbGioiTinh.setAdapter(adapter);
 
@@ -279,12 +281,10 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
 
         // --- Xử lý Spinner Giới tính ---
         String gioiTinhDaLuu = quanLyDangNhap.LayGioiTinh();
-        if (gioiTinhDaLuu != null) {
-            if (gioiTinhDaLuu.equals("Nam")) {
-                cmbGioiTinh.setSelection(0);
-            } else if (gioiTinhDaLuu.equals("Nu")) {
-                cmbGioiTinh.setSelection(1);
-            }
+        if ("Nam".equals(gioiTinhDaLuu)) {
+            cmbGioiTinh.setSelection(0);
+        } else if ("Nu".equals(gioiTinhDaLuu)) {
+            cmbGioiTinh.setSelection(1);
         }
 
         String fullUrl = ApiClient.getFullImageUrl( quanLyDangNhap.LayAnhDaiDien());
@@ -328,8 +328,14 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
         updateInfo.setNgaySinh(txtNgaySinh.getText().toString().trim());
         updateInfo.setEmail(txtEmail.getText().toString().trim());
         updateInfo.setDiaChi(txtDiaChi.getText().toString().trim());
-        updateInfo.setGioiTinh(cmbGioiTinh.getSelectedItem().toString());
         updateInfo.setAnhDaiDien(quanLyDangNhap.LayAnhDaiDien());
+
+        String selectedGender = cmbGioiTinh.getSelectedItem().toString();
+        if (selectedGender.equals("Nữ")) {
+            updateInfo.setGioiTinh("Nu");
+        } else {
+            updateInfo.setGioiTinh("Nam");
+        }
 
         apiService.updateNguoiDung(userId, updateInfo).enqueue(new Callback<NguoiDung>() {
             @Override

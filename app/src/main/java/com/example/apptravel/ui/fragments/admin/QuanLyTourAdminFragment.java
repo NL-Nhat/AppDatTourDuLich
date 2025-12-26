@@ -22,6 +22,7 @@ import com.example.apptravel.data.models.Tour;
 import com.example.apptravel.ui.activitys.admin.ThemTourActivity;
 import com.example.apptravel.util.QuanLyDangNhap; // Import thêm
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,7 @@ public class QuanLyTourAdminFragment extends Fragment {
 
     private RecyclerView rcvTours;
     private TourAdminAdapter adapter;
+    private TabLayout tabLayout;
     private List<Tour> tourList = new ArrayList<>();
     private  ApiService apiService;
 
@@ -54,6 +56,8 @@ public class QuanLyTourAdminFragment extends Fragment {
             startActivity(intent);
         });
 
+        setupTabs();
+
         return view;
     }
 
@@ -63,6 +67,7 @@ public class QuanLyTourAdminFragment extends Fragment {
         tvActiveTours = view.findViewById(R.id.stat_active_tours);
         tvInactiveTours = view.findViewById(R.id.stat_inactive_tours);
         btnAddTour = view.findViewById(R.id.ic_them_tour);
+        tabLayout = view.findViewById(R.id.tab_layout);
 
         rcvTours.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new TourAdminAdapter(tourList, getContext());
@@ -97,6 +102,13 @@ public class QuanLyTourAdminFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void setupTabs() {
+        tabLayout.removeAllTabs();
+        tabLayout.addTab(tabLayout.newTab().setText("Tất cả"));
+        tabLayout.addTab(tabLayout.newTab().setText("Đang mở"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tạm dừng"));
     }
 
     private void updateStatistics() {

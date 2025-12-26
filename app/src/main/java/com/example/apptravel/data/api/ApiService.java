@@ -164,4 +164,10 @@ public interface ApiService {
     //Lấy danh sách hướng dẫn viên
     @GET("api/admin/huong-dan-vien")
     Call<List<HuongDanVienResponse>> getHuongDanViens();
+
+    @GET("api/tour/count-tour")
+    Call<Long> countTour();
+
+    @GET("/api/auth/count-user")
+    Call<Long> countUser();
 }

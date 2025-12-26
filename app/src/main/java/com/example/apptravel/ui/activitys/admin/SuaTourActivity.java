@@ -80,8 +80,6 @@ public class SuaTourActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_sua_tour);
 
         apiService = ApiClient.getClient(this).create(ApiService.class);
-
-        // 1. Nhận dữ liệu từ Intent
         currentTour = (Tour) getIntent().getSerializableExtra("TOUR_OBJECT");
 
         anhXa();
@@ -92,7 +90,7 @@ public class SuaTourActivity extends AppCompatActivity  {
         pickMedia = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
             if (uri != null) {
                 selectedImageUri = uri;
-                imgTourHeader.setImageURI(uri); // Hiển thị ảnh vừa chọn lên header
+                imgTourHeader.setImageURI(uri);
             }
         });
 
@@ -145,6 +143,7 @@ public class SuaTourActivity extends AppCompatActivity  {
                         l.getNgayKetThuc().toString().replace("T", " "),
                         l.getSoLuongKhachToiDa()
                 );
+                dto.setMaLichKhoiHanh(l.getMaLichKhoiHanh());
                 if (l.getHuongDanVien() != null) {
                     dto.setMaHDV(l.getHuongDanVien().getMaNguoiDung());
                     dto.setTenHDV(l.getHuongDanVien().getHoTen());

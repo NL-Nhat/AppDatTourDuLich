@@ -105,4 +105,10 @@ public class QuanLyNguoiDungActivity extends AppCompatActivity {
         }
         adapter.updateList(filteredList);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadUsersFromServer();
+    }
 }
